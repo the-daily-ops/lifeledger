@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LifeLedger — Records</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f7f5f0;--bg2:#eeebe3;--bg3:#e5e1d6;--ink:#1a1814;--ink2:#5a5649;--ink3:#9a9488;
+  --rule:rgba(26,24,20,0.1);--rule2:rgba(26,24,20,0.06);
+  --gold:#b8882a;--red:#c0392b;--green:#2e7d52;--blue:#1a5276;--teal:#1a7070;
+  --pink:#c9547a;--pink-bg:rgba(201,84,122,0.06);--pink-border:rgba(201,84,122,0.2);
+  --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.65;}
+/* BRIEF */
+.brief{background:var(--ink);padding:32px 40px 28px;border-bottom:3px solid var(--gold);}
+.brief-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px;}
+.brief-dateline{font-family:var(--mono);font-size:10px;color:rgba(247,245,240,0.35);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;}
+.brief-headline{font-family:var(--serif);font-size:13px;font-weight:400;font-style:italic;color:rgba(247,245,240,0.55);max-width:480px;line-height:1.6;}
+.brief-savings{text-align:right;flex-shrink:0;}
+.brief-savings-num{font-family:var(--serif);font-size:40px;font-weight:600;color:var(--gold);line-height:1;}
+.brief-savings-label{font-family:var(--mono);font-size:9px;color:rgba(247,245,240,0.35);letter-spacing:0.12em;text-transform:uppercase;margin-top:4px;}
+.brief-savings-sub{font-family:var(--mono);font-size:9px;color:rgba(184,136,42,0.5);margin-top:3px;letter-spacing:0.05em;}
+.brief-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(247,245,240,0.06);border:1px solid rgba(247,245,240,0.06);border-radius:4px;overflow:hidden;}
+.brief-col{background:rgba(247,245,240,0.03);padding:16px 18px;}
+.brief-col-head{font-family:var(--mono);font-size:9px;color:rgba(247,245,240,0.3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+.brief-col-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.dot-red{background:#e05c4b;}.dot-gold{background:var(--gold);}.dot-green{background:#4caf7d;}.dot-pink{background:var(--pink);}
+.brief-item{font-size:12px;color:rgba(247,245,240,0.75);padding:5px 0;border-bottom:1px solid rgba(247,245,240,0.05);line-height:1.4;display:flex;align-items:flex-start;gap:6px;}
+.brief-item:last-child{border-bottom:none;padding-bottom:0;}
+.brief-item-bullet{color:rgba(247,245,240,0.25);flex-shrink:0;margin-top:1px;}
+.brief-item-text{flex:1;}
+.brief-tag{font-family:var(--mono);font-size:9px;padding:1px 5px;border-radius:2px;vertical-align:middle;margin-left:3px;}
+.btag-money{background:rgba(76,175,125,0.15);color:#4caf7d;}
+.btag-urgent{background:rgba(224,92,75,0.15);color:#e05c4b;}
+.btag-delivery{background:rgba(184,136,42,0.15);color:var(--gold);}
+.btag-wife{background:rgba(201,84,122,0.15);color:var(--pink);}
+.brief-win{font-size:12px;color:rgba(247,245,240,0.65);padding:4px 0;line-height:1.4;display:flex;align-items:flex-start;gap:6px;border-bottom:1px solid rgba(247,245,240,0.05);}
+.brief-win:last-child{border-bottom:none;}
+.brief-win-check{color:#4caf7d;flex-shrink:0;font-size:10px;margin-top:2px;}
+.brief-win-amount{font-family:var(--mono);font-size:10px;color:#4caf7d;margin-left:auto;padding-left:8px;flex-shrink:0;}
+/* MASTHEAD + NAV */
+.masthead{background:rgba(26,24,20,0.97);color:var(--bg);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(247,245,240,0.08);}
+.masthead-title{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-0.01em;color:rgba(247,245,240,0.5);}
+.masthead-right{font-family:var(--mono);font-size:10px;color:rgba(247,245,240,0.25);letter-spacing:0.08em;}
+.nav{background:var(--ink);padding:0 40px;display:flex;gap:0;border-bottom:1px solid rgba(247,245,240,0.08);overflow-x:auto;}
+.nav-btn{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(247,245,240,0.4);padding:12px 18px;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;white-space:nowrap;}
+.nav-btn:hover{color:rgba(247,245,240,0.8);}
+.nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+/* SUMMARY BAND */
+.summary-band{background:var(--bg2);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:repeat(5,1fr);}
+.sum-cell{padding:16px 20px;border-right:1px solid var(--rule);transition:background 0.15s;}
+.sum-cell:last-child{border-right:none;}
+.sum-cell:hover{background:var(--bg3);}
+.sum-label{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;}
+.sum-val{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);line-height:1;}
+.sum-val.gold{color:var(--gold);}.sum-val.green{color:var(--green);}
+.sum-sub{font-size:11px;color:var(--ink3);margin-top:2px;}
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 260px);}
+.sidebar{background:var(--bg2);border-right:1px solid var(--rule);padding:24px 0;}
+.sidebar-section{margin-bottom:4px;}
+.sidebar-heading{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.12em;text-transform:uppercase;padding:6px 20px 4px;}
+.sidebar-item{display:flex;align-items:center;justify-content:space-between;padding:8px 20px;cursor:pointer;transition:background 0.12s;border-left:2px solid transparent;}
+.sidebar-item:hover{background:var(--bg3);}
+.sidebar-item.active{background:var(--bg);border-left-color:var(--gold);}
+.sidebar-item-name{font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:8px;}
+.sidebar-item.active .sidebar-item-name{color:var(--ink);font-weight:500;}
+.sidebar-count{font-family:var(--mono);font-size:10px;color:var(--ink3);background:var(--bg3);padding:1px 6px;border-radius:2px;}
+.content{padding:32px 40px;min-width:0;}
+.section{display:none;}.section.active{display:block;}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--rule);}
+.section-title{font-family:var(--serif);font-size:26px;font-weight:500;color:var(--ink);letter-spacing:-0.01em;}
+.section-meta{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:0.05em;}
+/* RECORDS */
+.records{display:flex;flex-direction:column;gap:16px;}
+.record{background:white;border:1px solid var(--rule);border-radius:3px;overflow:hidden;transition:border-color 0.15s;}
+.record:hover{border-color:rgba(26,24,20,0.2);}
+.record.wife-record{border-left:3px solid var(--pink);}
+.record-header{padding:14px 18px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;cursor:pointer;user-select:none;}
+.record-header:hover{background:rgba(26,24,20,0.02);}
+.record-title{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);line-height:1.3;}
+.record-date{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:3px;letter-spacing:0.04em;}
+.record-badges{display:flex;gap:6px;align-items:center;flex-shrink:0;}
+.badge{font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;}
+.badge-done{background:rgba(46,125,82,0.1);color:var(--green);border:1px solid rgba(46,125,82,0.2);}
+.badge-pending{background:rgba(184,136,42,0.1);color:var(--gold);border:1px solid rgba(184,136,42,0.25);}
+.badge-warn{background:rgba(192,57,43,0.08);color:var(--red);border:1px solid rgba(192,57,43,0.2);}
+.badge-money{background:rgba(46,125,82,0.1);color:var(--green);border:1px solid rgba(46,125,82,0.2);}
+.badge-wife{background:var(--pink-bg);color:var(--pink);border:1px solid var(--pink-border);}
+.chevron{color:var(--ink3);font-size:12px;transition:transform 0.2s;flex-shrink:0;margin-top:2px;}
+.record.open .chevron{transform:rotate(180deg);}
+.record-body{display:none;padding:0 18px 16px;border-top:1px solid var(--rule2);}
+.record.open .record-body{display:block;}
+.rb-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px;}
+.rb-grid-3{grid-template-columns:1fr 1fr 1fr;}
+.field-label{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;}
+.field-val{font-size:13px;color:var(--ink);line-height:1.5;}
+.field-val.mono{font-family:var(--mono);font-size:12px;}
+.field-val.large{font-family:var(--serif);font-size:20px;font-weight:500;color:var(--green);}
+.field-val.gold{color:var(--gold);font-weight:500;}
+.field-val.warn{color:var(--red);}
+.field-val.green{color:var(--green);}
+.divider{height:1px;background:var(--rule2);margin:14px 0;}
+.note-box{background:var(--bg2);border-left:3px solid var(--gold);padding:10px 14px;margin-top:12px;font-size:12px;color:var(--ink2);line-height:1.6;border-radius:0 2px 2px 0;}
+.warn-box{background:rgba(192,57,43,0.06);border-left:3px solid var(--red);padding:10px 14px;margin-top:12px;font-size:12px;color:var(--red);line-height:1.6;border-radius:0 2px 2px 0;}
+.info-box{background:rgba(26,82,118,0.06);border-left:3px solid var(--blue);padding:10px 14px;margin-top:12px;font-size:12px;color:var(--blue);line-height:1.6;border-radius:0 2px 2px 0;}
+.pink-box{background:var(--pink-bg);border-left:3px solid var(--pink);padding:10px 14px;margin-top:12px;font-size:12px;color:var(--pink);line-height:1.6;border-radius:0 2px 2px 0;}
+.row-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px;}
+.row-table th{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;text-align:left;padding:6px 10px;border-bottom:1px solid var(--rule);background:var(--bg2);}
+.row-table td{padding:7px 10px;border-bottom:1px solid var(--rule2);color:var(--ink2);vertical-align:top;}
+.row-table tr:last-child td{border-bottom:none;}
+.val-green{color:var(--green);font-weight:500;}.val-gold{color:var(--gold);font-weight:500;}
+/* OVERVIEW */
+.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.ov-card{background:white;border:1px solid var(--rule);border-radius:3px;padding:16px 18px;cursor:pointer;transition:all 0.15s;border-top:3px solid transparent;}
+.ov-card:hover{border-color:rgba(26,24,20,0.15);}
+.ov-card.costsavings{border-top-color:var(--green);}.ov-card.finances{border-top-color:var(--gold);}
+.ov-card.homeimprovement{border-top-color:#7d6b3a;}.ov-card.medical{border-top-color:var(--teal);}
+.ov-card.workbenefits{border-top-color:var(--blue);}.ov-card.journal{border-top-color:var(--ink3);}
+.ov-card.loans{border-top-color:#5b4fcf;}
+.ov-card-icon{font-size:20px;margin-bottom:8px;}
+.ov-card-title{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.ov-card-count{font-family:var(--mono);font-size:10px;color:var(--ink3);letter-spacing:0.05em;}
+.ov-card-preview{margin-top:10px;font-size:11px;color:var(--ink3);line-height:1.5;}
+/* LOANS */
+.loan-summary-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
+.loan-kpi{background:white;border:1px solid var(--rule);border-radius:3px;padding:16px 18px;border-top:3px solid #5b4fcf;}
+.loan-kpi-label{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.loan-kpi-val{font-family:var(--serif);font-size:26px;font-weight:500;color:var(--ink);line-height:1;}
+.loan-kpi-sub{font-size:11px;color:var(--ink3);margin-top:4px;}
+.loan-card{background:white;border:1px solid var(--rule);border-radius:3px;overflow:hidden;margin-bottom:16px;}
+.loan-card-header{padding:16px 20px 14px;border-bottom:1px solid var(--rule2);display:flex;align-items:flex-start;justify-content:space-between;}
+.loan-card-title{font-family:var(--serif);font-size:18px;font-weight:500;color:var(--ink);}
+.loan-card-sub{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:3px;}
+.loan-card-badge{font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:2px;}
+.lbadge-active{background:rgba(46,125,82,0.1);color:var(--green);border:1px solid rgba(46,125,82,0.2);}
+.lbadge-tbd{background:rgba(154,148,136,0.12);color:var(--ink3);border:1px solid var(--rule);}
+.loan-card-body{padding:16px 20px;}
+.loan-progress-wrap{margin:14px 0;}
+.loan-progress-label{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--ink3);margin-bottom:6px;}
+.loan-progress-track{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden;}
+.loan-progress-fill{height:100%;border-radius:3px;background:var(--green);transition:width 0.4s ease;}
+.tbd-placeholder{background:var(--bg2);border:1px dashed var(--bg3);border-radius:3px;padding:20px;text-align:center;margin-top:12px;}
+.tbd-placeholder-text{font-family:var(--mono);font-size:11px;color:var(--ink3);}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<div class="brief">
+  <div class="brief-top">
+    <div>
+      <div class="brief-dateline" id="brief-date"></div>
+      <div class="brief-headline">Good morning, Coto. Here's where things stand.</div>
+    </div>
+    <div class="brief-savings">
+      <div class="brief-savings-num">$132</div>
+      <div class="brief-savings-label">recurring monthly savings</div>
+      <div class="brief-savings-sub">goal was $100 — exceeded ✓</div>
+    </div>
+  </div>
+  <div class="brief-grid">
+    <div class="brief-col">
+      <div class="brief-col-head"><div class="brief-col-dot dot-red"></div> Needs attention</div>
+      <div class="brief-item"><span class="brief-item-bullet">›</span><span class="brief-item-text">Call IKEA re: $30 gift card — overdue<span class="brief-tag btag-money">$</span></span></div>
+      <div class="brief-item"><span class="brief-item-bullet">›</span><span class="brief-item-text">Schedule HonorHealth lab<span class="brief-tag btag-urgent">medical</span></span></div>
+      <div class="brief-item"><span class="brief-item-bullet">›</span><span class="brief-item-text">EOS double payment — still no reply<span class="brief-tag btag-money">$</span></span></div>
+      <div class="brief-item"><span class="brief-item-bullet">›</span><span class="brief-item-text">Fix garage door — manual only</span></div>
+    </div>
+    <div class="brief-col">
+      <div class="brief-col-head"><div class="brief-col-dot dot-pink"></div> 💌 Wife priority</div>
+      <div class="brief-item"><span class="brief-item-bullet">›</span><span class="brief-item-text">Pineapple + pomegranate juice — 5 days<span class="brief-tag btag-wife">protocol</span></span></div>
+      <div class="brief-item"><span class="brief-item-bullet">›</span><span class="brief-item-text">Prioritize her sleep + low stress</span></div>
+      <div class="brief-item"><span class="brief-item-bullet">›</span><span class="brief-item-text">No alcohol · no hot tubs · no sauna</span></div>
+      <div class="brief-item"><span class="brief-item-bullet">›</span><span class="brief-item-text">Caffeine max 200mg/day · yoga only</span></div>
+    </div>
+    <div class="brief-col">
+      <div class="brief-col-head"><div class="brief-col-dot dot-green"></div> This week's wins</div>
+      <div class="brief-win"><span class="brief-win-check">✓</span><span>Amazon refunds — Zoom H1n + Lav Mic</span><span class="brief-win-amount">+$163.54</span></div>
+      <div class="brief-win"><span class="brief-win-check">✓</span><span>Junkyard run — Sentra parts</span><span class="brief-win-amount">~$450 saved</span></div>
+      <div class="brief-win"><span class="brief-win-check">✓</span><span>Plumbing visit — waived charge</span><span class="brief-win-amount">~$420 saved</span></div>
+      <div class="brief-win"><span class="brief-win-check">✓</span><span>Amazon ZH1 credit — no-push win</span><span class="brief-win-amount">+$25</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="masthead">
+  <div class="masthead-title">LifeLedger — Records</div>
+  <div class="masthead-right">Phoenix, AZ · Personal knowledge base · Est. 2026</div>
+</div>
+
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('overview',this)">Overview</button>
+  <button class="nav-btn" onclick="showSection('costsavings',this)">Cost Savings</button>
+  <button class="nav-btn" onclick="showSection('finances',this)">Finances</button>
+  <button class="nav-btn" onclick="showSection('homeimprovement',this)">Home</button>
+  <button class="nav-btn" onclick="showSection('medical',this)">Medical</button>
+  <button class="nav-btn" onclick="showSection('workbenefits',this)">Work Benefits</button>
+  <button class="nav-btn" onclick="showSection('journal',this)">Journal</button>
+  <button class="nav-btn" onclick="showSection('loans',this)">Loans</button>
+</nav>
+
+<div class="summary-band">
+  <div class="sum-cell"><div class="sum-label">Monthly saved</div><div class="sum-val gold">$132</div><div class="sum-sub">vs. $100 goal ✓</div></div>
+  <div class="sum-cell"><div class="sum-label">Annual projection</div><div class="sum-val green">$1,584</div><div class="sum-sub">at current rate</div></div>
+  <div class="sum-cell"><div class="sum-label">Pending refunds</div><div class="sum-val">$0</div><div class="sum-sub">Amazon returns cleared</div></div>
+  <div class="sum-cell"><div class="sum-label">Student loan</div><div class="sum-val">$908.48</div><div class="sum-sub">Nelnet · 3.15%</div></div>
+  <div class="sum-cell"><div class="sum-label">Records on file</div><div class="sum-val">20</div><div class="sum-sub">across 7 folders</div></div>
+</div>
+
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-heading">Folders</div>
+    <div class="sidebar-item active" onclick="showSection('overview',null,this)"><span class="sidebar-item-name">🗂 Overview</span></div>
+    <div class="sidebar-item" onclick="showSection('costsavings',null,this)"><span class="sidebar-item-name">💰 Cost Savings</span><span class="sidebar-count">5</span></div>
+    <div class="sidebar-item" onclick="showSection('finances',null,this)"><span class="sidebar-item-name">📊 Finances</span><span class="sidebar-count">4</span></div>
+    <div class="sidebar-item" onclick="showSection('homeimprovement',null,this)"><span class="sidebar-item-name">🏠 Home</span><span class="sidebar-count">5</span></div>
+    <div class="sidebar-item" onclick="showSection('medical',null,this)"><span class="sidebar-item-name">🏥 Medical</span><span class="sidebar-count">3</span></div>
+    <div class="sidebar-item" onclick="showSection('workbenefits',null,this)"><span class="sidebar-item-name">💼 Work Benefits</span><span class="sidebar-count">1</span></div>
+    <div class="sidebar-item" onclick="showSection('journal',null,this)"><span class="sidebar-item-name">📓 Journal</span><span class="sidebar-count">2</span></div>
+    <div class="sidebar-item" onclick="showSection('loans',null,this)"><span class="sidebar-item-name">🏦 Loans</span><span class="sidebar-count">3</span></div>
+  </div>
+  <div class="sidebar-section" style="margin-top:16px">
+    <div class="sidebar-heading">Savings goal</div>
+    <div style="padding:8px 20px">
+      <div style="height:4px;background:var(--bg3);border-radius:2px;overflow:hidden"><div style="height:100%;width:100%;background:var(--green);border-radius:2px"></div></div>
+      <div style="font-size:10px;color:var(--green);margin-top:4px;font-family:var(--mono)">$132 / $100 ✓ exceeded</div>
+    </div>
+  </div>
+  <div class="sidebar-section" style="margin-top:8px">
+    <div class="sidebar-heading">Next targets</div>
+    <div style="padding:4px 20px;display:flex;flex-direction:column;gap:4px">
+      <div style="font-size:11px;color:var(--ink3);padding:3px 0;border-bottom:1px solid var(--rule2)">📱 Phone bill</div>
+      <div style="font-size:11px;color:var(--ink3);padding:3px 0;border-bottom:1px solid var(--rule2)">🍎 Apple subscriptions</div>
+      <div style="font-size:11px;color:var(--ink3);padding:3px 0;border-bottom:1px solid var(--rule2)">⚡ APS time-of-use</div>
+      <div style="font-size:11px;color:var(--ink3);padding:3px 0">🚗 Car insurance</div>
+    </div>
+  </div>
+</aside>
+<main class="content">
+
+<div class="section active" id="sec-overview">
+  <div class="section-header"><div class="section-title">Your Records</div><div class="section-meta">20 files · updated March 30, 2026</div></div>
+  <div class="overview-grid">
+    <div class="ov-card costsavings" onclick="showSection('costsavings')"><div class="ov-card-icon">💰</div><div class="ov-card-title">Cost Savings</div><div class="ov-card-count">5 records</div><div class="ov-card-preview">Cox · subscriptions · Amazon wins · junkyard savings · $132/mo total</div></div>
+    <div class="ov-card finances" onclick="showSection('finances')"><div class="ov-card-icon">📊</div><div class="ov-card-title">Finances</div><div class="ov-card-count">4 records</div><div class="ov-card-preview">401K · tax tracker 2026 · Nelnet $908.48 · tax return filed</div></div>
+    <div class="ov-card homeimprovement" onclick="showSection('homeimprovement')"><div class="ov-card-icon">🏠</div><div class="ov-card-title">Home Improvement</div><div class="ov-card-count">5 records</div><div class="ov-card-preview">Plumbing · garage · Sentra spark plugs · junkyard run · IKEA blind</div></div>
+    <div class="ov-card medical" onclick="showSection('medical')"><div class="ov-card-icon">🏥</div><div class="ov-card-title">Medical</div><div class="ov-card-count">3 records</div><div class="ov-card-preview">Annual checkup · Cigna claim · Wife two-week protocol 🌸</div></div>
+    <div class="ov-card workbenefits" onclick="showSection('workbenefits')"><div class="ov-card-icon">💼</div><div class="ov-card-title">Work Benefits</div><div class="ov-card-count">1 record</div><div class="ov-card-preview">HSA setup · shampoo expense $14.29</div></div>
+    <div class="ov-card journal" onclick="showSection('journal')"><div class="ov-card-icon">📓</div><div class="ov-card-title">Journal</div><div class="ov-card-count">2 records</div><div class="ov-card-preview">Early 2026 archive · Maui Nui Venison order</div></div>
+    <div class="ov-card loans" onclick="showSection('loans')"><div class="ov-card-icon">🏦</div><div class="ov-card-title">Loans</div><div class="ov-card-count">3 loans tracked</div><div class="ov-card-preview">Student loan $908.48 · Mortgage TBD · HELOC TBD</div></div>
+  </div>
+  <div style="margin-top:24px;padding:20px;background:white;border:1px solid var(--rule);border-radius:3px;border-left:3px solid var(--gold)">
+    <div style="font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">Boot prompt for new Claude sessions</div>
+    <div style="font-family:var(--mono);font-size:12px;color:var(--ink2);background:var(--bg2);padding:10px 12px;border-radius:2px;line-height:1.6">Boot LifeLedger — read _context.md and main Obsidian task file, then tell me what's open and what I should focus on today</div>
+  </div>
+</div>
+
+<div class="section" id="sec-costsavings">
+  <div class="section-header"><div class="section-title">Cost Savings</div><div class="section-meta">$132/mo recurring · 5 records</div></div>
+  <div class="records">
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Cox Internet — Bill Negotiation</div><div class="record-date">March 25, 2026 · Chris Voss via chat</div></div><div class="record-badges"><span class="badge badge-money">$19/mo saved</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid rb-grid-3"><div><div class="field-label">Was paying</div><div class="field-val">$75.37/mo</div></div><div><div class="field-label">Now paying</div><div class="field-val large">$56.37/mo</div></div><div><div class="field-label">Annual savings</div><div class="field-val gold">$228/yr</div></div><div><div class="field-label">Work order</div><div class="field-val mono">#207658615</div></div><div><div class="field-label">Contract</div><div class="field-val">None (24-mo promo)</div></div><div><div class="field-label">Lock period</div><div class="field-val">24 months</div></div></div><div class="note-box">Navigated past Oliver (bot) → Joel (deflected) → Taufiq K. (retention). Anchored at $50 competitor pricing.</div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Subscription Cancellations & Downgrades</div><div class="record-date">March 2026 · Netflix · Patreon · ChatGPT · Amazon Prime</div></div><div class="record-badges"><span class="badge badge-money">~$30/mo saved</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><table class="row-table"><thead><tr><th>Date</th><th>Service</th><th>Action</th><th>Savings</th></tr></thead><tbody><tr><td>03/11/26</td><td>Netflix</td><td>Downgraded $24.99 → $17.99/mo</td><td class="val-green">$7/mo</td></tr><tr><td>03/11/26</td><td>Patreon</td><td>Refund of $10.99 charge</td><td class="val-green">$10.99 one-time</td></tr><tr><td>02/28/26</td><td>ChatGPT Go</td><td>Cancelled</td><td class="val-green">~$8/mo</td></tr><tr><td>03/25/26</td><td>Amazon Prime</td><td>Trial cancelled on last day</td><td class="val-green">~$15/mo avoided</td></tr></tbody></table></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Amazon Customer Service Win — Zoom ZH1</div><div class="record-date">March 27, 2026 · Rep: Yashita</div></div><div class="record-badges"><span class="badge badge-money">$25 credit</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Credit secured</div><div class="field-val large">$25.00</div></div><div><div class="field-label">Rep</div><div class="field-val">Yashita</div></div></div><div class="note-box">Voss framework: tactical empathy + labeling + calibrated "how" questions. Lesson: there's almost always room to ask for more.</div><div class="info-box">📹 Content potential: relatable everyday Voss win — good entry-level YouTube story.</div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Amazon Returns — Zoom H1n & PowerDeWise Lav Mic</div><div class="record-date">March 27, 2026 · Order #113-3981699-5885069</div></div><div class="record-badges"><span class="badge badge-money">$163.54 refunded</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Zoom H1n refund</div><div class="field-val large">$136.36</div></div><div><div class="field-label">PowerDeWise refund</div><div class="field-val large">$27.18</div></div><div><div class="field-label">Total refunded</div><div class="field-val gold">$163.54</div></div><div><div class="field-label">Original total</div><div class="field-val">$161.90 (slight overage — normal)</div></div></div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Sentra Junkyard Parts — Pull-A-Part</div><div class="record-date">March 28, 2026 · 21st Ave, Phoenix</div></div><div class="record-badges"><span class="badge badge-money">~$450–500 saved</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid rb-grid-3"><div><div class="field-label">Parts cost</div><div class="field-val large">$34.00</div></div><div><div class="field-label">Ross wagon</div><div class="field-val">$54.00 (reusable)</div></div><div><div class="field-label">Total out of pocket</div><div class="field-val">$88.00</div></div><div><div class="field-label">Trunk piece (new)</div><div class="field-val">$404.32 dealer</div></div><div><div class="field-label">Emblem (new OEM)</div><div class="field-val">$92–143</div></div><div><div class="field-label">Est. net savings</div><div class="field-val gold">~$450–500</div></div></div><div class="note-box">Two trunk pieces for backup. Non-matching emblem — plan to glue. Pull-A-Part provides wheelbarrows on-site — note for next time.</div></div></div>
+  </div>
+</div>
+
+<div class="section" id="sec-finances">
+  <div class="section-header"><div class="section-title">Finances</div><div class="section-meta">4 records · tax year 2026 in progress</div></div>
+  <div class="records">
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Tax Tracker 2026 — Filing in 2027</div><div class="record-date">Updated March 27, 2026 · Preparer: Evie · MFJ</div></div><div class="record-badges"><span class="badge badge-pending">In progress</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid rb-grid-3"><div><div class="field-label">Loan balance</div><div class="field-val">$908.48 (Nelnet)</div></div><div><div class="field-label">Interest rate</div><div class="field-val mono">3.150%</div></div><div><div class="field-label">Daily accrual</div><div class="field-val mono">$0.08/day</div></div><div><div class="field-label">Next payment</div><div class="field-val">$86.46 due 09/06/26</div></div><div><div class="field-label">HSA expense</div><div class="field-val">$14.29 (shampoo)</div></div><div><div class="field-label">Account #</div><div class="field-val mono">E656674092</div></div></div><div class="note-box">Filing deadline: April 15, 2027. Schedule with Evie in January.</div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">401K Access — Principal Financial</div><div class="record-date">March 13, 2026 · Balance: $2,046.58</div></div><div class="record-badges"><span class="badge badge-done">✓ Access confirmed</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Balance (03/13)</div><div class="field-val large">$2,046.58</div></div><div><div class="field-label">Provider</div><div class="field-val">Principal Financial</div></div><div><div class="field-label">Phone</div><div class="field-val mono">800-247-8000 ext. 2031</div></div><div><div class="field-label">Username</div><div class="field-val mono">CINDYERENAS90</div></div></div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Fidelity 401K Loan — Follow-Up</div><div class="record-date">March 12, 2026 · $65.92/mo</div></div><div class="record-badges"><span class="badge badge-done">✓ Resolved</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Monthly payment</div><div class="field-val">$65.92</div></div><div><div class="field-label">Risk flagged</div><div class="field-val warn">Potential default</div></div><div><div class="field-label">Action taken</div><div class="field-val">Messaged Rocket 03/12</div></div></div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Tax Return 2025 — Filed & Complete</div><div class="record-date">March 2026 · Preparer: Evie</div></div><div class="record-badges"><span class="badge badge-done">✓ Filed & closed</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Federal refund</div><div class="field-val green">Received ✓</div></div><div><div class="field-label">State refund</div><div class="field-val green">Received ✓</div></div><div><div class="field-label">Preparer</div><div class="field-val">Evie</div></div><div><div class="field-label">Dispersal</div><div class="field-val">Payment to babe ✓</div></div></div></div></div>
+  </div>
+</div>
+
+<div class="section" id="sec-homeimprovement">
+  <div class="section-header"><div class="section-title">Home Improvement</div><div class="section-meta">5 records · 4321 E Rosemonte Dr, Phoenix AZ 85050</div></div>
+  <div class="records">
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Plumbing — Advanced Water Systems Visit</div><div class="record-date">March 27, 2026 · Tech: Noah Corral · Estimate #213810</div></div><div class="record-badges"><span class="badge badge-money">~$420 saved</span><span class="badge badge-warn">⚠ May recur</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Issue</div><div class="field-val">Vibration/humming when faucets run</div></div><div><div class="field-label">Fix</div><div class="field-val">Noah nudged pipe — resolved at no charge</div></div><div><div class="field-label">PRV quote (AWS)</div><div class="field-val">$420 (est. #213810, exp. 06/24/26)</div></div><div><div class="field-label">PRV quote (HMU)</div><div class="field-val">$300 (Noah's private co.)</div></div></div><div class="warn-box">⚠ Red flag: Noah called HMU contact who quoted $90, then quoted $300 himself — $210 unexplained markup. Get competing quote before any PRV work.</div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Sentra — Pull-A-Part Junkyard Run</div><div class="record-date">March 28, 2026 · 21st Ave Phoenix</div></div><div class="record-badges"><span class="badge badge-money">~$450 saved</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Parts acquired</div><div class="field-val">Trunk moulding ×2 · visor hardware · grill emblem</div></div><div><div class="field-label">Total spent</div><div class="field-val">$88 ($34 parts + $54 Ross wagon)</div></div></div><div class="note-box">Two trunk pieces for backup. Non-matching emblem — glue with automotive trim adhesive. Visors: hardware confirmed, panels still needed.</div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Garage Organization Project</div><div class="record-date">Started March 27, 2026 · 3 phases</div></div><div class="record-badges"><span class="badge badge-pending">In progress</span><span class="chevron">▼</span></div></div><div class="record-body"><table class="row-table"><thead><tr><th>Phase</th><th>Status</th><th>Next action</th></tr></thead><tbody><tr><td>1 — Clearing</td><td class="val-gold">In progress</td><td>Continue clearing</td></tr><tr><td>2 — Shelving</td><td>Not started</td><td>Measure walls · buy w/ gift card</td></tr><tr><td>3 — Final setup</td><td>Not started</td><td>Labels · pegboard · doggy door</td></tr></tbody></table></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">IKEA TRIPPEVALS Blackout Blind</div><div class="record-date">Logged March 28, 2026 · Pending IKEA credit</div></div><div class="record-badges"><span class="badge badge-pending">Pending purchase</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Item</div><div class="field-val">TRIPPEVALS Black-out cellular blind, white · 34×76¾"</div></div><div><div class="field-label">Price / Part #</div><div class="field-val">$69.99 · Part #705.065.72</div></div></div><div class="warn-box">⚠ Call IKEA first — $30 gift card promised, well past 3 business days. Apply credit before purchasing.</div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Sentra — Spark Plugs Replaced</div><div class="record-date">March 2026 · DIY</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Type</div><div class="field-val">DIY replacement</div></div><div><div class="field-label">Status</div><div class="field-val green">Complete ✓</div></div></div></div></div>
+  </div>
+</div>
+
+<div class="section" id="sec-medical">
+  <div class="section-header"><div class="section-title">Medical</div><div class="section-meta">3 records · BCBS + Cigna</div></div>
+  <div class="records">
+
+    <!-- WIFE PROTOCOL — pinned first, pink accented -->
+    <div class="record wife-record open">
+      <div class="record-header" onclick="toggleRecord(this)">
+        <div><div class="record-title">💌 Wife — Two-Week Health Protocol</div><div class="record-date">Started March 30, 2026 · ends ~April 13, 2026</div></div>
+        <div class="record-badges"><span class="badge badge-wife">🌸 Active · Top priority</span><span class="chevron">▼</span></div>
+      </div>
+      <div class="record-body">
+        <div class="pink-box">These are her guidelines for the next two weeks. Support her fully — reduce stressors, keep the home calm, and do these with her where you can.</div>
+        <table class="row-table" style="margin-top:14px">
+          <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+          <tbody>
+            <tr><td>🍍 Pineapple juice</td><td>Next 5 days + pomegranate juice</td></tr>
+            <tr><td>😴 Sleep</td><td>Prioritize good rest — calm evenings, no late noise</td></tr>
+            <tr><td>🧘 Stress</td><td>Keep stress low — intentional peaceful environment</td></tr>
+            <tr><td>💊 Supplements</td><td>Keep up with current supplement routine</td></tr>
+            <tr><td>🥗 Nutrition</td><td>Eat well, stay hydrated</td></tr>
+            <tr><td>🚫 No alcohol</td><td>Full restriction for 2 weeks</td></tr>
+            <tr><td>🚫 No hot tubs</td><td>Full restriction for 2 weeks</td></tr>
+            <tr><td>☕ Caffeine limit</td><td>1 cup coffee okay (under 95mg) · 200mg/day max</td></tr>
+            <tr><td>🚫 No sauna</td><td>Full restriction for 2 weeks</td></tr>
+            <tr><td>🧘 Exercise</td><td>Yoga and light workouts only — no intense training</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Annual Checkup — HonorHealth Saguaro</div><div class="record-date">March 2026 · Dr. Christina Walker MD</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Doctor</div><div class="field-val">Christina Walker MD</div></div><div><div class="field-label">NP</div><div class="field-val">Jennifer Thatcher (NPI: 1740745686)</div></div><div><div class="field-label">Address</div><div class="field-val">20950 N Tatum Blvd, Ste 190, 85050</div></div><div><div class="field-label">Lab ordered</div><div class="field-val warn">Pending — call 602-730-8443</div></div></div><div class="note-box">Lab: HonorHealth Cave Creek · 20330 N Cave Creek Rd, Suite 160 · M-F 7:30am–4pm</div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Cigna Health Claim — Wife</div><div class="record-date">Logged March 26, 2026 · mycigna.com</div></div><div class="record-badges"><span class="badge badge-pending">⏳ Pending</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Insurance</div><div class="field-val">Cigna</div></div><div><div class="field-label">Portal</div><div class="field-val mono">mycigna.com</div></div><div><div class="field-label">Claim #</div><div class="field-val warn">Not yet retrieved</div></div><div><div class="field-label">Amount</div><div class="field-val warn">Unknown — check EOB</div></div></div><div class="warn-box">If denied or underpaid → medical bill negotiation candidate. Use Voss tactics.</div></div></div>
+  </div>
+</div>
+
+<div class="section" id="sec-workbenefits">
+  <div class="section-header"><div class="section-title">Work Benefits</div><div class="section-meta">1 record · Rocket employer</div></div>
+  <div class="records">
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">HSA Setup — Shampoo Expense Reimbursement</div><div class="record-date">March 2026 · $14.29</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">HSA setup</div><div class="field-val">03/12/26 — direct deposit established</div></div><div><div class="field-label">Amount expensed</div><div class="field-val">$14.29 on 03/18/26</div></div><div><div class="field-label">Eligibility</div><div class="field-val">Prescribed — Rocket letter on file</div></div><div><div class="field-label">2026 limit</div><div class="field-val">$4,150 individual / $8,300 family</div></div></div></div></div>
+  </div>
+</div>
+
+<div class="section" id="sec-journal">
+  <div class="section-header"><div class="section-title">Journal</div><div class="section-meta">2 records</div></div>
+  <div class="records">
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Maui Nui Venison Order — In Transit</div><div class="record-date">Shipped March 27, 2026 · Cirro tracking</div></div><div class="record-badges"><span class="badge badge-pending">📦 En route</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-grid"><div><div class="field-label">Order #</div><div class="field-val mono">MV244936</div></div><div><div class="field-label">Item</div><div class="field-val">Pepper 10 Venison Sticks 12pk</div></div><div><div class="field-label">Total</div><div class="field-val">$64.50 (free shipping)</div></div><div><div class="field-label">Tracking</div><div class="field-val mono">CR010796438208 (Cirro)</div></div></div><div class="warn-box">⚠ Fresh venison: bring inside within 6 hours of delivery.</div></div></div>
+    <div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Completed Tasks Archive — Early 2026</div><div class="record-date">March 2026 · General log</div></div><div class="record-badges"><span class="badge badge-done">✓ Archived</span><span class="chevron">▼</span></div></div><div class="record-body"><table class="row-table"><thead><tr><th>Category</th><th>Highlights</th></tr></thead><tbody><tr><td>Financial</td><td>Chase points $30.03 · ClassPass refund $147 · Costco return $17.99</td></tr><tr><td>Home</td><td>Windshield scheduled · AC fixed · wipers replaced · AirPod AppleCare renewed</td></tr><tr><td>EOS Training</td><td>Cancelled 03/05 · double payment credit still pending</td></tr><tr><td>Family / Social</td><td>Renaissance tickets · cookout 02/29 · Buck & Rider reservation</td></tr><tr><td>Romance</td><td>Bike ride done · pregnancy test expensed</td></tr><tr><td>Content</td><td>Box cutter video recorded 02/28 — import still pending</td></tr></tbody></table></div></div>
+  </div>
+</div>
+
+<div class="section" id="sec-loans">
+  <div class="section-header"><div class="section-title">Loans</div><div class="section-meta">3 loans tracked · updated March 29, 2026</div></div>
+  <div class="loan-summary-strip">
+    <div class="loan-kpi"><div class="loan-kpi-label">Total known debt</div><div class="loan-kpi-val">$908<span style="font-size:16px;opacity:0.5">.48+</span></div><div class="loan-kpi-sub">Student loan confirmed · mortgage + HELOC TBD</div></div>
+    <div class="loan-kpi"><div class="loan-kpi-label">Monthly obligations</div><div class="loan-kpi-val">$86<span style="font-size:16px;opacity:0.5">.46+</span></div><div class="loan-kpi-sub">Nelnet confirmed · others TBD</div></div>
+    <div class="loan-kpi"><div class="loan-kpi-label">Lowest rate loan</div><div class="loan-kpi-val">3.15<span style="font-size:16px;opacity:0.5">%</span></div><div class="loan-kpi-sub">Student loan · nearly paid off</div></div>
+  </div>
+  <div class="loan-card">
+    <div class="loan-card-header"><div><div class="loan-card-title">📚 Student Loan — Nelnet</div><div class="loan-card-sub">Direct Subsidized · Group AD · Account E656674092</div></div><span class="loan-card-badge lbadge-active">✓ Active · In repayment</span></div>
+    <div class="loan-card-body">
+      <div class="rb-grid rb-grid-3">
+        <div><div class="field-label">Outstanding balance</div><div class="field-val large">$908.48</div></div>
+        <div><div class="field-label">Principal</div><div class="field-val">$900.19</div></div>
+        <div><div class="field-label">Accrued interest</div><div class="field-val">$8.29</div></div>
+        <div><div class="field-label">Interest rate</div><div class="field-val mono">3.150%</div></div>
+        <div><div class="field-label">Daily accrual</div><div class="field-val mono">$0.08 / day</div></div>
+        <div><div class="field-label">Repayment plan</div><div class="field-val">Graduated Repayment</div></div>
+        <div><div class="field-label">Monthly payment</div><div class="field-val">$86.46</div></div>
+        <div><div class="field-label">Next due date</div><div class="field-val warn">09/06/2026</div></div>
+        <div><div class="field-label">Last payment</div><div class="field-val">$100.00 on 12/17/2025</div></div>
+      </div>
+      <div class="loan-progress-wrap">
+        <div class="loan-progress-label"><span>Payoff progress</span><span>$908.48 remaining</span></div>
+        <div class="loan-progress-track"><div class="loan-progress-fill" style="width:92%"></div></div>
+        <div style="font-size:10px;color:var(--green);margin-top:4px;font-family:var(--mono)">~92% paid off — only Group AD remaining. Groups AA · AB · AC · AE all cleared ✓</div>
+      </div>
+      <div class="note-box">Tax note: interest paid is deductible — get Form 1098-E from Nelnet in January 2027. Portal: nelnet.studentaid.gov</div>
+    </div>
+  </div>
+  <div class="loan-card">
+    <div class="loan-card-header"><div><div class="loan-card-title">🏠 Mortgage</div><div class="loan-card-sub">4321 E Rosemonte Dr · Phoenix, AZ 85050</div></div><span class="loan-card-badge lbadge-tbd">Details needed</span></div>
+    <div class="loan-card-body">
+      <div class="rb-grid rb-grid-3"><div><div class="field-label">Lender</div><div class="field-val warn">Add lender name</div></div><div><div class="field-label">Loan type</div><div class="field-val warn">Add (30-yr fixed, FHA, etc.)</div></div><div><div class="field-label">Original amount</div><div class="field-val warn">Add from docs</div></div><div><div class="field-label">Current balance</div><div class="field-val warn">Add from statement</div></div><div><div class="field-label">Interest rate</div><div class="field-val warn">Add</div></div><div><div class="field-label">Monthly payment</div><div class="field-val warn">Add</div></div><div><div class="field-label">Next due date</div><div class="field-val warn">Add</div></div><div><div class="field-label">Origination date</div><div class="field-val warn">Add</div></div><div><div class="field-label">Est. payoff date</div><div class="field-val warn">Add</div></div></div>
+      <div class="tbd-placeholder"><div class="tbd-placeholder-text">Pull details from your most recent mortgage statement and say "update my mortgage details" to populate this.</div></div>
+    </div>
+  </div>
+  <div class="loan-card">
+    <div class="loan-card-header"><div><div class="loan-card-title">💳 HELOC</div><div class="loan-card-sub">Home Equity Line of Credit · 4321 E Rosemonte Dr</div></div><span class="loan-card-badge lbadge-tbd">Details needed</span></div>
+    <div class="loan-card-body">
+      <div class="rb-grid rb-grid-3"><div><div class="field-label">Lender</div><div class="field-val warn">Add lender name</div></div><div><div class="field-label">Credit limit</div><div class="field-val warn">Add</div></div><div><div class="field-label">Current balance</div><div class="field-val warn">Add</div></div><div><div class="field-label">Available credit</div><div class="field-val warn">Add</div></div><div><div class="field-label">Interest rate</div><div class="field-val warn">Add (usually variable)</div></div><div><div class="field-label">Min monthly payment</div><div class="field-val warn">Add</div></div><div><div class="field-label">Draw period ends</div><div class="field-val warn">Add</div></div><div><div class="field-label">Repayment period</div><div class="field-val warn">Add</div></div><div><div class="field-label">Status</div><div class="field-val warn">Add</div></div></div>
+      <div class="tbd-placeholder"><div class="tbd-placeholder-text">Pull details from your HELOC statement and say "update my HELOC details" to populate this.</div></div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+document.getElementById('brief-date').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).toUpperCase();
+function toggleRecord(header){header.closest('.record').classList.toggle('open');}
+function showSection(id,navBtn,sidebarItem){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  if(navBtn)navBtn.classList.add('active');
+  document.querySelectorAll('.sidebar-item').forEach(s=>s.classList.remove('active'));
+  if(sidebarItem)sidebarItem.classList.add('active');
+}
+</script>
+</body>
+</html>
