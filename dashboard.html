@@ -15,12 +15,16 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13px;line-height:1.6;}
-.header{border-bottom:1px solid var(--border);padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:100;}
+
+/* ── HEADER ── */
+.header{border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:100;}
 .logo{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px;}
 .logo-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
 .header-meta{font-size:10px;color:var(--text3);}
 .savings-pill{background:rgba(76,175,125,0.12);border:1px solid rgba(76,175,125,0.25);color:var(--green);font-size:11px;padding:3px 10px;border-radius:2px;}
+
+/* ── WIFE BANNER ── */
 .wife-banner{background:var(--pink-bg);border-bottom:1px solid var(--pink-border);padding:12px 32px;}
 .wife-title{font-family:var(--display);font-size:12px;font-weight:700;color:var(--pink);margin-bottom:8px;}
 .wife-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;}
@@ -33,16 +37,41 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 .wi-check.checked{background:var(--pink);border-color:var(--pink);}
 .wi-check svg{opacity:0;}.wi-check.checked svg{opacity:1;}
 .wi-title{font-size:11px;color:var(--text);flex:1;line-height:1.4;}
-.dates-strip{background:rgba(155,127,232,0.05);border-bottom:1px solid rgba(155,127,232,0.12);padding:8px 32px;display:flex;align-items:center;gap:6px;overflow-x:auto;}
-.dates-label{font-family:var(--display);font-size:10px;font-weight:700;color:rgba(155,127,232,0.5);text-transform:uppercase;flex-shrink:0;margin-right:4px;}
-.date-pill{background:rgba(155,127,232,0.08);border:1px solid rgba(155,127,232,0.18);border-radius:2px;padding:3px 9px;font-size:11px;color:rgba(155,127,232,0.75);white-space:nowrap;flex-shrink:0;}
+
+/* ── EVENTS TIMELINE ── */
+.events-section{background:var(--bg2);border-bottom:1px solid var(--border);padding:16px 32px;}
+.events-header{font-family:var(--display);font-size:10px;font-weight:700;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;}
+.events-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px;}
+.events-scroll::-webkit-scrollbar{height:3px;}
+.events-scroll::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px;}
+.ev-card{flex-shrink:0;width:130px;background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:10px 12px;border-top:3px solid var(--border2);transition:transform 0.15s;}
+.ev-card:hover{transform:translateY(-2px);}
+.ev-urgent{border-top-color:var(--red);background:rgba(224,92,75,0.08);}
+.ev-soon{border-top-color:var(--accent);background:rgba(212,168,67,0.06);}
+.ev-upcoming{border-top-color:var(--purple);background:rgba(155,127,232,0.06);}
+.ev-future{border-top-color:var(--border2);}
+.ev-wife{border-top-color:var(--pink)!important;background:rgba(232,127,160,0.06)!important;}
+.ev-date{font-family:var(--display);font-size:11px;font-weight:700;color:var(--text2);margin-bottom:4px;}
+.ev-urgent .ev-date{color:var(--red);}
+.ev-soon .ev-date{color:var(--accent);}
+.ev-upcoming .ev-date{color:var(--purple);}
+.ev-wife .ev-date{color:var(--pink)!important;}
+.ev-title{font-size:11px;color:var(--text);line-height:1.4;margin-bottom:6px;word-break:break-word;}
+.ev-countdown{font-family:var(--mono);font-size:10px;color:var(--text3);}
+.ev-urgent .ev-countdown{color:var(--red);font-weight:500;}
+.ev-soon .ev-countdown{color:var(--accent);}
+.ev-wife .ev-countdown{color:var(--pink)!important;}
+
+/* ── STATS ── */
 .stats{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--border);}
-.stat{padding:16px 22px;border-right:1px solid var(--border);}
+.stat{padding:14px 22px;border-right:1px solid var(--border);}
 .stat:last-child{border-right:none;}
-.stat-label{font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
-.stat-val{font-family:var(--display);font-size:28px;font-weight:700;color:var(--text);line-height:1;}
+.stat-label{font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;}
+.stat-val{font-family:var(--display);font-size:26px;font-weight:700;color:var(--text);line-height:1;}
 .stat-val.red{color:var(--red);}.stat-val.green{color:var(--green);}.stat-val.amber{color:var(--accent);}.stat-val.pink{color:var(--pink);}
 .stat-sub{font-size:9px;color:var(--text3);margin-top:3px;}
+
+/* ── TOOLBAR ── */
 .toolbar{padding:10px 32px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
 .tl{font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-right:3px;}
 .fb{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;border-radius:2px;transition:all 0.15s;}
@@ -56,7 +85,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 .pt{width:90px;height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;}
 .pf{height:100%;background:var(--green);border-radius:2px;transition:width 0.4s;}
 .pp{font-size:11px;color:var(--green);min-width:26px;}
-.main{padding:22px 32px;}
+
+/* ── BOARD ── */
+.main{padding:20px 32px;}
 .board{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;}
 .col{display:flex;flex-direction:column;gap:7px;}
 .ch{display:flex;align-items:center;justify-content:space-between;padding:0 0 7px;border-bottom:1px solid var(--border);margin-bottom:2px;}
@@ -67,8 +98,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background 0.15s;}
 .card:hover{border-color:var(--border2);background:var(--bg3);}
 .card:hover::before{background:var(--accent);}
-.card.done{opacity:0.3;}
-.card.done .ct2{text-decoration:line-through;color:var(--text3);}
+.card.done{opacity:0.3;}.card.done .ct2{text-decoration:line-through;color:var(--text3);}
 .card.urg{border-color:rgba(224,92,75,0.2);}.card.urg::before{background:rgba(224,92,75,0.5)!important;}
 .card.wc{border-color:var(--pink-border);}.card.wc::before{background:var(--pink)!important;}
 .cr{display:flex;align-items:flex-start;gap:9px;}
@@ -103,10 +133,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 </style>
 </head>
 <body>
+
 <header class="header">
   <div class="logo"><div class="logo-dot"></div>LifeLedger — Task Board</div>
   <div style="display:flex;align-items:center;gap:14px;">
-    <span class="header-meta">Auto-generated March 30, 2026 at 04:57 PM</span>
+    <span class="header-meta">Updated March 30, 2026 at 05:00 PM</span>
     <span class="savings-pill">$132/mo saved</span>
   </div>
 </header>
@@ -116,16 +147,105 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
   <div class="wife-grid" id="wg"></div>
 </div>
 
-<div class="dates-strip">
-  <span class="dates-label">📅 Upcoming</span>
-  <span class="date-pill">**Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD)</span>
-  <span class="date-pill">**Sun 4/5** — Easter Sunday (plans TBD)</span>
-  <span class="date-pill">**Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown</span>
-  <span class="date-pill">**Tue 4/14** — Dentist — M.C. · 4–5 PM</span>
-  <span class="date-pill">**Fri 4/17** — Interpol Concert 🎵</span>
-  <span class="date-pill">**Sun 4/19** — Wife dental cleaning</span>
-  <span class="date-pill">**Fri 4/25** — Date night! 💌</span>
-  <span class="date-pill">**Sat 5/2** — Steve & Amy's Wedding 💍 (see Active Projects for prep checklist)</span>
+<div class="events-section">
+  <div class="events-header">📅 Upcoming Events</div>
+  <div class="events-scroll">
+<div class="ev-card ev-soon">
+  <div class="ev-date">Apr 4</div>
+  <div class="ev-title">**Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD)</div>
+  <div class="ev-countdown">5d away</div>
+</div>
+<div class="ev-card ev-soon ev-wife">
+  <div class="ev-date">Apr 4</div>
+  <div class="ev-title">💌 Figure out hiking location for Saturday 4/4</div>
+  <div class="ev-countdown">5d away</div>
+</div>
+<div class="ev-card ev-soon">
+  <div class="ev-date">Apr 4</div>
+  <div class="ev-title">4/4 Saturday  Dad’s heavenly Birthday</div>
+  <div class="ev-countdown">5d away</div>
+</div>
+<div class="ev-card ev-soon">
+  <div class="ev-date">Apr 5</div>
+  <div class="ev-title">**Sun 4/5** — Easter Sunday (plans TBD)</div>
+  <div class="ev-countdown">6d away</div>
+</div>
+<div class="ev-card ev-upcoming">
+  <div class="ev-date">Apr 11</div>
+  <div class="ev-title">**Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown</div>
+  <div class="ev-countdown">12d away</div>
+</div>
+<div class="ev-card ev-upcoming">
+  <div class="ev-date">Apr 11</div>
+  <div class="ev-title">4/11 Saturday Steve's bachelor party (mini golf, dinner, downtown), Saturday</div>
+  <div class="ev-countdown">12d away</div>
+</div>
+<div class="ev-card ev-upcoming ev-wife">
+  <div class="ev-date">Apr 13</div>
+  <div class="ev-title">💌 Take pregnancy test : April 13!</div>
+  <div class="ev-countdown">14d away</div>
+</div>
+<div class="ev-card ev-future">
+  <div class="ev-date">Apr 14</div>
+  <div class="ev-title">**Tue 4/14** — Dentist — M.C. · 4–5 PM</div>
+  <div class="ev-countdown">15d away</div>
+</div>
+<div class="ev-card ev-future">
+  <div class="ev-date">Apr 14</div>
+  <div class="ev-title">4/14 Tuesday Dentist Appt M.C. 4–5 PM</div>
+  <div class="ev-countdown">15d away</div>
+</div>
+<div class="ev-card ev-future">
+  <div class="ev-date">Apr 17</div>
+  <div class="ev-title">**Fri 4/17** — Interpol Concert 🎵</div>
+  <div class="ev-countdown">18d away</div>
+</div>
+<div class="ev-card ev-future">
+  <div class="ev-date">Apr 17</div>
+  <div class="ev-title">4/17 Friday Interpol Concert</div>
+  <div class="ev-countdown">18d away</div>
+</div>
+<div class="ev-card ev-future ev-wife">
+  <div class="ev-date">Apr 19</div>
+  <div class="ev-title">**Sun 4/19** — Wife dental cleaning</div>
+  <div class="ev-countdown">20d away</div>
+</div>
+<div class="ev-card ev-future ev-wife">
+  <div class="ev-date">Apr 19</div>
+  <div class="ev-title">4/19 Sunday C’s Dental Cleaning</div>
+  <div class="ev-countdown">20d away</div>
+</div>
+<div class="ev-card ev-future ev-wife">
+  <div class="ev-date">Apr 25</div>
+  <div class="ev-title">**Fri 4/25** — Date night! 💌</div>
+  <div class="ev-countdown">26d away</div>
+</div>
+<div class="ev-card ev-future ev-wife">
+  <div class="ev-date">Apr 25</div>
+  <div class="ev-title">4/25 date night!</div>
+  <div class="ev-countdown">26d away</div>
+</div>
+<div class="ev-card ev-future">
+  <div class="ev-date">May 2</div>
+  <div class="ev-title">**Sat 5/2** — Steve & Amy's Wedding 💍 (see Active Projects for prep checklist)</div>
+  <div class="ev-countdown">33d away</div>
+</div>
+<div class="ev-card ev-future">
+  <div class="ev-date">May 2</div>
+  <div class="ev-title">May 2nd Saturday Steve and Amy’s Wedding</div>
+  <div class="ev-countdown">33d away</div>
+</div>
+<div class="ev-card ev-future">
+  <div class="ev-date"></div>
+  <div class="ev-title">Bulletin point!!!</div>
+  <div class="ev-countdown"></div>
+</div>
+<div class="ev-card ev-future ev-wife">
+  <div class="ev-date"></div>
+  <div class="ev-title">💌 Get day off at Marriott!</div>
+  <div class="ev-countdown"></div>
+</div>
+  </div>
 </div>
 
 <div class="stats">
@@ -163,32 +283,30 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 </div>
 
 <footer class="footer">
-  <span class="fn">Run <strong>generate-dashboard.py</strong> to resync · no Claude needed</span>
+  <span class="fn">Auto-refreshes every 5 min · <strong>the-daily-ops.netlify.app</strong></span>
   <a class="fl" href="#" onclick="location.reload()">↺ refresh</a>
 </footer>
 
 <script>
-const WIFE=[
-"Find biodegradable balloons", "Figure out Easter Sunday plans", "Figure out hiking location for Saturday 4/4", "ONE TIME", "ONE MORE TIME", "**Take** pregnancy test : April 13!", "Get day off at Marriott!", "Find suit", "Find a dress", "Figure out hotel details", "Cat sitter", "CoQ10", "Prenatal vitamin", "Fish oil", "Flaxseed oil", "Magnesium", "☀️ Morning — 🌹 Rosehip + Cherry", "🌤️ Afternoon — 🌿 Nettle", "🌙 Evening — 🍃 Peppermint", "🍍 Pineapple juice (DPO 1–5 only: Mar 31 – Apr 4)", "🫐 Pomegranate juice (throughout entire TWW)"
-].filter(Boolean).map((t,i)=>({id:'h'+i,title:t,note:''}));
+const WIFE=["Find biodegradable balloons", "Figure out Easter Sunday plans", "Figure out hiking location for Saturday 4/4", "ONE TIME", "ONE MORE TIME", "Take pregnancy test : April 13!", "Get day off at Marriott!", "Find suit", "Find a dress", "Figure out hotel details", "Cat sitter", "CoQ10", "Prenatal vitamin", "Fish oil", "Flaxseed oil", "Magnesium", "☀️ Morning — 🌹 Rosehip + Cherry", "🌤️ Afternoon — 🌿 Nettle", "🌙 Evening — 🍃 Peppermint", "🍍 Pineapple juice (DPO 1–5 only: Mar 31 – Apr 4)", "🫐 Pomegranate juice (throughout entire TWW)"].filter(Boolean).map((t,i)=>({id:'h'+i,title:t,note:''}) );
 
 const TASKS=[
-  {id:100,col:'urgent',title:'💌 **Figure out hiking location — THIS Saturday 4/4**',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
-  {id:101,col:'urgent',title:'💌 **Figure out Easter Sunday plans — 4/5**',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
-  {id:102,col:'urgent',title:'💌 **Find biodegradable balloons**',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
-  {id:103,col:'urgent',title:'**Call IKEA — 30 gift card credit status**',note:'',tags:["home"],money:true,urgent:false,wife:false},
-  {id:104,col:'urgent',title:'**Schedule lab appointment — HonorHealth Cave Creek**',note:'',tags:["medical"],money:false,urgent:false,wife:false},
-  {id:105,col:'urgent',title:'**Ask for raise**',note:'',tags:["income"],money:true,urgent:false,wife:false},
+  {id:100,col:'urgent',title:'💌 Figure out hiking location — THIS Saturday 4/4',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
+  {id:101,col:'urgent',title:'💌 Figure out Easter Sunday plans — 4/5',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
+  {id:102,col:'urgent',title:'💌 Find biodegradable balloons',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
+  {id:103,col:'urgent',title:'Call IKEA — 30 gift card credit status',note:'',tags:["home"],money:true,urgent:false,wife:false},
+  {id:104,col:'urgent',title:'Schedule lab appointment — HonorHealth Cave Creek',note:'',tags:["medical"],money:false,urgent:false,wife:false},
+  {id:105,col:'urgent',title:'Ask for raise',note:'',tags:["income"],money:true,urgent:false,wife:false},
   {id:106,col:'urgent',title:'Set up thermostat programming ASAP (before April 2026)',note:'',tags:[],money:false,urgent:false,wife:false},
   {id:107,col:'urgent',title:'Refer Mr. Erenas to RKT Refinance',note:'',tags:["family"],money:true,urgent:true,wife:false},
   {id:108,col:'urgent',title:'Breakdown cardboard boxes in living room',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:109,col:'urgent',title:'**Fix garage door**',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
+  {id:109,col:'urgent',title:'Fix garage door',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
   {id:110,col:'urgent',title:'Get new license plate due to worn out plate (sentra)',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:111,col:'urgent',title:'**EOS double payment — follow up again**',note:'',tags:["income"],money:true,urgent:true,wife:false},
+  {id:111,col:'urgent',title:'EOS double payment — follow up again',note:'',tags:["income"],money:true,urgent:true,wife:false},
   {id:112,col:'urgent',title:'Replace fridge filter',note:'',tags:["home"],money:false,urgent:false,wife:false},
   {id:200,col:'quick',title:'Return O\'Reilly\'s part — didn\'t work',note:'',tags:["home"],money:true,urgent:false,wife:false},
   {id:201,col:'quick',title:'Ask Victorino what I owe for landscaping',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:202,col:'quick',title:'**Hair tool wall mount for wife**',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
+  {id:202,col:'quick',title:'Hair tool wall mount for wife',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
   {id:203,col:'quick',title:'Factor in menstrual cycle — build ideal weekly schedule',note:'',tags:["home"],money:false,urgent:false,wife:false},
   {id:204,col:'quick',title:'Freeze babe\'s credit',note:'',tags:["income"],money:true,urgent:true,wife:false},
   {id:205,col:'quick',title:'Return spray paint to Home Depot',note:'',tags:["home"],money:true,urgent:false,wife:false},
@@ -204,37 +322,37 @@ const TASKS=[
   {id:215,col:'quick',title:'Eucalyptus tree gift for wife',note:'',tags:["romance"],money:false,urgent:false,wife:true},
   {id:216,col:'quick',title:'Check Cigna health claim status',note:'',tags:["wife", "medical"],money:false,urgent:true,wife:true},
   {id:217,col:'quick',title:'Buy phone mount for bedroom nightstand',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:300,col:'projects',title:'**Steve & Amy\'s Wedding — May 2, 2026**',note:'',tags:["family", "wife", "romance"],money:false,urgent:true,wife:true},
-  {id:301,col:'projects',title:'**MeetKevin Alpha Report — Claude import workflow**',note:'',tags:["income"],money:false,urgent:false,wife:false},
-  {id:302,col:'projects',title:'**Become licensed realtor — Arizona**',note:'',tags:["income"],money:false,urgent:false,wife:false},
-  {id:303,col:'projects',title:'**Sentra parts install**',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:304,col:'projects',title:'**IKEA TRIPPEVALS blackout blind install**',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:300,col:'projects',title:'Steve & Amy\'s Wedding — May 2, 2026',note:'',tags:["family", "wife", "romance"],money:false,urgent:true,wife:true},
+  {id:301,col:'projects',title:'MeetKevin Alpha Report — Claude import workflow',note:'',tags:["income"],money:false,urgent:false,wife:false},
+  {id:302,col:'projects',title:'Become licensed realtor — Arizona',note:'',tags:["income"],money:false,urgent:false,wife:false},
+  {id:303,col:'projects',title:'Sentra parts install',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:304,col:'projects',title:'IKEA TRIPPEVALS blackout blind install',note:'',tags:["home"],money:false,urgent:false,wife:false},
   {id:305,col:'projects',title:'Build a daily structure for our daily agenda, weekly agenda, monthly agenda',note:'',tags:[],money:false,urgent:false,wife:false},
   {id:306,col:'projects',title:'Fix LifeLedger Mac notifications',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:307,col:'projects',title:'**Clean up craft room and bedroom**',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
-  {id:308,col:'projects',title:'**Add picture frames to wall for wife**',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
-  {id:309,col:'projects',title:'**Garage organization**',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:310,col:'projects',title:'**Monitor plumbing — vibration issue**',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:311,col:'projects',title:'**Phone bill negotiation**',note:'',tags:["income"],money:true,urgent:true,wife:false},
-  {id:312,col:'projects',title:'**Apple subscriptions audit**',note:'',tags:["income"],money:true,urgent:true,wife:false},
-  {id:313,col:'projects',title:'**Switch APS billing (time-of-use plan)**',note:'',tags:["home", "income"],money:true,urgent:false,wife:false},
-  {id:314,col:'projects',title:'**Rollover MRC HSA** — Call: 1-866-287-5675',note:'',tags:["income"],money:true,urgent:false,wife:false},
-  {id:315,col:'projects',title:'**Set up new promotion YouTube account**',note:'',tags:["income"],money:false,urgent:false,wife:false},
-  {id:316,col:'projects',title:'**Roof** — Awaiting response · follow up',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:317,col:'projects',title:'**Patio upgrades** — Mosquito netting + sprinklers',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:318,col:'projects',title:'**MeetKevin Sweat Equity** — Flooring · cabinets · closets',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:319,col:'projects',title:'**Dermatology appt for shampoo** — member.bcbsm.com',note:'',tags:["self"],money:false,urgent:false,wife:false},
-  {id:320,col:'projects',title:'**Transfer Termio**',note:'',tags:["income", "home"],money:true,urgent:false,wife:false},
-  {id:321,col:'projects',title:'**Luna spa question**',note:'',tags:["income"],money:true,urgent:false,wife:false},
-  {id:322,col:'projects',title:'**Remove Zillow from home site**',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:323,col:'projects',title:'**Retrieve Bitcoin**',note:'',tags:["income"],money:true,urgent:false,wife:false},
-  {id:324,col:'projects',title:'**Paper money trades**',note:'',tags:["self"],money:true,urgent:false,wife:false},
+  {id:307,col:'projects',title:'Clean up craft room and bedroom',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
+  {id:308,col:'projects',title:'Add picture frames to wall for wife',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
+  {id:309,col:'projects',title:'Garage organization',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:310,col:'projects',title:'Monitor plumbing — vibration issue',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:311,col:'projects',title:'Phone bill negotiation',note:'',tags:["income"],money:true,urgent:true,wife:false},
+  {id:312,col:'projects',title:'Apple subscriptions audit',note:'',tags:["income"],money:true,urgent:true,wife:false},
+  {id:313,col:'projects',title:'Switch APS billing (time-of-use plan)',note:'',tags:["home", "income"],money:true,urgent:false,wife:false},
+  {id:314,col:'projects',title:'Rollover MRC HSA — Call: 1-866-287-5675',note:'',tags:["income"],money:true,urgent:false,wife:false},
+  {id:315,col:'projects',title:'Set up new promotion YouTube account',note:'',tags:["income"],money:false,urgent:false,wife:false},
+  {id:316,col:'projects',title:'Roof — Awaiting response · follow up',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:317,col:'projects',title:'Patio upgrades — Mosquito netting + sprinklers',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:318,col:'projects',title:'MeetKevin Sweat Equity — Flooring · cabinets · closets',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:319,col:'projects',title:'Dermatology appt for shampoo — member.bcbsm.com',note:'',tags:["self"],money:false,urgent:false,wife:false},
+  {id:320,col:'projects',title:'Transfer Termio',note:'',tags:["income", "home"],money:true,urgent:false,wife:false},
+  {id:321,col:'projects',title:'Luna spa question',note:'',tags:["income"],money:true,urgent:false,wife:false},
+  {id:322,col:'projects',title:'Remove Zillow from home site',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:323,col:'projects',title:'Retrieve Bitcoin',note:'',tags:["income"],money:true,urgent:false,wife:false},
+  {id:324,col:'projects',title:'Paper money trades',note:'',tags:["self"],money:true,urgent:false,wife:false},
   {id:400,col:'waiting',title:'Maui Nui Venison delivery — Pepper 10 Venison Sticks 12pk · Order · Tracking: CR010796438208 (Cirro) · shipped 03/27/26 · ⚠️ bring inside within 6 hrs of delivery',note:'',tags:["MV244936"],money:false,urgent:false,wife:false},
   {id:401,col:'waiting',title:'Roof contractor — waiting on Taylor\'s recommendation (asked 03/16)',note:'',tags:[],money:false,urgent:false,wife:false},
-  {id:402,col:'waiting',title:'EOS credit for double payment — asked again 03/18',note:'',tags:[],money:true,urgent:true,wife:false},
+  {id:402,col:'waiting',title:'EOS credit for double payment — asked again 03/18',note:'',tags:[],money:true,urgent:false,wife:false},
   {id:403,col:'waiting',title:'Student loan account connection — awaiting confirmation (connected 03/12)',note:'',tags:[],money:true,urgent:false,wife:false},
   {id:404,col:'waiting',title:'Nelnet student loan payment — 86.46 due 09/06/26 (log interest to tax tracker after)',note:'',tags:[],money:true,urgent:false,wife:false},
-  {id:500,col:'someday',title:'**Buy artwork for the house**',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
+  {id:500,col:'someday',title:'Buy artwork for the house',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
   {id:501,col:'someday',title:'Marriott training',note:'',tags:[],money:false,urgent:false,wife:false},
   {id:502,col:'someday',title:'Read the housing book',note:'',tags:[],money:false,urgent:false,wife:false},
   {id:503,col:'someday',title:'Unclog master bedroom sink',note:'',tags:["home"],money:false,urgent:false,wife:false},
@@ -262,12 +380,10 @@ const wd=new Set(JSON.parse(localStorage.getItem('ll-wife-done')||'[]'));
 let af='all';
 const CHK='<svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const TAGCLS={home:'th',income:'ti',romance:'tr',medical:'tmed',family:'tf',self:'ts',wife:'tw'};
-
 function matches(t){if(af==='all')return true;if(af==='money')return t.money;if(af==='wife')return t.wife||t.tags.includes('wife');return t.tags.includes(af);}
 function tagHTML(t){const p=[];if(t.money)p.push('<span class="tag tm">$</span>');(t.tags||[]).forEach(g=>{const c=TAGCLS[g]||'tf';p.push(`<span class="tag ${c}">${g}</span>`)});return p.length?`<div class="ctags">${p.join('')}</div>`:''}
 function cardHTML(t){const d=done.has(t.id),c=[d?'done':'',t.urgent&&!d?'urg':'',t.wife&&!d?'wc':''].filter(Boolean).join(' ');return`<div class="card ${c}" onclick="tog(${t.id})"><div class="cr"><div class="ck${d?' checked':''}">${d?CHK:''}</div><span class="ct2">${t.title}</span></div>${t.note?`<div class="cn">${t.note}</div>`:''}${tagHTML(t)}</div>`;}
 function wifeCard(w){const d=wd.has(w.id);return`<div class="wife-item${d?' done':''}" onclick="togW('${w.id}')"><div class="wi-row"><div class="wi-check${d?' checked':''}">${d?CHK:''}</div><span class="wi-title">${w.title}</span></div></div>`;}
-
 function render(){
   document.getElementById('wg').innerHTML=WIFE.map(wifeCard).join('');
   const cols={urg:'urgent',quick:'quick',proj:'projects',wait:'waiting',some:'someday'};
@@ -289,7 +405,6 @@ function render(){
   document.getElementById('prog').style.width=pct+'%';
   document.getElementById('pct').textContent=pct+'%';
 }
-
 function tog(id){done.has(id)?done.delete(id):done.add(id);localStorage.setItem('ll-done',JSON.stringify([...done]));render();}
 function togW(id){wd.has(id)?wd.delete(id):wd.add(id);localStorage.setItem('ll-wife-done',JSON.stringify([...wd]));render();}
 function sf(f,btn){af=f;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
