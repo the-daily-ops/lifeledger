@@ -7,139 +7,142 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#0e0e0f;--bg2:#161618;--bg3:#1e1e21;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
-  --text:#e8e6e0;--text2:#888680;--text3:#4a4845;
-  --accent:#d4a843;--red:#e05c4b;--green:#4caf7d;--purple:#9b7fe8;
-  --pink:#e87fa0;--pink-bg:rgba(232,127,160,0.08);--pink-border:rgba(232,127,160,0.25);
-  --mono:'DM Mono',monospace;--display:'Syne',sans-serif;
+  --bg:#0e0e0f; --bg2:#161618; --bg3:#1e1e21;
+  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.14);
+  --text:#e8e6e0; --text2:#888680; --text3:#4a4845;
+  --gold:#d4a843; --red:#e05c4b; --green:#4caf7d; --purple:#9b7fe8;
+  --pink:#e87fa0; --pink-bg:rgba(232,127,160,0.08); --pink-bd:rgba(232,127,160,0.25);
+  --mono:'DM Mono',monospace; --dis:'Syne',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13px;line-height:1.6;}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13px;line-height:1.6;min-height:100vh;}
 
-/* HEADER */
-.header{border-bottom:1px solid var(--border);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:100;}
-.logo{font-family:var(--display);font-weight:800;font-size:17px;letter-spacing:-0.02em;display:flex;align-items:center;gap:10px;}
-.logo-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
+/* ── HEADER ── */
+.hdr{border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--bg);z-index:100;}
+.logo{font-family:var(--dis);font-weight:800;font-size:16px;letter-spacing:-0.02em;display:flex;align-items:center;gap:9px;}
+.ldot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
-.header-meta{font-size:10px;color:var(--text3);}
-.savings-pill{background:rgba(76,175,125,0.12);border:1px solid rgba(76,175,125,0.25);color:var(--green);font-size:11px;padding:3px 10px;border-radius:2px;}
+.hmeta{font-size:10px;color:var(--text3);}
+.spill{background:rgba(76,175,125,0.12);border:1px solid rgba(76,175,125,0.25);color:var(--green);font-size:11px;padding:3px 10px;border-radius:2px;}
 
-/* WIFE BANNER */
-.wife-banner{background:var(--pink-bg);border-bottom:1px solid var(--pink-border);padding:12px 32px;}
-.wife-title{font-family:var(--display);font-size:12px;font-weight:700;color:var(--pink);margin-bottom:8px;}
-.wife-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;}
-.wife-item{background:rgba(232,127,160,0.05);border:1px solid var(--pink-border);border-radius:3px;padding:7px 9px;cursor:pointer;transition:all 0.15s;}
-.wife-item:hover{background:rgba(232,127,160,0.1);}
-.wife-item.done{opacity:0.35;}
-.wife-item.done .wi-title{text-decoration:line-through;color:var(--text3);}
-.wi-row{display:flex;gap:6px;align-items:flex-start;}
-.wi-check{width:12px;height:12px;border:1.5px solid var(--pink-border);border-radius:2px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;}
-.wi-check.checked{background:var(--pink);border-color:var(--pink);}
-.wi-check svg{opacity:0;}.wi-check.checked svg{opacity:1;}
-.wi-title{font-size:11px;color:var(--text);flex:1;line-height:1.4;}
+/* ── WIFE BANNER ── */
+.wbanner{background:var(--pink-bg);border-bottom:1px solid var(--pink-bd);padding:11px 28px;}
+.wtitle{font-family:var(--dis);font-size:11px;font-weight:700;color:var(--pink);margin-bottom:8px;letter-spacing:0.02em;}
+.wgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:5px;}
+.wi{background:rgba(232,127,160,0.05);border:1px solid var(--pink-bd);border-radius:3px;padding:6px 9px;cursor:pointer;transition:background 0.15s;}
+.wi:hover{background:rgba(232,127,160,0.12);}
+.wi.done{opacity:0.3;}
+.wi.done .wit{text-decoration:line-through;color:var(--text3);}
+.wirow{display:flex;gap:6px;align-items:center;}
+.wck{width:11px;height:11px;border:1.5px solid var(--pink-bd);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.wck.on{background:var(--pink);border-color:var(--pink);}
+.wck svg{opacity:0;}.wck.on svg{opacity:1;}
+.wit{font-size:11px;color:var(--text);line-height:1.3;}
 
-/* CALENDAR + EVENTS SECTION */
-.cal-events-wrap{display:grid;grid-template-columns:1fr 380px;gap:0;border-bottom:1px solid var(--border);}
-.cal-side{padding:20px 32px;border-right:1px solid var(--border);}
-.cal-section-title{font-family:var(--display);font-size:10px;font-weight:700;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:14px;}
-.cal-months{display:flex;gap:32px;flex-wrap:wrap;}
-.cal-month{min-width:220px;}
-.cal-month-name{font-family:var(--display);font-size:13px;font-weight:700;color:var(--text);margin-bottom:10px;}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
-.cal-dow{font-family:var(--mono);font-size:9px;color:var(--text3);text-align:center;padding:3px 0;letter-spacing:0.05em;}
-.cal-cell{min-height:52px;padding:4px;background:var(--bg2);border-radius:3px;position:relative;cursor:default;transition:background 0.12s;border:1px solid transparent;}
-.cal-cell:hover{background:var(--bg3);border-color:var(--border2);}
-.cal-empty{background:transparent;border:none;}
-.cal-past{opacity:0.35;}
-.cal-today{background:rgba(212,168,67,0.12)!important;border:1px solid rgba(212,168,67,0.4)!important;}
-.cal-day-num{font-family:var(--display);font-size:11px;font-weight:600;color:var(--text2);display:block;margin-bottom:2px;}
-.cal-today .cal-day-num{color:var(--accent);}
-.ev-dot{display:inline-block;width:5px;height:5px;border-radius:50%;margin-right:2px;margin-bottom:1px;}
-.ev-dot-urg{background:var(--red);}
-.ev-dot-soon{background:var(--accent);}
-.ev-dot-upcoming{background:var(--purple);}
-.ev-dot-future{background:var(--border2);}
-.ev-dot-wife{background:var(--pink);}
-.ev-lbl{font-size:8.5px;line-height:1.3;margin-top:1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;border-radius:2px;padding:1px 3px;}
-.ev-lbl-urg{background:rgba(224,92,75,0.15);color:var(--red);}
-.ev-lbl-soon{background:rgba(212,168,67,0.12);color:var(--accent);}
-.ev-lbl-upcoming{background:rgba(155,127,232,0.12);color:var(--purple);}
-.ev-lbl-future{background:rgba(255,255,255,0.05);color:var(--text3);}
-.ev-lbl-wife{background:rgba(232,127,160,0.15);color:var(--pink);}
+/* ── CALENDAR + EVENTS WRAPPER ── */
+.cal-wrap{display:grid;grid-template-columns:1fr 300px;border-bottom:1px solid var(--border);min-height:340px;}
+.cal-main{padding:18px 28px;border-right:1px solid var(--border);overflow:hidden;}
+.sec-label{font-family:var(--dis);font-size:9px;font-weight:700;color:var(--text3);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:12px;}
+.cal-months{display:flex;gap:24px;flex-wrap:wrap;}
 
-/* LEGEND */
-.cal-legend{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;}
-.leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);}
-.leg-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+/* ── MONTH GRID ── */
+.cal-month{flex:1;min-width:200px;max-width:320px;}
+.cal-mname{font-family:var(--dis);font-size:13px;font-weight:700;color:var(--text);margin-bottom:8px;}
+.cgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cdow{font-size:9px;color:var(--text3);text-align:center;padding:2px 0;font-family:var(--mono);}
+.ccell{min-height:48px;padding:3px 3px 2px;background:var(--bg2);border-radius:2px;border:1px solid transparent;transition:all 0.12s;cursor:default;overflow:hidden;}
+.ccell:hover{background:var(--bg3);border-color:var(--border2);}
+.cempty{background:transparent!important;border:none!important;}
+.cpast{opacity:0.3;}
+.ctoday{background:rgba(212,168,67,0.1)!important;border-color:rgba(212,168,67,0.35)!important;}
+.cdaynum{font-family:var(--dis);font-size:10px;font-weight:600;color:var(--text2);display:block;line-height:1;}
+.ctoday .cdaynum{color:var(--gold);}
+.cdots{display:flex;gap:2px;margin:2px 0 1px;flex-wrap:wrap;}
+.cdot{width:4px;height:4px;border-radius:50%;flex-shrink:0;}
+.cdot-urg{background:var(--red);}
+.cdot-soon{background:var(--gold);}
+.cdot-upcoming{background:var(--purple);}
+.cdot-future{background:var(--border2);}
+.cdot-wife{background:var(--pink);}
+.clbl{font-size:8px;line-height:1.2;padding:1px 2px;border-radius:1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;max-width:100%;margin-top:1px;}
+.clbl-urg{background:rgba(224,92,75,0.18);color:var(--red);}
+.clbl-soon{background:rgba(212,168,67,0.15);color:var(--gold);}
+.clbl-upcoming{background:rgba(155,127,232,0.15);color:var(--purple);}
+.clbl-future{background:rgba(255,255,255,0.05);color:var(--text3);}
+.clbl-wife{background:rgba(232,127,160,0.18);color:var(--pink);}
+.cal-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;}
+.leg{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);}
+.ldot2{width:6px;height:6px;border-radius:50%;}
 
-/* EVENT CARDS SIDEBAR */
-.events-side{padding:20px 24px;overflow-y:auto;max-height:420px;}
-.events-scroll{display:flex;flex-direction:column;gap:8px;}
-.ev-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:10px 12px;border-left:3px solid var(--border2);transition:transform 0.12s;}
-.ev-card:hover{transform:translateX(2px);}
+/* ── EVENT CARDS ── */
+.ev-side{padding:18px 18px;overflow-y:auto;max-height:380px;}
+.ev-side::-webkit-scrollbar{width:3px;}
+.ev-side::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px;}
+.evlist{display:flex;flex-direction:column;gap:6px;}
+.evc{background:var(--bg3);border:1px solid var(--border);border-radius:3px;padding:9px 11px;border-left:3px solid var(--border2);transition:all 0.12s;}
+.evc:hover{transform:translateX(2px);}
 .ev-urg{border-left-color:var(--red);background:rgba(224,92,75,0.07);}
-.ev-soon{border-left-color:var(--accent);background:rgba(212,168,67,0.05);}
+.ev-soon{border-left-color:var(--gold);background:rgba(212,168,67,0.05);}
 .ev-upcoming{border-left-color:var(--purple);background:rgba(155,127,232,0.05);}
 .ev-future{border-left-color:var(--border2);}
 .ev-wife{border-left-color:var(--pink)!important;background:rgba(232,127,160,0.06)!important;}
-.ev-card-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:3px;}
-.ev-date{font-family:var(--display);font-size:11px;font-weight:700;color:var(--text2);}
-.ev-urg .ev-date{color:var(--red);}
-.ev-soon .ev-date{color:var(--accent);}
-.ev-upcoming .ev-date{color:var(--purple);}
-.ev-wife .ev-date{color:var(--pink)!important;}
-.ev-countdown{font-family:var(--mono);font-size:10px;color:var(--text3);}
-.ev-urg .ev-countdown{color:var(--red);font-weight:500;}
-.ev-soon .ev-countdown{color:var(--accent);}
-.ev-wife .ev-countdown{color:var(--pink)!important;}
-.ev-title{font-size:11px;color:var(--text);line-height:1.4;}
+.evc-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;gap:6px;}
+.evc-date{font-family:var(--dis);font-size:11px;font-weight:700;color:var(--text2);}
+.ev-urg .evc-date{color:var(--red);}
+.ev-soon .evc-date{color:var(--gold);}
+.ev-upcoming .evc-date{color:var(--purple);}
+.ev-wife .evc-date{color:var(--pink)!important;}
+.evc-cd{font-family:var(--mono);font-size:10px;color:var(--text3);white-space:nowrap;}
+.ev-urg .evc-cd{color:var(--red);font-weight:500;}
+.ev-soon .evc-cd{color:var(--gold);}
+.ev-wife .evc-cd{color:var(--pink)!important;}
+.evc-title{font-size:11px;color:var(--text);line-height:1.4;}
 
-/* STATS */
+/* ── STATS ── */
 .stats{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--border);}
-.stat{padding:14px 22px;border-right:1px solid var(--border);}
+.stat{padding:13px 20px;border-right:1px solid var(--border);}
 .stat:last-child{border-right:none;}
-.stat-label{font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:5px;}
-.stat-val{font-family:var(--display);font-size:26px;font-weight:700;color:var(--text);line-height:1;}
-.stat-val.red{color:var(--red);}.stat-val.green{color:var(--green);}.stat-val.amber{color:var(--accent);}.stat-val.pink{color:var(--pink);}
-.stat-sub{font-size:9px;color:var(--text3);margin-top:3px;}
+.slbl{font-size:9px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+.sval{font-family:var(--dis);font-size:24px;font-weight:700;color:var(--text);line-height:1;}
+.sval.red{color:var(--red);}.sval.green{color:var(--green);}.sval.gold{color:var(--gold);}.sval.pink{color:var(--pink);}
+.ssub{font-size:9px;color:var(--text3);margin-top:2px;}
 
-/* TOOLBAR */
-.toolbar{padding:10px 32px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
-.tl{font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-right:3px;}
+/* ── TOOLBAR ── */
+.toolbar{padding:9px 28px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.tl{font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-right:2px;}
 .fb{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;border-radius:2px;transition:all 0.15s;}
-.fb:hover{border-color:var(--accent);color:var(--accent);}
-.fb.active{border-color:var(--accent);background:rgba(212,168,67,0.1);color:var(--accent);}
-.fb.wf{border-color:var(--pink-border);color:var(--pink);}
-.fb.wf.active{background:var(--pink-bg);border-color:var(--pink);}
-.spacer{flex:1;}
+.fb:hover{border-color:var(--gold);color:var(--gold);}
+.fb.on{border-color:var(--gold);background:rgba(212,168,67,0.1);color:var(--gold);}
+.fb.wf{border-color:var(--pink-bd);color:var(--pink);}
+.fb.wf.on{background:var(--pink-bg);border-color:var(--pink);}
+.sp{flex:1;}
 .pw{display:flex;align-items:center;gap:8px;}
 .pl{font-size:10px;color:var(--text3);}
-.pt{width:90px;height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;}
+.pt{width:80px;height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;}
 .pf{height:100%;background:var(--green);border-radius:2px;transition:width 0.4s;}
 .pp{font-size:11px;color:var(--green);min-width:26px;}
 
-/* BOARD */
-.main{padding:20px 32px;}
-.board{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px;}
-.col{display:flex;flex-direction:column;gap:7px;}
-.ch{display:flex;align-items:center;justify-content:space-between;padding:0 0 7px;border-bottom:1px solid var(--border);margin-bottom:2px;}
-.ct{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text2);display:flex;align-items:center;gap:6px;}
-.cc{font-size:10px;color:var(--text3);background:var(--bg3);padding:2px 7px;border-radius:2px;min-width:22px;text-align:center;}
+/* ── BOARD ── */
+.main{padding:18px 28px;}
+.board{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;}
+.col{display:flex;flex-direction:column;gap:6px;}
+.ch{display:flex;align-items:center;justify-content:space-between;padding:0 0 6px;border-bottom:1px solid var(--border);margin-bottom:2px;}
+.ct{font-family:var(--dis);font-size:11px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--text2);display:flex;align-items:center;gap:5px;}
+.cc{font-size:10px;color:var(--text3);background:var(--bg3);padding:2px 7px;border-radius:2px;min-width:20px;text-align:center;}
 .cc.hot{background:rgba(224,92,75,0.15);color:var(--red);}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:10px 12px;cursor:pointer;transition:all 0.15s;position:relative;overflow:hidden;}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:9px 11px;cursor:pointer;transition:all 0.15s;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:transparent;transition:background 0.15s;}
 .card:hover{border-color:var(--border2);background:var(--bg3);}
-.card:hover::before{background:var(--accent);}
-.card.done{opacity:0.3;}.card.done .ct2{text-decoration:line-through;color:var(--text3);}
-.card.urg{border-color:rgba(224,92,75,0.2);}.card.urg::before{background:rgba(224,92,75,0.5)!important;}
-.card.wc{border-color:var(--pink-border);}.card.wc::before{background:var(--pink)!important;}
-.cr{display:flex;align-items:flex-start;gap:9px;}
-.ck{width:13px;height:13px;border:1.5px solid var(--border2);border-radius:2px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;}
-.ck.checked{background:var(--green);border-color:var(--green);}
-.ck svg{opacity:0;}.ck.checked svg{opacity:1;}
+.card:hover::before{background:var(--gold);}
+.card.done{opacity:0.28;}.card.done .ct2{text-decoration:line-through;color:var(--text3);}
+.card.urg{border-color:rgba(224,92,75,0.2);}.card.urg::before{background:rgba(224,92,75,0.6)!important;}
+.card.wc{border-color:var(--pink-bd);}.card.wc::before{background:var(--pink)!important;}
+.cr{display:flex;align-items:flex-start;gap:8px;}
+.ck{width:12px;height:12px;border:1.5px solid var(--border2);border-radius:2px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;}
+.ck.on{background:var(--green);border-color:var(--green);}
+.ck svg{opacity:0;}.ck.on svg{opacity:1;}
 .ct2{font-size:12px;color:var(--text);line-height:1.5;flex:1;}
-.cn{font-size:11px;color:var(--text3);margin-top:4px;line-height:1.4;padding-left:22px;font-style:italic;}
-.ctags{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px;padding-left:22px;}
+.ctags{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px;padding-left:20px;}
 .tag{font-size:9px;letter-spacing:0.05em;text-transform:uppercase;padding:1px 5px;border-radius:1px;font-weight:500;}
 .tm{background:rgba(76,175,125,0.12);color:#4caf7d;border:1px solid rgba(76,175,125,0.2);}
 .th{background:rgba(212,168,67,0.1);color:#c9a03a;border:1px solid rgba(212,168,67,0.2);}
@@ -148,25 +151,24 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 .tmed{background:rgba(63,168,154,0.1);color:#3fa89a;border:1px solid rgba(63,168,154,0.2);}
 .tf{background:rgba(136,134,128,0.1);color:#888680;border:1px solid rgba(136,134,128,0.2);}
 .ts{background:rgba(100,130,200,0.1);color:#6482c8;border:1px solid rgba(100,130,200,0.2);}
-.tw{background:rgba(232,127,160,0.12);color:var(--pink);border:1px solid var(--pink-border);}
-.sd{display:flex;align-items:center;gap:12px;margin:8px 0 14px;}
-.sd-t{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);white-space:nowrap;}
-.sd-l{flex:1;height:1px;background:var(--border);}
-.sg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;}
-.sg .card{padding:8px 10px;}
-.wg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;}
-.footer{margin-top:28px;padding:14px 32px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.tw{background:rgba(232,127,160,0.12);color:var(--pink);border:1px solid var(--pink-bd);}
+.sd{display:flex;align-items:center;gap:12px;margin:8px 0 12px;}
+.sdt{font-family:var(--dis);font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);white-space:nowrap;}
+.sdl{flex:1;height:1px;background:var(--border);}
+.sg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;}
+.sg .card{padding:7px 10px;}
+.wg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;}
+.footer{margin-top:24px;padding:12px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
 .fn{font-size:10px;color:var(--text3);}
-.fl{font-size:10px;color:var(--accent);text-decoration:none;opacity:0.7;}
+.fl{font-size:10px;color:var(--gold);text-decoration:none;opacity:0.6;}
 .fl:hover{opacity:1;}
-::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar{width:4px;height:4px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
-::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px;}
-@media(max-width:900px){
-  .cal-events-wrap{grid-template-columns:1fr;}
-  .cal-side{border-right:none;border-bottom:1px solid var(--border);}
-  .cal-months{gap:20px;}
-  .wife-grid{grid-template-columns:repeat(2,1fr);}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:2px;}
+@media(max-width:960px){
+  .cal-wrap{grid-template-columns:1fr;}
+  .cal-main{border-right:none;border-bottom:1px solid var(--border);}
+  .wgrid{grid-template-columns:repeat(2,1fr);}
   .board{grid-template-columns:1fr;}
   .stats{grid-template-columns:repeat(3,1fr);}
 }
@@ -174,103 +176,87 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 </head>
 <body>
 
-<header class="header">
-  <div class="logo"><div class="logo-dot"></div>LifeLedger</div>
+<header class="hdr">
+  <div class="logo"><div class="ldot"></div>LifeLedger</div>
   <div style="display:flex;align-items:center;gap:14px;">
-    <span class="header-meta">Updated March 30, 2026 at 05:07 PM</span>
-    <span class="savings-pill">$132/mo saved</span>
+    <span class="hmeta">Updated March 30, 2026 at 05:12 PM</span>
+    <span class="spill">$132/mo saved</span>
   </div>
 </header>
 
-<!-- WIFE PROTOCOL BANNER -->
-<div class="wife-banner">
-  <div class="wife-title">💌 Wife Priority — Two-Week Protocol · started 03/30/26 · ends ~04/13/26</div>
-  <div class="wife-grid" id="wg"></div>
+<div class="wbanner">
+  <div class="wtitle">💌 Wife Priority — Two-Week Protocol · started 03/30/26 · ends ~04/13/26</div>
+  <div class="wgrid" id="wg"></div>
 </div>
 
-<!-- CALENDAR + EVENT CARDS -->
-<div class="cal-events-wrap">
-  <div class="cal-side">
-    <div class="cal-section-title">📅 Calendar</div>
+<div class="cal-wrap">
+  <div class="cal-main">
+    <div class="sec-label">📅 Calendar</div>
     <div class="cal-months">
-      
-<div class="cal-month">
-  <div class="cal-month-name">March 2026</div>
-  <div class="cal-grid">
-    <div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div>
-    <div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-past"><span class="cal-day-num">1</span></div><div class="cal-cell cal-past"><span class="cal-day-num">2</span></div><div class="cal-cell cal-past"><span class="cal-day-num">3</span></div><div class="cal-cell cal-past"><span class="cal-day-num">4</span></div><div class="cal-cell cal-past"><span class="cal-day-num">5</span></div><div class="cal-cell cal-past"><span class="cal-day-num">6</span></div><div class="cal-cell cal-past"><span class="cal-day-num">7</span></div><div class="cal-cell cal-past"><span class="cal-day-num">8</span></div><div class="cal-cell cal-past"><span class="cal-day-num">9</span></div><div class="cal-cell cal-past"><span class="cal-day-num">10</span></div><div class="cal-cell cal-past"><span class="cal-day-num">11</span></div><div class="cal-cell cal-past"><span class="cal-day-num">12</span></div><div class="cal-cell cal-past"><span class="cal-day-num">13</span></div><div class="cal-cell cal-past"><span class="cal-day-num">14</span></div><div class="cal-cell cal-past"><span class="cal-day-num">15</span></div><div class="cal-cell cal-past"><span class="cal-day-num">16</span></div><div class="cal-cell cal-past"><span class="cal-day-num">17</span></div><div class="cal-cell cal-past"><span class="cal-day-num">18</span></div><div class="cal-cell cal-past"><span class="cal-day-num">19</span></div><div class="cal-cell cal-past"><span class="cal-day-num">20</span></div><div class="cal-cell cal-past"><span class="cal-day-num">21</span></div><div class="cal-cell cal-past"><span class="cal-day-num">22</span></div><div class="cal-cell cal-past"><span class="cal-day-num">23</span></div><div class="cal-cell cal-past"><span class="cal-day-num">24</span></div><div class="cal-cell cal-past"><span class="cal-day-num">25</span></div><div class="cal-cell cal-past"><span class="cal-day-num">26</span></div><div class="cal-cell cal-past"><span class="cal-day-num">27</span></div><div class="cal-cell cal-past"><span class="cal-day-num">28</span></div><div class="cal-cell cal-past"><span class="cal-day-num">29</span></div><div class="cal-cell cal-today"><span class="cal-day-num">30</span></div><div class="cal-cell"><span class="cal-day-num">31</span></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div>
-  </div>
-</div>
-
-<div class="cal-month">
-  <div class="cal-month-name">April 2026</div>
-  <div class="cal-grid">
-    <div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div>
-    <div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell"><span class="cal-day-num">1</span></div><div class="cal-cell"><span class="cal-day-num">2</span></div><div class="cal-cell"><span class="cal-day-num">3</span></div><div class="cal-cell" title="Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD); 💌 Figure out hiking location for Saturday 4/4; Dad’s heavenly Birthday"><span class="cal-day-num">4</span><span class="ev-dot ev-dot-soon"></span><span class="ev-dot ev-dot-wife"></span><span class="ev-dot ev-dot-soon"></span><div class="ev-lbl ev-lbl-soon">Sat 4/4** — Dad's …</div><div class="ev-lbl ev-lbl-wife">💌 Figure out hikin…</div></div><div class="cal-cell" title="Sun 4/5** — Easter Sunday (plans TBD)"><span class="cal-day-num">5</span><span class="ev-dot ev-dot-soon"></span><div class="ev-lbl ev-lbl-soon">Sun 4/5** — Easter…</div></div><div class="cal-cell"><span class="cal-day-num">6</span></div><div class="cal-cell"><span class="cal-day-num">7</span></div><div class="cal-cell"><span class="cal-day-num">8</span></div><div class="cal-cell"><span class="cal-day-num">9</span></div><div class="cal-cell"><span class="cal-day-num">10</span></div><div class="cal-cell" title="Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown; Steve's bachelor party (mini golf, dinner, downtown), Saturday"><span class="cal-day-num">11</span><span class="ev-dot ev-dot-upcoming"></span><span class="ev-dot ev-dot-upcoming"></span><div class="ev-lbl ev-lbl-upcoming">Sat 4/11** — Steve…</div><div class="ev-lbl ev-lbl-upcoming">Steve's bachelor p…</div></div><div class="cal-cell"><span class="cal-day-num">12</span></div><div class="cal-cell" title="💌 Take pregnancy test : April 13!"><span class="cal-day-num">13</span><span class="ev-dot ev-dot-wife"></span><div class="ev-lbl ev-lbl-wife">💌 Take pregnancy t…</div></div><div class="cal-cell" title="Tue 4/14** — Dentist — M.C. · 4–5 PM; Dentist Appt M.C. 4–5 PM"><span class="cal-day-num">14</span><span class="ev-dot ev-dot-future"></span><span class="ev-dot ev-dot-future"></span><div class="ev-lbl ev-lbl-future">Tue 4/14** — Denti…</div><div class="ev-lbl ev-lbl-future">Dentist Appt M.C. …</div></div><div class="cal-cell"><span class="cal-day-num">15</span></div><div class="cal-cell"><span class="cal-day-num">16</span></div><div class="cal-cell" title="Fri 4/17** — Interpol Concert 🎵; Interpol Concert"><span class="cal-day-num">17</span><span class="ev-dot ev-dot-future"></span><span class="ev-dot ev-dot-future"></span><div class="ev-lbl ev-lbl-future">Fri 4/17** — Inter…</div><div class="ev-lbl ev-lbl-future">Interpol Concert</div></div><div class="cal-cell"><span class="cal-day-num">18</span></div><div class="cal-cell" title="Sun 4/19** — Wife dental cleaning; C’s Dental Cleaning"><span class="cal-day-num">19</span><span class="ev-dot ev-dot-wife"></span><span class="ev-dot ev-dot-wife"></span><div class="ev-lbl ev-lbl-wife">Sun 4/19** — Wife …</div><div class="ev-lbl ev-lbl-wife">C’s Dental Cleanin…</div></div><div class="cal-cell"><span class="cal-day-num">20</span></div><div class="cal-cell"><span class="cal-day-num">21</span></div><div class="cal-cell"><span class="cal-day-num">22</span></div><div class="cal-cell"><span class="cal-day-num">23</span></div><div class="cal-cell"><span class="cal-day-num">24</span></div><div class="cal-cell" title="Fri 4/25** — Date night! 💌; 4/25 date night!"><span class="cal-day-num">25</span><span class="ev-dot ev-dot-wife"></span><span class="ev-dot ev-dot-wife"></span><div class="ev-lbl ev-lbl-wife">Fri 4/25** — Date …</div><div class="ev-lbl ev-lbl-wife">4/25 date night!</div></div><div class="cal-cell"><span class="cal-day-num">26</span></div><div class="cal-cell"><span class="cal-day-num">27</span></div><div class="cal-cell"><span class="cal-day-num">28</span></div><div class="cal-cell"><span class="cal-day-num">29</span></div><div class="cal-cell"><span class="cal-day-num">30</span></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div><div class="cal-cell cal-empty"></div>
-  </div>
-</div>
+      <div class="cal-month"><div class="cal-mname">March 2026</div><div class="cgrid"><div class="cdow">Su</div><div class="cdow">Mo</div><div class="cdow">Tu</div><div class="cdow">We</div><div class="cdow">Th</div><div class="cdow">Fr</div><div class="cdow">Sa</div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cpast"><span class="cdaynum">1</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">2</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">3</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">4</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">5</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">6</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">7</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">8</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">9</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">10</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">11</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">12</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">13</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">14</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">15</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">16</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">17</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">18</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">19</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">20</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">21</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">22</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">23</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">24</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">25</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">26</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">27</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">28</span><div class="cdots"></div></div><div class="ccell cpast"><span class="cdaynum">29</span><div class="cdots"></div></div><div class="ccell ctoday"><span class="cdaynum">30</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">31</span><div class="cdots"></div></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div></div></div>
+<div class="cal-month"><div class="cal-mname">April 2026</div><div class="cgrid"><div class="cdow">Su</div><div class="cdow">Mo</div><div class="cdow">Tu</div><div class="cdow">We</div><div class="cdow">Th</div><div class="cdow">Fr</div><div class="cdow">Sa</div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell"><span class="cdaynum">1</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">2</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">3</span><div class="cdots"></div></div><div class="ccell" title="Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD); 💌 Figure out hiking location for Saturday 4/4; Dad’s heavenly Birthday"><span class="cdaynum">4</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sat 4/4** — Da…</div></div><div class="ccell" title="Sun 4/5** — Easter Sunday (plans TBD)"><span class="cdaynum">5</span><div class="cdots"><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sun 4/5** — Ea…</div></div><div class="ccell"><span class="cdaynum">6</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">7</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">8</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">9</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">10</span><div class="cdots"></div></div><div class="ccell" title="Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown; Steve's bachelor party (mini golf, dinner, downtown), Saturday"><span class="cdaynum">11</span><div class="cdots"><span class="cdot cdot-upcoming"></span><span class="cdot cdot-upcoming"></span></div><div class="clbl clbl-upcoming">Sat 4/11** — S…</div></div><div class="ccell"><span class="cdaynum">12</span><div class="cdots"></div></div><div class="ccell" title="💌 Take pregnancy test : April 13!"><span class="cdaynum">13</span><div class="cdots"><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">💌 Take pregnan…</div></div><div class="ccell" title="Tue 4/14** — Dentist — M.C. · 4–5 PM; Dentist Appt M.C. 4–5 PM"><span class="cdaynum">14</span><div class="cdots"><span class="cdot cdot-future"></span><span class="cdot cdot-future"></span></div><div class="clbl clbl-future">Tue 4/14** — D…</div></div><div class="ccell"><span class="cdaynum">15</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">16</span><div class="cdots"></div></div><div class="ccell" title="Fri 4/17** — Interpol Concert 🎵; Interpol Concert"><span class="cdaynum">17</span><div class="cdots"><span class="cdot cdot-future"></span><span class="cdot cdot-future"></span></div><div class="clbl clbl-future">Fri 4/17** — I…</div></div><div class="ccell"><span class="cdaynum">18</span><div class="cdots"></div></div><div class="ccell" title="Sun 4/19** — Wife dental cleaning; C’s Dental Cleaning"><span class="cdaynum">19</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sun 4/19** — W…</div></div><div class="ccell"><span class="cdaynum">20</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">21</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">22</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">23</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">24</span><div class="cdots"></div></div><div class="ccell" title="Fri 4/25** — Date night! 💌; 4/25 date night!"><span class="cdaynum">25</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Fri 4/25** — D…</div></div><div class="ccell"><span class="cdaynum">26</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">27</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">28</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">29</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">30</span><div class="cdots"></div></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div></div></div>
     </div>
     <div class="cal-legend">
-      <div class="leg-item"><div class="leg-dot" style="background:var(--red)"></div>This week</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--accent)"></div>Soon</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--purple)"></div>Upcoming</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--pink)"></div>Wife / together</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--border2)"></div>Future</div>
+      <div class="leg"><div class="ldot2" style="background:var(--red)"></div>≤3 days</div>
+      <div class="leg"><div class="ldot2" style="background:var(--gold)"></div>This week</div>
+      <div class="leg"><div class="ldot2" style="background:var(--purple)"></div>2 weeks</div>
+      <div class="leg"><div class="ldot2" style="background:var(--pink)"></div>Wife / together</div>
+      <div class="leg"><div class="ldot2" style="background:var(--border2)"></div>Future</div>
     </div>
   </div>
-  <div class="events-side">
-    <div class="cal-section-title">Upcoming events</div>
-    <div class="events-scroll">
-      <div class="ev-card ev-soon"><div class="ev-date">Apr 4</div><div class="ev-title">Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD)</div><div class="ev-countdown">5d</div></div>
-<div class="ev-card ev-soon ev-wife"><div class="ev-date">Apr 4</div><div class="ev-title">💌 Figure out hiking location for Saturday 4/4</div><div class="ev-countdown">5d</div></div>
-<div class="ev-card ev-soon"><div class="ev-date">Apr 4</div><div class="ev-title">Dad’s heavenly Birthday</div><div class="ev-countdown">5d</div></div>
-<div class="ev-card ev-soon"><div class="ev-date">Apr 5</div><div class="ev-title">Sun 4/5** — Easter Sunday (plans TBD)</div><div class="ev-countdown">6d</div></div>
-<div class="ev-card ev-upcoming"><div class="ev-date">Apr 11</div><div class="ev-title">Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown</div><div class="ev-countdown">12d</div></div>
-<div class="ev-card ev-upcoming"><div class="ev-date">Apr 11</div><div class="ev-title">Steve's bachelor party (mini golf, dinner, downtown), Saturday</div><div class="ev-countdown">12d</div></div>
-<div class="ev-card ev-upcoming ev-wife"><div class="ev-date">Apr 13</div><div class="ev-title">💌 Take pregnancy test : April 13!</div><div class="ev-countdown">14d</div></div>
-<div class="ev-card ev-future"><div class="ev-date">Apr 14</div><div class="ev-title">Tue 4/14** — Dentist — M.C. · 4–5 PM</div><div class="ev-countdown">15d</div></div>
-<div class="ev-card ev-future"><div class="ev-date">Apr 14</div><div class="ev-title">Dentist Appt M.C. 4–5 PM</div><div class="ev-countdown">15d</div></div>
-<div class="ev-card ev-future"><div class="ev-date">Apr 17</div><div class="ev-title">Fri 4/17** — Interpol Concert 🎵</div><div class="ev-countdown">18d</div></div>
-<div class="ev-card ev-future"><div class="ev-date">Apr 17</div><div class="ev-title">Interpol Concert</div><div class="ev-countdown">18d</div></div>
-<div class="ev-card ev-future ev-wife"><div class="ev-date">Apr 19</div><div class="ev-title">Sun 4/19** — Wife dental cleaning</div><div class="ev-countdown">20d</div></div>
+  <div class="ev-side">
+    <div class="sec-label" style="margin-bottom:10px;">Upcoming</div>
+    <div class="evlist">
+      <div class="evc ev-soon ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">5d away</span></div><div class="evc-title">Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD)</div></div>
+<div class="evc ev-soon ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">5d away</span></div><div class="evc-title">💌 Figure out hiking location for Saturday 4/4</div></div>
+<div class="evc ev-soon ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">5d away</span></div><div class="evc-title">Dad’s heavenly Birthday</div></div>
+<div class="evc ev-soon ev-wife"><div class="evc-top"><span class="evc-date">Apr 5</span><span class="evc-cd">6d away</span></div><div class="evc-title">Sun 4/5** — Easter Sunday (plans TBD)</div></div>
+<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 11</span><span class="evc-cd">12d away</span></div><div class="evc-title">Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown</div></div>
+<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 11</span><span class="evc-cd">12d away</span></div><div class="evc-title">Steve's bachelor party (mini golf, dinner, downtown), Saturday</div></div>
+<div class="evc ev-upcoming ev-wife"><div class="evc-top"><span class="evc-date">Apr 13</span><span class="evc-cd">14d away</span></div><div class="evc-title">💌 Take pregnancy test : April 13!</div></div>
+<div class="evc ev-future"><div class="evc-top"><span class="evc-date">Apr 14</span><span class="evc-cd">15d away</span></div><div class="evc-title">Tue 4/14** — Dentist — M.C. · 4–5 PM</div></div>
+<div class="evc ev-future"><div class="evc-top"><span class="evc-date">Apr 14</span><span class="evc-cd">15d away</span></div><div class="evc-title">Dentist Appt M.C. 4–5 PM</div></div>
+<div class="evc ev-future"><div class="evc-top"><span class="evc-date">Apr 17</span><span class="evc-cd">18d away</span></div><div class="evc-title">Fri 4/17** — Interpol Concert 🎵</div></div>
+<div class="evc ev-future"><div class="evc-top"><span class="evc-date">Apr 17</span><span class="evc-cd">18d away</span></div><div class="evc-title">Interpol Concert</div></div>
+<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 19</span><span class="evc-cd">20d away</span></div><div class="evc-title">Sun 4/19** — Wife dental cleaning</div></div>
+<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 19</span><span class="evc-cd">20d away</span></div><div class="evc-title">C’s Dental Cleaning</div></div>
+<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 25</span><span class="evc-cd">26d away</span></div><div class="evc-title">Fri 4/25** — Date night! 💌</div></div>
+<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 25</span><span class="evc-cd">26d away</span></div><div class="evc-title">4/25 date night!</div></div>
     </div>
   </div>
 </div>
 
-<!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="stat-label">Open tasks</div><div class="stat-val" id="s-open">0</div><div class="stat-sub">all sections</div></div>
-  <div class="stat"><div class="stat-label">Time-sensitive</div><div class="stat-val red" id="s-urg">0</div><div class="stat-sub">need action now</div></div>
-  <div class="stat"><div class="stat-label">Wife priority</div><div class="stat-val pink" id="s-wife">0</div><div class="stat-sub">protocol remaining</div></div>
-  <div class="stat"><div class="stat-label">$ items</div><div class="stat-val green" id="s-money">0</div><div class="stat-sub">savings / income</div></div>
-  <div class="stat"><div class="stat-label">Done today</div><div class="stat-val green" id="s-done">0</div><div class="stat-sub">this session</div></div>
+  <div class="stat"><div class="slbl">Open tasks</div><div class="sval" id="s-open">0</div><div class="ssub">all sections</div></div>
+  <div class="stat"><div class="slbl">Time-sensitive</div><div class="sval red" id="s-urg">0</div><div class="ssub">need action now</div></div>
+  <div class="stat"><div class="slbl">Wife priority</div><div class="sval pink" id="s-wife">0</div><div class="ssub">protocol remaining</div></div>
+  <div class="stat"><div class="slbl">$ items</div><div class="sval green" id="s-money">0</div><div class="ssub">savings / income</div></div>
+  <div class="stat"><div class="slbl">Done today</div><div class="sval green" id="s-done">0</div><div class="ssub">this session</div></div>
 </div>
 
-<!-- TOOLBAR -->
 <div class="toolbar">
   <span class="tl">Filter</span>
-  <button class="fb active" onclick="sf('all',this)">All</button>
-  <button class="fb wf" onclick="sf('wife',this)">💌 Wife</button>
-  <button class="fb" onclick="sf('money',this)">$ Money</button>
-  <button class="fb" onclick="sf('home',this)">Home</button>
-  <button class="fb" onclick="sf('income',this)">Income</button>
-  <button class="fb" onclick="sf('family',this)">Family</button>
-  <button class="fb" onclick="sf('medical',this)">Medical</button>
-  <button class="fb" onclick="sf('romance',this)">Romance</button>
-  <div class="spacer"></div>
+  <button class="fb on"  onclick="sf('all',this)">All</button>
+  <button class="fb wf"  onclick="sf('wife',this)">💌 Wife</button>
+  <button class="fb"     onclick="sf('money',this)">$ Money</button>
+  <button class="fb"     onclick="sf('home',this)">Home</button>
+  <button class="fb"     onclick="sf('income',this)">Income</button>
+  <button class="fb"     onclick="sf('family',this)">Family</button>
+  <button class="fb"     onclick="sf('medical',this)">Medical</button>
+  <button class="fb"     onclick="sf('romance',this)">Romance</button>
+  <div class="sp"></div>
   <div class="pw"><span class="pl">Session</span><div class="pt"><div class="pf" id="prog" style="width:0%"></div></div><span class="pp" id="pct">0%</span></div>
 </div>
 
-<!-- TASK BOARD -->
 <div class="main">
   <div class="board">
     <div class="col"><div class="ch"><div class="ct">🔥 Time-sensitive</div><span class="cc hot" id="c-urg">0</span></div><div id="col-urg"></div></div>
     <div class="col"><div class="ch"><div class="ct">⚡ Quick wins</div><span class="cc" id="c-quick">0</span></div><div id="col-quick"></div></div>
     <div class="col"><div class="ch"><div class="ct">🎯 Active projects</div><span class="cc" id="c-proj">0</span></div><div id="col-proj"></div></div>
   </div>
-  <div class="sd"><span class="sd-t">⏳ Waiting on others</span><div class="sd-l"></div><span class="cc" id="c-wait">0</span></div>
+  <div class="sd"><span class="sdt">⏳ Waiting on others</span><div class="sdl"></div><span class="cc" id="c-wait">0</span></div>
   <div class="wg" id="col-wait"></div>
-  <div class="sd" style="margin-top:18px"><span class="sd-t">💭 Someday</span><div class="sd-l"></div><span class="cc" id="c-some">0</span></div>
+  <div class="sd" style="margin-top:16px"><span class="sdt">💭 Someday</span><div class="sdl"></div><span class="cc" id="c-some">0</span></div>
   <div class="sg" id="col-some"></div>
 </div>
 
@@ -280,7 +266,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 </footer>
 
 <script>
-const WIFE=["Find biodegradable balloons", "Figure out Easter Sunday plans", "Figure out hiking location for Saturday 4/4", "ONE TIME", "ONE MORE TIME", "Take pregnancy test : April 13!", "Get day off at Marriott!", "Find suit", "Find a dress", "Figure out hotel details", "Cat sitter", "CoQ10", "Prenatal vitamin", "Fish oil", "Flaxseed oil", "Magnesium", "☀️ Morning — 🌹 Rosehip + Cherry", "🌤️ Afternoon — 🌿 Nettle", "🌙 Evening — 🍃 Peppermint", "🍍 Pineapple juice (DPO 1–5 only: Mar 31 – Apr 4)", "🫐 Pomegranate juice (throughout entire TWW)"].filter(Boolean).map((t,i)=>({id:'h'+i,title:t,note:''}));
+const CHK='<svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const WIFE=["Find biodegradable balloons", "Figure out Easter Sunday plans", "Figure out hiking location for Saturday 4/4", "Take pregnancy test : April 13!", "Get day off at Marriott!", "Find suit", "Find a dress", "Figure out hotel details", "Cat sitter", "Prenatal vitamin", "Flaxseed oil", "☀️ Morning — 🌹 Rosehip + Cherry", "🌤️ Afternoon — 🌿 Nettle", "🌙 Evening — 🍃 Peppermint", "🍍 Pineapple juice (DPO 1–5 only: Mar 31 – Apr 4)", "🫐 Pomegranate juice (throughout entire TWW)"].filter(Boolean).map((t,i)=>({id:'h'+i,title:t}));
 const TASKS=[
   {id:100,col:'urgent',title:'💌 Figure out hiking location — THIS Saturday 4/4',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
   {id:101,col:'urgent',title:'💌 Figure out Easter Sunday plans — 4/5',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
@@ -368,19 +355,18 @@ const TASKS=[
 const done=new Set(JSON.parse(localStorage.getItem('ll-done')||'[]'));
 const wd=new Set(JSON.parse(localStorage.getItem('ll-wife-done')||'[]'));
 let af='all';
-const CHK='<svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const TAGCLS={home:'th',income:'ti',romance:'tr',medical:'tmed',family:'tf',self:'ts',wife:'tw'};
+const TC={home:'th',income:'ti',romance:'tr',medical:'tmed',family:'tf',self:'ts',wife:'tw'};
 function matches(t){if(af==='all')return true;if(af==='money')return t.money;if(af==='wife')return t.wife||t.tags.includes('wife');return t.tags.includes(af);}
-function tagHTML(t){const p=[];if(t.money)p.push('<span class="tag tm">$</span>');(t.tags||[]).forEach(g=>{const c=TAGCLS[g]||'tf';p.push(`<span class="tag ${c}">${g}</span>`)});return p.length?`<div class="ctags">${p.join('')}</div>`:''}
-function cardHTML(t){const d=done.has(t.id),c=[d?'done':'',t.urgent&&!d?'urg':'',t.wife&&!d?'wc':''].filter(Boolean).join(' ');return`<div class="card ${c}" onclick="tog(${t.id})"><div class="cr"><div class="ck${d?' checked':''}">${d?CHK:''}</div><span class="ct2">${t.title}</span></div>${t.note?`<div class="cn">${t.note}</div>`:''}${tagHTML(t)}</div>`;}
-function wifeCard(w){const d=wd.has(w.id);return`<div class="wife-item${d?' done':''}" onclick="togW('${w.id}')"><div class="wi-row"><div class="wi-check${d?' checked':''}">${d?CHK:''}</div><span class="wi-title">${w.title}</span></div></div>`;}
+function tagH(t){const p=[];if(t.money)p.push('<span class="tag tm">$</span>');(t.tags||[]).forEach(g=>p.push(`<span class="tag ${TC[g]||'tf'}">${g}</span>`));return p.length?`<div class="ctags">${p.join('')}</div>`:''}
+function cardH(t){const d=done.has(t.id),cls=[d?'done':'',t.urgent&&!d?'urg':'',t.wife&&!d?'wc':''].filter(Boolean).join(' ');return`<div class="card ${cls}" onclick="tog(${t.id})"><div class="cr"><div class="ck${d?' on':''}">${d?CHK:''}</div><span class="ct2">${t.title}</span></div>${tagH(t)}</div>`;}
+function wifeH(w){const d=wd.has(w.id);return`<div class="wi${d?' done':''}" onclick="togW('${w.id}')"><div class="wirow"><div class="wck${d?' on':''}">${d?CHK:''}</div><span class="wit">${w.title}</span></div></div>`;}
 function render(){
-  document.getElementById('wg').innerHTML=WIFE.map(wifeCard).join('');
+  document.getElementById('wg').innerHTML=WIFE.map(wifeH).join('');
   const cols={urg:'urgent',quick:'quick',proj:'projects',wait:'waiting',some:'someday'};
-  for(const[k,col] of Object.entries(cols)){
-    const tasks=TASKS.filter(t=>t.col===col&&matches(t));
-    document.getElementById('col-'+k).innerHTML=tasks.map(cardHTML).join('');
-    document.getElementById('c-'+k).textContent=tasks.filter(t=>!done.has(t.id)).length;
+  for(const[k,col]of Object.entries(cols)){
+    const ts=TASKS.filter(t=>t.col===col&&matches(t));
+    document.getElementById('col-'+k).innerHTML=ts.map(cardH).join('');
+    document.getElementById('c-'+k).textContent=ts.filter(t=>!done.has(t.id)).length;
   }
   document.getElementById('s-wife').textContent=WIFE.filter(w=>!wd.has(w.id)).length;
   document.getElementById('s-open').textContent=TASKS.filter(matches).filter(t=>!done.has(t.id)).length;
@@ -388,13 +374,13 @@ function render(){
   document.getElementById('s-money').textContent=TASKS.filter(t=>t.money&&!done.has(t.id)).length;
   const td=done.size+wd.size,tot=TASKS.length+WIFE.length;
   document.getElementById('s-done').textContent=td;
-  const pct=Math.round(td/tot*100);
-  document.getElementById('prog').style.width=pct+'%';
-  document.getElementById('pct').textContent=pct+'%';
+  const p=Math.round(td/tot*100);
+  document.getElementById('prog').style.width=p+'%';
+  document.getElementById('pct').textContent=p+'%';
 }
 function tog(id){done.has(id)?done.delete(id):done.add(id);localStorage.setItem('ll-done',JSON.stringify([...done]));render();}
 function togW(id){wd.has(id)?wd.delete(id):wd.add(id);localStorage.setItem('ll-wife-done',JSON.stringify([...wd]));render();}
-function sf(f,btn){af=f;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));btn.classList.add('active');render();}
+function sf(f,btn){af=f;document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');render();}
 render();
 </script>
 </body>
