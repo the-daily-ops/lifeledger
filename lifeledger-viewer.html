@@ -8,24 +8,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#f7f5f0;--bg2:#eeebe3;--bg3:#e5e1d6;
-  --ink:#1a1814;--ink2:#5a5649;--ink3:#9a9488;
-  --rule:rgba(26,24,20,0.1);--rule2:rgba(26,24,20,0.06);
-  --gold:#b8882a;--red:#c0392b;--green:#2e7d52;--blue:#1a5276;--teal:#1a7070;
-  --pink:#c9547a;--pink-bg:rgba(201,84,122,0.06);--pink-border:rgba(201,84,122,0.2);
+  --bg:#f7f5f0; --bg2:#eeebe3; --bg3:#e5e1d6;
+  --ink:#1a1814; --ink2:#5a5649; --ink3:#9a9488;
+  --rule:rgba(26,24,20,0.1); --rule2:rgba(26,24,20,0.06);
+  --gold:#b8882a; --red:#c0392b; --green:#2e7d52; --blue:#1a5276; --teal:#1a7070;
+  --pink:#c9547a; --pink-bg:rgba(201,84,122,0.06); --pink-border:rgba(201,84,122,0.2);
   --serif:'Playfair Display',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
   --mono:'DM Mono',monospace;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.65;}
-.masthead{background:rgba(26,24,20,0.97);color:var(--bg);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(247,245,240,0.08);}
-.masthead-title{font-family:var(--serif);font-size:20px;font-weight:500;letter-spacing:-0.01em;color:rgba(247,245,240,0.7);}
+/* MASTHEAD */
+.masthead{background:rgba(26,24,20,0.97);color:var(--bg);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;}
+.masthead-title{font-family:var(--serif);font-size:20px;font-weight:500;color:rgba(247,245,240,0.7);}
 .masthead-right{font-family:var(--mono);font-size:10px;color:rgba(247,245,240,0.25);letter-spacing:0.08em;}
-.nav{background:var(--ink);padding:0 40px;display:flex;gap:0;border-bottom:1px solid rgba(247,245,240,0.08);overflow-x:auto;}
+/* NAV */
+.nav{background:var(--ink);padding:0 40px;display:flex;overflow-x:auto;}
 .nav-btn{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(247,245,240,0.4);padding:12px 18px;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;white-space:nowrap;}
 .nav-btn:hover{color:rgba(247,245,240,0.8);}
 .nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
+/* SUMMARY BAND */
 .summary-band{background:var(--bg2);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr);}
 .sum-cell{padding:16px 20px;border-right:1px solid var(--rule);}
 .sum-cell:last-child{border-right:none;}
@@ -33,28 +36,53 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .sum-val{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);line-height:1;}
 .sum-val.gold{color:var(--gold);}
 .sum-sub{font-size:11px;color:var(--ink3);margin-top:2px;}
-.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 200px);}
+/* LAYOUT */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 180px);}
+/* SIDEBAR */
 .sidebar{background:var(--bg2);border-right:1px solid var(--rule);padding:24px 0;}
 .sidebar-heading{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.12em;text-transform:uppercase;padding:6px 20px 4px;}
 .sidebar-item{display:flex;align-items:center;justify-content:space-between;padding:8px 20px;cursor:pointer;transition:background 0.12s;border-left:2px solid transparent;}
 .sidebar-item:hover{background:var(--bg3);}
 .sidebar-item.active{background:var(--bg);border-left-color:var(--gold);}
-.sidebar-item-name{font-size:13px;color:var(--ink2);display:flex;align-items:center;gap:8px;}
+.sidebar-item-name{font-size:13px;color:var(--ink2);}
 .sidebar-item.active .sidebar-item-name{color:var(--ink);font-weight:500;}
 .sidebar-count{font-family:var(--mono);font-size:10px;color:var(--ink3);background:var(--bg3);padding:1px 6px;border-radius:2px;}
+/* CONTENT */
 .content{padding:32px 40px;min-width:0;}
 .section{display:none;}.section.active{display:block;}
 .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--rule);}
-.section-title{font-family:var(--serif);font-size:26px;font-weight:500;color:var(--ink);letter-spacing:-0.01em;}
+.section-title{font-family:var(--serif);font-size:26px;font-weight:500;letter-spacing:-0.01em;}
 .section-meta{font-family:var(--mono);font-size:10px;color:var(--ink3);}
-.records{display:flex;flex-direction:column;gap:16px;}
+/* SAVINGS BANNER */
+.savings-banner{margin-bottom:28px;}
+.sb-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px;}
+.sb-tile{background:white;border:1px solid var(--rule);border-radius:3px;padding:20px 22px;border-top:3px solid var(--rule);}
+.sb-recurring{border-top-color:var(--green);}
+.sb-onetime{border-top-color:var(--gold);}
+.sb-total{border-top-color:#5b4fcf;}
+.sb-label{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+.sb-val{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--ink);line-height:1;}
+.sb-unit{font-size:18px;font-weight:400;opacity:0.45;}
+.sb-sub{font-size:11px;color:var(--ink3);margin-top:5px;}
+.sb-breakdown{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sb-col{background:white;border:1px solid var(--rule);border-radius:3px;padding:16px 18px;}
+.sb-col-head{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;padding-bottom:8px;margin-bottom:8px;border-bottom:1px solid var(--rule2);}
+.sw-row{display:flex;justify-content:space-between;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--rule2);font-size:12px;}
+.sw-row:last-child{border-bottom:none;}
+.sw-name{color:var(--ink2);flex:1;margin-right:12px;line-height:1.4;}
+.sw-amt{font-family:var(--mono);font-size:11px;font-weight:500;white-space:nowrap;}
+.sw-green{color:var(--green);}
+.sw-gold{color:var(--gold);}
+.sw-empty{color:var(--ink3);font-style:italic;justify-content:flex-start;}
+/* RECORDS */
+.records{display:flex;flex-direction:column;gap:14px;}
 .record{background:white;border:1px solid var(--rule);border-radius:3px;overflow:hidden;transition:border-color 0.15s;}
 .record:hover{border-color:rgba(26,24,20,0.2);}
 .wife-record{border-left:3px solid var(--pink);}
 .record-header{padding:14px 18px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;cursor:pointer;user-select:none;}
 .record-header:hover{background:rgba(26,24,20,0.02);}
 .record-title{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);line-height:1.3;}
-.record-date{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:3px;letter-spacing:0.04em;}
+.record-date{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:3px;}
 .record-badges{display:flex;gap:6px;align-items:center;flex-shrink:0;}
 .badge{font-family:var(--mono);font-size:9px;letter-spacing:0.07em;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;}
 .badge-done{background:rgba(46,125,82,0.1);color:var(--green);border:1px solid rgba(46,125,82,0.2);}
@@ -62,18 +90,19 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .badge-warn{background:rgba(192,57,43,0.08);color:var(--red);border:1px solid rgba(192,57,43,0.2);}
 .badge-money{background:rgba(46,125,82,0.1);color:var(--green);border:1px solid rgba(46,125,82,0.2);}
 .badge-wife{background:var(--pink-bg);color:var(--pink);border:1px solid var(--pink-border);}
-.chevron{color:var(--ink3);font-size:12px;transition:transform 0.2s;flex-shrink:0;margin-top:2px;}
+.chevron{color:var(--ink3);font-size:11px;transition:transform 0.2s;flex-shrink:0;margin-top:3px;}
 .record.open .chevron{transform:rotate(180deg);}
 .record-body{display:none;padding:16px 18px;border-top:1px solid var(--rule2);}
 .record.open .record-body{display:block;}
-/* Record body elements */
+/* RECORD BODY */
 .rb-heading{font-family:var(--serif);font-size:15px;font-weight:500;color:var(--ink);margin:14px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--rule2);}
-.rb-subheading{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--ink2);letter-spacing:0.06em;text-transform:uppercase;margin:12px 0 6px;}
+.rb-subheading{font-family:var(--mono);font-size:11px;color:var(--ink2);letter-spacing:0.06em;text-transform:uppercase;margin:12px 0 6px;}
 .rb-para{font-size:13px;color:var(--ink2);line-height:1.6;margin:6px 0;}
-.rb-bullet{font-size:13px;color:var(--ink2);line-height:1.5;padding:2px 0 2px 12px;}
-.rb-bullet-sub{font-size:12px;color:var(--ink3);line-height:1.5;padding:2px 0 2px 24px;}
+.rb-bullet,.rb-bullet-sub{font-size:13px;color:var(--ink2);line-height:1.5;}
+.rb-bullet{padding:2px 0 2px 12px;}
+.rb-bullet-sub{padding:2px 0 2px 24px;font-size:12px;color:var(--ink3);}
 .rb-check{font-size:12px;color:var(--ink2);padding:2px 0 2px 12px;}
-.rb-check.done{color:var(--green);opacity:0.7;text-decoration:line-through;}
+.rb-check.done{color:var(--green);opacity:0.65;text-decoration:line-through;}
 .row-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:12px;}
 .row-table th{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.08em;text-transform:uppercase;text-align:left;padding:6px 10px;border-bottom:1px solid var(--rule);background:var(--bg2);}
 .row-table td{padding:7px 10px;border-bottom:1px solid var(--rule2);color:var(--ink2);vertical-align:top;}
@@ -82,40 +111,40 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .warn-box{background:rgba(192,57,43,0.06);border-left:3px solid var(--red);padding:10px 14px;margin:10px 0;font-size:12px;color:var(--red);line-height:1.6;border-radius:0 2px 2px 0;}
 code{font-family:var(--mono);font-size:11px;background:var(--bg3);padding:1px 5px;border-radius:2px;color:var(--ink2);}
 strong{font-weight:600;color:var(--ink);}
-/* Overview grid */
+/* OVERVIEW */
 .overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
 .ov-card{background:white;border:1px solid var(--rule);border-radius:3px;padding:16px 18px;cursor:pointer;transition:all 0.15s;border-top:3px solid transparent;}
-.ov-card:hover{border-color:rgba(26,24,20,0.15);}
+.ov-card:hover{border-color:rgba(26,24,20,0.15);transform:translateY(-1px);}
 .ov-card.costsavings{border-top-color:var(--green);}
 .ov-card.finances{border-top-color:var(--gold);}
 .ov-card.homeimprovement{border-top-color:#7d6b3a;}
 .ov-card.medical{border-top-color:var(--teal);}
 .ov-card.workbenefits{border-top-color:var(--blue);}
 .ov-card.journal{border-top-color:var(--ink3);}
-.ov-card.loans{border-top-color:#5b4fcf;}
-.ov-card-icon{font-size:20px;margin-bottom:8px;}
-.ov-card-title{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);margin-bottom:4px;}
-.ov-card-count{font-family:var(--mono);font-size:10px;color:var(--ink3);}
-.ov-card-preview{margin-top:8px;font-size:11px;color:var(--ink3);line-height:1.5;}
-::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px;}
+.ov-icon{font-size:20px;margin-bottom:8px;}
+.ov-title{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);margin-bottom:4px;}
+.ov-count{font-family:var(--mono);font-size:10px;color:var(--ink3);}
+.ov-preview{margin-top:8px;font-size:11px;color:var(--ink3);line-height:1.5;}
+.add-tip{margin-top:24px;padding:18px 20px;background:white;border:1px solid var(--rule);border-radius:3px;border-left:3px solid var(--gold);}
+.add-tip-label{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.add-tip-cmd{font-family:var(--mono);font-size:12px;color:var(--ink2);background:var(--bg2);padding:10px 12px;border-radius:2px;line-height:1.6;}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--bg3);border-radius:3px;}
 </style>
 </head>
 <body>
-
 <div class="masthead">
   <div class="masthead-title">LifeLedger — Records</div>
-  <div class="masthead-right">Phoenix, AZ · Updated March 31, 2026 at 11:09 PM · 23 records</div>
+  <div class="masthead-right">Phoenix, AZ · Updated March 31, 2026 at 11:17 PM · 23 records</div>
 </div>
-
 <nav class="nav" id="nav"></nav>
-
 <div class="summary-band">
-  <div class="sum-cell"><div class="sum-label">Monthly saved</div><div class="sum-val gold">$132</div><div class="sum-sub">vs. $100 goal ✓</div></div>
-  <div class="sum-cell"><div class="sum-label">Annual projection</div><div class="sum-val">$1,584</div><div class="sum-sub">at current rate</div></div>
-  <div class="sum-cell"><div class="sum-label">Student loan</div><div class="sum-val">$908.48</div><div class="sum-sub">Nelnet · 3.15%</div></div>
+  <div class="sum-cell"><div class="sum-label">Monthly saved</div><div class="sum-val gold">$49</div><div class="sum-sub">recurring negotiations</div></div>
+  <div class="sum-cell"><div class="sum-label">One-time wins</div><div class="sum-val">$668</div><div class="sum-sub">returns · credits · DIY</div></div>
+  <div class="sum-cell"><div class="sum-label">Annual projection</div><div class="sum-val">$1,256</div><div class="sum-sub">recurring × 12 + one-time</div></div>
   <div class="sum-cell"><div class="sum-label">Records on file</div><div class="sum-val">23</div><div class="sum-sub">across 6 folders</div></div>
 </div>
-
 <div class="layout">
 <aside class="sidebar">
   <div class="sidebar-heading">Folders</div>
@@ -128,67 +157,8 @@ strong{font-weight:600;color:var(--ink);}
 <div class="sidebar-item" onclick="showSection('journal',null,this)"><span class="sidebar-item-name">📓 Journal</span><span class="sidebar-count">3</span></div>
 </aside>
 <main class="content">
-
-<div class="section active" id="sec-overview">
-  <div class="section-header">
-    <div class="section-title">Your Records</div>
-    <div class="section-meta">23 files · updated March 31, 2026 at 11:09 PM</div>
-  </div>
-  <div class="overview-grid"><div class="ov-card costsavings" onclick="showSection('costsavings')"><div class="ov-card-icon">💰</div><div class="ov-card-title">Cost Savings</div><div class="ov-card-count">6 records</div><div class="ov-card-preview">Returns — O'Reilly's PCV Valve · Cost Savings — Sentra Junkyard · Amazon Customer Service Win — </div></div><div class="ov-card finances" onclick="showSection('finances')"><div class="ov-card-icon">📊</div><div class="ov-card-title">Finances</div><div class="ov-card-count">6 records</div><div class="ov-card-preview">Tax Tracker — 2026 (Filing in  · Loans — Master Record · Groupon — Arizona Real Estate </div></div><div class="ov-card homeimprovement" onclick="showSection('homeimprovement')"><div class="ov-card-icon">🏠</div><div class="ov-card-title">Home Improvement</div><div class="ov-card-count">4 records</div><div class="ov-card-preview">Sentra Parts — Pull-A-Part Jun · Plumbing Visit — Advanced Wate · 🏠 Garage Organization Project</div></div><div class="ov-card medical" onclick="showSection('medical')"><div class="ov-card-icon">🏥</div><div class="ov-card-title">Medical</div><div class="ov-card-count">3 records</div><div class="ov-card-preview">Wife — Two-Week Health Protoco · Cigna Health Claim — Check Sta · Annual Checkup Scheduled</div></div><div class="ov-card workbenefits" onclick="showSection('workbenefits')"><div class="ov-card-icon">💼</div><div class="ov-card-title">Work Benefits</div><div class="ov-card-count">1 record</div><div class="ov-card-preview">HSA Setup — Shampoo Expense Re</div></div><div class="ov-card journal" onclick="showSection('journal')"><div class="ov-card-icon">📓</div><div class="ov-card-title">Journal</div><div class="ov-card-count">3 records</div><div class="ov-card-preview">Honey To Do List — Imported · Maui Nui Venison Order — Shipp · Miscellaneous Completed Tasks </div></div></div>
-  <div style="margin-top:24px;padding:20px;background:white;border:1px solid var(--rule);border-radius:3px;border-left:3px solid var(--gold)">
-    <div style="font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px">To add a new record</div>
-    <div style="font-family:var(--mono);font-size:12px;color:var(--ink2);background:var(--bg2);padding:10px 12px;border-radius:2px;line-height:1.6">Create a .md file in the right LifeLedger folder, then run:<br><strong>python3 generate-viewer.py</strong></div>
-  </div>
-</div>
-
-<div class="section" id="sec-costsavings">
-  <div class="section-header">
-    <div class="section-title">Cost Savings</div>
-    <div class="section-meta">6 records · updated March 31, 2026 at 11:09 PM</div>
-  </div>
-  
-<div class="savings-banner">
-  <div class="sb-tiles">
-    <div class="sb-tile sb-recurring">
-      <div class="sb-tile-label">💚 Recurring monthly savings</div>
-      <div class="sb-tile-val">$49<span class="sb-tile-unit">/mo</span></div>
-      <div class="sb-tile-sub">$588/yr projected</div>
-    </div>
-    <div class="sb-tile sb-onetime">
-      <div class="sb-tile-label">✨ One-time wins</div>
-      <div class="sb-tile-val">$668.53</div>
-      <div class="sb-tile-sub">cash back · returns · credits</div>
-    </div>
-    <div class="sb-tile sb-total">
-      <div class="sb-tile-label">🏆 Total value captured</div>
-      <div class="sb-tile-val">$1257</div>
-      <div class="sb-tile-sub">one-time + 12 months recurring</div>
-    </div>
-  </div>
-  <div class="sb-breakdown">
-    <div class="sb-col">
-      <div class="sb-col-head">Recurring wins</div>
-      <div class="sw-row"><span class="sw-name">Subscription Cancellations & Downgrades — March 2026</span><span class="sw-amt green">$30/mo</span></div><div class="sw-row"><span class="sw-name">Cox Communications Bill Negotiation</span><span class="sw-amt green">$19/mo</span></div>
-    </div>
-    <div class="sb-col">
-      <div class="sb-col-head">One-time wins</div>
-      <div class="sw-row"><span class="sw-name">Returns — O'Reilly's PCV Valve & Home Depot Spray Paint</span><span class="sw-amt gold">$29.99</span></div><div class="sw-row"><span class="sw-name">Cost Savings — Sentra Junkyard Parts vs. New</span><span class="sw-amt gold">$450.00</span></div><div class="sw-row"><span class="sw-name">Amazon Customer Service Win — Zoom ZH1 Recorder</span><span class="sw-amt gold">$25.00</span></div><div class="sw-row"><span class="sw-name">Amazon Returns — Zoom H1n & PowerDeWise Lav Mic</span><span class="sw-amt gold">$163.54</span></div>
-    </div>
-  </div>
-</div>
-  <div class="records">
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Returns — O'Reilly's PCV Valve & Home Depot Spray Paint</div>
-      <div class="record-date">March 30, 2026 · Returns / Refunds</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-money">$29</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Type:</strong> One-Time</p>
-<p class="rb-para"><strong>One-Time Amount:</strong> $29.99</p>
-<div class="rb-heading">Summary</div>
+<div class="section active" id="sec-overview"><div class="section-header"><div class="section-title">Your Records</div><div class="section-meta">23 files · updated March 31, 2026 at 11:17 PM</div></div><div class="overview-grid"><div class="ov-card costsavings" onclick="showSection('costsavings')"><div class="ov-icon">💰</div><div class="ov-title">Cost Savings</div><div class="ov-count">6 records</div><div class="ov-preview">Returns — O'Reilly's PCV Val · Cost Savings — Sentra Junkya · Amazon Customer Service Win </div></div><div class="ov-card finances" onclick="showSection('finances')"><div class="ov-icon">📊</div><div class="ov-title">Finances</div><div class="ov-count">6 records</div><div class="ov-preview">Tax Tracker — 2026 (Filing i · Loans — Master Record · Groupon — Arizona Real Estat</div></div><div class="ov-card homeimprovement" onclick="showSection('homeimprovement')"><div class="ov-icon">🏠</div><div class="ov-title">Home Improvement</div><div class="ov-count">4 records</div><div class="ov-preview">Sentra Parts — Pull-A-Part J · Plumbing Visit — Advanced Wa · 🏠 Garage Organization Projec</div></div><div class="ov-card medical" onclick="showSection('medical')"><div class="ov-icon">🏥</div><div class="ov-title">Medical</div><div class="ov-count">3 records</div><div class="ov-preview">Wife — Two-Week Health Proto · Cigna Health Claim — Check S · Annual Checkup Scheduled</div></div><div class="ov-card workbenefits" onclick="showSection('workbenefits')"><div class="ov-icon">💼</div><div class="ov-title">Work Benefits</div><div class="ov-count">1 record</div><div class="ov-preview">HSA Setup — Shampoo Expense </div></div><div class="ov-card journal" onclick="showSection('journal')"><div class="ov-icon">📓</div><div class="ov-title">Journal</div><div class="ov-count">3 records</div><div class="ov-preview">Honey To Do List — Imported · Maui Nui Venison Order — Shi · Miscellaneous Completed Task</div></div></div><div class="add-tip"><div class="add-tip-label">To add a new record</div><div class="add-tip-cmd">Create a .md file in the right folder, then run: <strong>viewer</strong></div></div></div>
+<div class="section" id="sec-costsavings"><div class="section-header"><div class="section-title">Cost Savings</div><div class="section-meta">6 records · updated March 31, 2026 at 11:17 PM</div></div><div class="savings-banner"><div class="sb-tiles"><div class="sb-tile sb-recurring"><div class="sb-label">💚 Recurring savings</div><div class="sb-val">$49<span class="sb-unit">/mo</span></div><div class="sb-sub">$588/yr projected</div></div><div class="sb-tile sb-onetime"><div class="sb-label">✨ One-time wins</div><div class="sb-val">$668.53</div><div class="sb-sub">cash back · returns · credits</div></div><div class="sb-tile sb-total"><div class="sb-label">🏆 Total value captured</div><div class="sb-val">$1257</div><div class="sb-sub">one-time + 12 months recurring</div></div></div><div class="sb-breakdown"><div class="sb-col"><div class="sb-col-head">Recurring wins</div><div class="sw-row"><span class="sw-name">Subscription Cancellations & Downgrades — March 2026</span><span class="sw-amt sw-green">$30/mo</span></div><div class="sw-row"><span class="sw-name">Cox Communications Bill Negotiation</span><span class="sw-amt sw-green">$19/mo</span></div></div><div class="sb-col"><div class="sb-col-head">One-time wins</div><div class="sw-row"><span class="sw-name">Returns — O'Reilly's PCV Valve & Home Depot Spray Paint</span><span class="sw-amt sw-gold">$29.99</span></div><div class="sw-row"><span class="sw-name">Cost Savings — Sentra Junkyard Parts vs. New</span><span class="sw-amt sw-gold">$450.00</span></div><div class="sw-row"><span class="sw-name">Amazon Customer Service Win — Zoom ZH1 Recorder</span><span class="sw-amt sw-gold">$25.00</span></div><div class="sw-row"><span class="sw-name">Amazon Returns — Zoom H1n & PowerDeWise Lav Mic</span><span class="sw-amt sw-gold">$163.54</span></div></div></div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Returns — O'Reilly's PCV Valve & Home Depot Spray Paint</div><div class="record-date">March 30, 2026 · Returns / Refunds</div></div><div class="record-badges"><span class="badge badge-money">$29.99</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
 <p class="rb-para">Two returns completed same day — O'Reilly's Auto Parts and Home Depot.</p>
 <div class="rb-heading">Returns</div>
 <table class="row-table">
@@ -200,21 +170,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-heading">Notes</div>
 <div class="rb-bullet">· PCV Valve was purchased for the Sentra — confirmed wrong part, returned with receipt</div>
 <div class="rb-bullet">· Spray paint return — no issues</div>
-<div class="rb-bullet">· Both refunds back to Visa — allow 3–5 business days to post</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Cost Savings — Sentra Junkyard Parts vs. New</div>
-      <div class="record-date">March 28, 2026 · Vehicle / DIY Cost Savings</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-money">$450</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Type:</strong> One-Time</p>
-<p class="rb-para"><strong>One-Time Amount:</strong> $450.00</p>
-<div class="rb-heading">Savings Breakdown</div>
+<div class="rb-bullet">· Both refunds back to Visa — allow 3–5 business days to post</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Cost Savings — Sentra Junkyard Parts vs. New</div><div class="record-date">March 28, 2026 · Vehicle / DIY Cost Savings</div></div><div class="record-badges"><span class="badge badge-money">$450.00</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Savings Breakdown</div>
 <table class="row-table">
 <tr><th>Part</th><th>New / Dealer Price</th><th>Junkyard (Pull-A-Part)</th></tr>
 <tr><td>Trunk lid moulding w/ opener button</td><td>$404.32 (Nissan dealer)</td><td>Included in $34 total</td></tr>
@@ -231,21 +187,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Source: Pull-A-Part, 21st Ave, Phoenix AZ</div>
 <div class="rb-bullet">· Tactic: DIY junkyard sourcing vs. dealer or aftermarket new parts</div>
 <div class="rb-bullet">· Emblem is non-matching — cosmetic only, glue-on fix</div>
-<div class="rb-bullet">· Two trunk pieces acquired — spare can be resold on OfferUp to recoup some cost</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Amazon Customer Service Win — Zoom ZH1 Recorder</div>
-      <div class="record-date">March 27, 2026 · Customer Service / Negotiation</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-money">$25</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Type:</strong> One-Time</p>
-<p class="rb-para"><strong>One-Time Amount:</strong> $25.00</p>
-<div class="rb-heading">Summary</div>
+<div class="rb-bullet">· Two trunk pieces acquired — spare can be resold on OfferUp to recoup some cost</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Amazon Customer Service Win — Zoom ZH1 Recorder</div><div class="record-date">March 27, 2026 · Customer Service / Negotiation</div></div><div class="record-badges"><span class="badge badge-money">$25.00</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
 <p class="rb-para">Received Zoom ZH1 with zero protective packaging. Took the issue to Amazon customer service and successfully resolved it in a single interaction.</p>
 <div class="rb-heading">Results</div>
 <table class="row-table">
@@ -261,21 +203,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-heading">Lesson Learned</div>
 <p class="rb-para">Don't just accept the default solution. There's almost always room to ask for more — and often you don't even have to push hard.</p>
 <div class="rb-heading">Content Potential</div>
-<p class="rb-para">Strong YouTube/blog candidate — relatable, clear before/after, Voss tactics in a low-stakes everyday setting.</p>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Amazon Returns — Zoom H1n & PowerDeWise Lav Mic</div>
-      <div class="record-date">March 27, 2026 · Returns / Refunds</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-money">$163</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Type:</strong> One-Time</p>
-<p class="rb-para"><strong>One-Time Amount:</strong> $163.54</p>
-<div class="rb-heading">Order Details</div>
+<p class="rb-para">Strong YouTube/blog candidate — relatable, clear before/after, Voss tactics in a low-stakes everyday setting.</p></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Amazon Returns — Zoom H1n & PowerDeWise Lav Mic</div><div class="record-date">March 27, 2026 · Returns / Refunds</div></div><div class="record-badges"><span class="badge badge-money">$163.54</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Order Details</div>
 <div class="rb-bullet">· <strong>Order #:</strong> 113-3981699-5885069</div>
 <div class="rb-bullet">· <strong>Order placed:</strong> February 27, 2026</div>
 <div class="rb-bullet">· <strong>Order total:</strong> $161.90</div>
@@ -291,21 +219,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Dropped off at <strong>Kohl's</strong> (Amazon return partner) on 03/27/26</div>
 <div class="rb-bullet">· Refunds processed on receipt by Amazon ✅</div>
 <div class="rb-heading">Notes</div>
-<div class="rb-bullet">· Related: Previously logged a $25 credit win on a separate ZH1 recorder packaging complaint (see 2026-03-27-Amazon-ZH1-Credit-Win.md)</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Subscription Cancellations & Downgrades — March 2026</div>
-      <div class="record-date">March 2026 · Subscription Cost Savings</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-money">$30</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Type:</strong> Recurring</p>
-<p class="rb-para"><strong>Monthly Savings:</strong> $30.00</p>
-<div class="rb-heading">Actions Taken</div>
+<div class="rb-bullet">· Related: Previously logged a $25 credit win on a separate ZH1 recorder packaging complaint (see 2026-03-27-Amazon-ZH1-Credit-Win.md)</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Subscription Cancellations & Downgrades — March 2026</div><div class="record-date">March 2026 · Subscription Cost Savings</div></div><div class="record-badges"><span class="badge badge-money">$30/mo</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Actions Taken</div>
 <table class="row-table">
 <tr><th>Date</th><th>Service</th><th>Action</th><th>Savings</th></tr>
 <tr><td>03/11/26</td><td>Netflix</td><td>Downgraded from $24.99 → $17.99/mo</td><td>$7/mo</td></tr>
@@ -317,21 +231,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Netflix downgrade retained streaming access at lower tier</div>
 <div class="rb-bullet">· Patreon refund requested same day as charge — outcome: resolved</div>
 <div class="rb-bullet">· ChatGPT Go cancelled before renewal on 02/28/26</div>
-<div class="rb-bullet">· Amazon Prime trial cancelled on last day (03/25/26) — no charge incurred</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Cox Communications Bill Negotiation</div>
-      <div class="record-date">March 25, 2026 · Internet Bill</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-money">$19</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Type:</strong> Recurring</p>
-<p class="rb-para"><strong>Monthly Savings:</strong> $19.00</p>
-<p class="rb-para"><strong>Annual Savings:</strong> $228.00</p>
+<div class="rb-bullet">· Amazon Prime trial cancelled on last day (03/25/26) — no charge incurred</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Cox Communications Bill Negotiation</div><div class="record-date">March 25, 2026 · Internet Bill</div></div><div class="record-badges"><span class="badge badge-money">$19/mo</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Annual Savings:</strong> $228.00</p>
 <p class="rb-para"><strong>Tactic:</strong> Chris Voss negotiation via chat</p>
 <div class="rb-heading">Results</div>
 <table class="row-table">
@@ -345,28 +245,8 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· <strong>Contract:</strong> None (promotional rate, 24 months)</div>
 <div class="rb-bullet">· <strong>Work Order:</strong> #207658615</div>
 <div class="rb-heading">Notes</div>
-<p class="rb-para">Navigated through virtual assistant Oliver, escalated to live agent Joel (deflected), then Taufiq K. who applied the discount. Key tactic was anchoring at $50 competitor pricing and labeling Cox's lack of loyalty offers.</p>
-  </div>
-</div></div>
-</div>
-
-<div class="section" id="sec-finances">
-  <div class="section-header">
-    <div class="section-title">Finances</div>
-    <div class="section-meta">6 records · updated March 31, 2026 at 11:09 PM</div>
-  </div>
-  
-  <div class="records">
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Tax Tracker — 2026 (Filing in 2027)</div>
-      <div class="record-date"> · Taxes</div>
-    </div>
-    <div class="record-badges"><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Last updated:</strong> 2026-03-27</p>
+<p class="rb-para">Navigated through virtual assistant Oliver, escalated to live agent Joel (deflected), then Taufiq K. who applied the discount. Key tactic was anchoring at $50 competitor pricing and labeling Cox's lack of loyalty offers.</p></div></div></div></div>
+<div class="section" id="sec-finances"><div class="section-header"><div class="section-title">Finances</div><div class="section-meta">6 records · updated March 31, 2026 at 11:17 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Tax Tracker — 2026 (Filing in 2027)</div><div class="record-date"> · Taxes</div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Last updated:</strong> 2026-03-27</p>
 <p class="rb-para"><strong>Tax preparer:</strong> Evie</p>
 <p class="rb-para"><strong>Filing status:</strong> Married Filing Jointly (confirm with Evie)</p>
 <div class="note-box">💡 <strong>How to use this file:</strong> Add items throughout the year as they happen — interest paid, deductible expenses, major purchases, life changes. Don't wait until April. Review with Evie in January 2027 before filing.</div>
@@ -469,19 +349,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Evie prepared 2025 return — use same preparer for continuity</div>
 <div class="rb-bullet">· Only Group AD is active — all other loan groups (AA, AB, AC, AE) are paid in full</div>
 <div class="rb-bullet">· At current balance and rate, total 2026 interest will be modest (~$20–30 for the year) but still deductible</div>
-<div class="rb-bullet">· Consider asking Evie about: HSA optimization, student loan interest phase-out thresholds, and any OfferUp reporting requirements</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Loans — Master Record</div>
-      <div class="record-date"> </div>
-    </div>
-    <div class="record-badges"><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Last updated:</strong> March 29, 2026</p>
+<div class="rb-bullet">· Consider asking Evie about: HSA optimization, student loan interest phase-out thresholds, and any OfferUp reporting requirements</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Loans — Master Record</div><div class="record-date"></div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Last updated:</strong> March 29, 2026</p>
 <div class="note-box">💡 Add each loan as its own section below. Update balances monthly or when payments are made. Flag anything with an interest rate above 6% for payoff prioritization.</div>
 <div class="rb-heading">📚 Student Loan — Nelnet</div>
 <table class="row-table">
@@ -540,19 +408,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-heading">📋 Notes</div>
 <div class="rb-bullet">· Student loan is nearly paid off — only one group (AD) remaining</div>
 <div class="rb-bullet">· Mortgage and HELOC details need to be added — pull from statements or lender portal</div>
-<div class="rb-bullet">· Consider accelerating student loan payoff given low balance and 3.15% rate</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Groupon — Arizona Real Estate License Course</div>
-      <div class="record-date">March 29, 2026 · Education / Income Investment</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Order Details</div>
+<div class="rb-bullet">· Consider accelerating student loan payoff given low balance and 3.15% rate</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Groupon — Arizona Real Estate License Course</div><div class="record-date">March 29, 2026 · Education / Income Investment</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Order Details</div>
 <table class="row-table">
 <tr><th>Field</th><th>Info</th></tr>
 <tr><td>Item</td><td>Online Arizona 90-Hour Real Estate License Course + State Exam Prep</td></tr>
@@ -572,19 +428,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-check">☐ Access the course and set a study schedule</div>
 <div class="rb-check">☐ Track study hours toward the 90-hour requirement</div>
 <div class="rb-check">☐ Schedule and pass Arizona state real estate exam</div>
-<div class="rb-check">☐ Find a brokerage to hang license with</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Tax Return 2025 — Completed</div>
-      <div class="record-date">March 2026 · Taxes / Finances</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Summary</div>
+<div class="rb-check">☐ Find a brokerage to hang license with</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Tax Return 2025 — Completed</div><div class="record-date">March 2026 · Taxes / Finances</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
 <p class="rb-para">2025 tax return filed and fully dispersed.</p>
 <div class="rb-heading">Steps Completed</div>
 <div class="rb-bullet">· Paid Evie (tax preparer)</div>
@@ -592,19 +436,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Received state refund ✅</div>
 <div class="rb-bullet">· Dispersed return — payment to babe ✅</div>
 <div class="rb-heading">Notes</div>
-<p class="rb-para">Filed and closed. No outstanding items.</p>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">401K Access — Principal Financial</div>
-      <div class="record-date">March 13, 2026 · Retirement Accounts</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Account Details</div>
+<p class="rb-para">Filed and closed. No outstanding items.</p></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">401K Access — Principal Financial</div><div class="record-date">March 13, 2026 · Retirement Accounts</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Account Details</div>
 <div class="rb-bullet">· <strong>Provider:</strong> Principal Financial</div>
 <div class="rb-bullet">· <strong>Balance (as of 03/13):</strong> $2,046.58</div>
 <div class="rb-bullet">· <strong>Website:</strong> principal.com/seeyouroptions</div>
@@ -617,19 +449,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· <strong>Rep:</strong> Cindy Erenas</div>
 <div class="rb-bullet">· <strong>Username:</strong> CINDYERENAS90</div>
 <div class="rb-heading">Notes</div>
-<p class="rb-para">Confirmed access and reviewed options on 03/13. No monthly fees confirmed. Decision on rollover pending — see Rollover MRC HSA task for related action.</p>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Fidelity 401K Loan — Follow-Up Record</div>
-      <div class="record-date">March 12, 2026 · Retirement / Loan Repayment</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Summary</div>
+<p class="rb-para">Confirmed access and reviewed options on 03/13. No monthly fees confirmed. Decision on rollover pending — see Rollover MRC HSA task for related action.</p></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Fidelity 401K Loan — Follow-Up Record</div><div class="record-date">March 12, 2026 · Retirement / Loan Repayment</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
 <p class="rb-para">Called Fidelity on 03/12 to confirm loan repayment status after job transition.</p>
 <div class="rb-heading">Call Notes</div>
 <div class="rb-bullet">· <strong>Rep:</strong> Caitlyn</div>
@@ -642,28 +462,8 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Asked them to confirm no deductions have been missed</div>
 <div class="rb-bullet">· Flagged "avoid default" language with benefits team</div>
 <div class="rb-heading">Next Check</div>
-<p class="rb-para">Verify that 03/20 payment was deducted successfully. If not, escalate to Rocket HR benefits.</p>
-  </div>
-</div></div>
-</div>
-
-<div class="section" id="sec-homeimprovement">
-  <div class="section-header">
-    <div class="section-title">Home Improvement</div>
-    <div class="section-meta">4 records · updated March 31, 2026 at 11:09 PM</div>
-  </div>
-  
-  <div class="records">
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Sentra Parts — Pull-A-Part Junkyard Run</div>
-      <div class="record-date">March 28, 2026 · Vehicle Maintenance</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Location:</strong> Pull-A-Part — 21st Ave, Phoenix AZ</p>
+<p class="rb-para">Verify that 03/20 payment was deducted successfully. If not, escalate to Rocket HR benefits.</p></div></div></div></div>
+<div class="section" id="sec-homeimprovement"><div class="section-header"><div class="section-title">Home Improvement</div><div class="section-meta">4 records · updated March 31, 2026 at 11:17 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Sentra Parts — Pull-A-Part Junkyard Run</div><div class="record-date">March 28, 2026 · Vehicle Maintenance</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Location:</strong> Pull-A-Part — 21st Ave, Phoenix AZ</p>
 <div class="rb-heading">Parts Acquired</div>
 <table class="row-table">
 <tr><th>Part</th><th>Notes</th><th>Est. New Price</th></tr>
@@ -690,19 +490,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-check">☐ Test fit both trunk pieces — install the better fitting one</div>
 <div class="rb-check">☐ Glue emblem with automotive trim adhesive</div>
 <div class="rb-check">☐ Use visor hardware to fix visors</div>
-<div class="rb-check">☐ Resell extra trunk piece on OfferUp if not needed</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Plumbing Visit — Advanced Water Systems & Plumbing Services LLC</div>
-      <div class="record-date">March 27, 2026 · Home / Plumbing</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">The Issue</div>
+<div class="rb-check">☐ Resell extra trunk piece on OfferUp if not needed</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Plumbing Visit — Advanced Water Systems & Plumbing Services LLC</div><div class="record-date">March 27, 2026 · Home / Plumbing</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">The Issue</div>
 <p class="rb-para">Vibration/humming sound occurring whenever faucets were run throughout the house. Suspected pipe issue. Scheduled service through Advanced Water Systems & Plumbing Services LLC after getting referral via Polair.</p>
 <div class="rb-heading">What Happened</div>
 <div class="rb-bullet">· <strong>Tech:</strong> Noah Corral</div>
@@ -745,19 +533,7 @@ strong{font-weight:600;color:var(--ink);}
 <tr><th>Name</th><th>Company</th><th>Phone</th><th>Notes</th></tr>
 <tr><td>Noah Corral</td><td>Advanced Water Systems (current)</td><td>6029935771</td><td>Also runs HMU LLC privately</td></tr>
 <tr><td>Noah Corral</td><td>HMU LLC Water Treatment & Plumbing</td><td>(get direct number)</td><td>Quoted $300 for PRV — overheard $90 from his contact</td></tr>
-</table>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">🏠 Garage Organization Project</div>
-      <div class="record-date">2026-03-27 · Home Improvement</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-pending">⏳ Pending</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Goal</div>
+</table></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">🏠 Garage Organization Project</div><div class="record-date">2026-03-27 · Home Improvement</div></div><div class="record-badges"><span class="badge badge-pending">⏳ Pending</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Goal</div>
 <p class="rb-para">Transform the garage from cluttered storage into a functional, organized space with proper shelving and clear zones.</p>
 <div class="rb-heading">Phase 1 — Clearing (in progress)</div>
 <div class="rb-check done">☑ Cleared two boxes (02/26/26)</div>
@@ -781,45 +557,13 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-check">☐ Install doggy door for Lilian (once garage is clear)</div>
 <div class="rb-heading">Notes</div>
 <div class="rb-bullet">· Gift cards on hand — prioritize shelving purchase over cash spend</div>
-<div class="rb-bullet">· Coordinate with MeetKevin Sweat Equity upgrades (flooring, paint) once cleared</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Sentra — Spark Plugs Replaced</div>
-      <div class="record-date">March 2026 · Vehicle Maintenance</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Steps Completed</div>
+<div class="rb-bullet">· Coordinate with MeetKevin Sweat Equity upgrades (flooring, paint) once cleared</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Sentra — Spark Plugs Replaced</div><div class="record-date">March 2026 · Vehicle Maintenance</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Steps Completed</div>
 <div class="rb-bullet">· Bought parts (03/12)</div>
 <div class="rb-bullet">· Created guide</div>
 <div class="rb-bullet">· Scheduled and completed replacement</div>
 <div class="rb-heading">Notes</div>
-<p class="rb-para">DIY replacement. Parts purchased 03/12. Guide created for future reference.</p>
-  </div>
-</div></div>
-</div>
-
-<div class="section" id="sec-medical">
-  <div class="section-header">
-    <div class="section-title">Medical</div>
-    <div class="section-meta">3 records · updated March 31, 2026 at 11:09 PM</div>
-  </div>
-  
-  <div class="records">
-<div class="record wife-record open">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Wife — Two-Week Health Protocol</div>
-      <div class="record-date">March 30, 2026 · Medical / Wife Priority</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-wife">🌸 Wife priority</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Protocol Items</div>
+<p class="rb-para">DIY replacement. Parts purchased 03/12. Guide created for future reference.</p></div></div></div></div>
+<div class="section" id="sec-medical"><div class="section-header"><div class="section-title">Medical</div><div class="section-meta">3 records · updated March 31, 2026 at 11:17 PM</div></div><div class="records"><div class="record wife-record open"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Wife — Two-Week Health Protocol</div><div class="record-date">March 30, 2026 · Medical / Wife Priority</div></div><div class="record-badges"><span class="badge badge-wife">🌸 Wife priority</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Protocol Items</div>
 <table class="row-table">
 <tr><th>Item</th><th>Notes</th></tr>
 <tr><td>Pineapple juice</td><td>Take next 5 days + pomegranate juice</td></tr>
@@ -836,19 +580,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-heading">Notes</div>
 <div class="rb-bullet">· These are her guidelines, support her in following them</div>
 <div class="rb-bullet">· Be mindful of social situations involving alcohol or heat</div>
-<div class="rb-bullet">· Consider making this easier by doing it together where you can</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Cigna Health Claim — Check Status</div>
-      <div class="record-date">2026-03-26 · Health Insurance / Medical</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-pending">⏳ Pending</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Logged by:</strong> Wife</p>
+<div class="rb-bullet">· Consider making this easier by doing it together where you can</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Cigna Health Claim — Check Status</div><div class="record-date">2026-03-26 · Health Insurance / Medical</div></div><div class="record-badges"><span class="badge badge-pending">⏳ Pending</span><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Logged by:</strong> Wife</p>
 <div class="rb-heading">Details</div>
 <div class="rb-bullet">· <strong>Insurance:</strong> Cigna</div>
 <div class="rb-bullet">· <strong>Action needed:</strong> Log into Cigna portal and check status of open health claim</div>
@@ -867,19 +599,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Amount</div>
 <div class="rb-bullet">· Status (approved / denied / pending)</div>
 <div class="rb-bullet">· Any follow-up required</div>
-<p class="rb-para"><em>If denied or underpaid — this is a candidate for medical bill negotiation. See LifeLedger negotiation tactics in _context.md.</em></p>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Annual Checkup Scheduled</div>
-      <div class="record-date">March 2026 · Preventive Care</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Provider Details</div>
+<p class="rb-para"><em>If denied or underpaid — this is a candidate for medical bill negotiation. See LifeLedger negotiation tactics in _context.md.</em></p></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Annual Checkup Scheduled</div><div class="record-date">March 2026 · Preventive Care</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Provider Details</div>
 <div class="rb-bullet">· <strong>Doctor:</strong> Christina Walker MD (primary), Jennifer Thatcher NP</div>
 <div class="rb-bullet">· <strong>Practice:</strong> HonorHealth Medical Group - Saguaro</div>
 <div class="rb-bullet">· <strong>Address:</strong> 20950 N Tatum Blvd, Ste 190, Phoenix, AZ 85050</div>
@@ -891,28 +611,8 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· <strong>Claims:</strong> Submitted locally through BCBS</div>
 <div class="rb-bullet">· <strong>Provider-only line:</strong> (on file)</div>
 <div class="rb-heading">Notes</div>
-<p class="rb-para">Called Lori B. McFann MD's office on 03/11 first, then confirmed with HonorHealth. Claims submitted through local BCBS chapter.</p>
-  </div>
-</div></div>
-</div>
-
-<div class="section" id="sec-workbenefits">
-  <div class="section-header">
-    <div class="section-title">Work Benefits</div>
-    <div class="section-meta">1 record · updated March 31, 2026 at 11:09 PM</div>
-  </div>
-  
-  <div class="records">
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">HSA Setup — Shampoo Expense Reimbursement</div>
-      <div class="record-date">March 2026 · Work Benefits / HSA</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Summary</div>
+<p class="rb-para">Called Lori B. McFann MD's office on 03/11 first, then confirmed with HonorHealth. Claims submitted through local BCBS chapter.</p></div></div></div></div>
+<div class="section" id="sec-workbenefits"><div class="section-header"><div class="section-title">Work Benefits</div><div class="section-meta">1 record · updated March 31, 2026 at 11:17 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">HSA Setup — Shampoo Expense Reimbursement</div><div class="record-date">March 2026 · Work Benefits / HSA</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
 <p class="rb-para">Set up HSA account and successfully expensed medically-prescribed shampoo.</p>
 <div class="rb-heading">Steps Completed</div>
 <div class="rb-bullet">· Found letter from Rocket (employer) confirming eligibility</div>
@@ -920,28 +620,8 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Set up direct deposit (03/12)</div>
 <div class="rb-bullet">· Expensed $14.29 on 03/18/26 ✅</div>
 <div class="rb-heading">Notes</div>
-<p class="rb-para">Shampoo is a prescribed/eligible medical expense. Reimbursed through HSA. Keep letter from Rocket on file for audit purposes.</p>
-  </div>
-</div></div>
-</div>
-
-<div class="section" id="sec-journal">
-  <div class="section-header">
-    <div class="section-title">Journal</div>
-    <div class="section-meta">3 records · updated March 31, 2026 at 11:09 PM</div>
-  </div>
-  
-  <div class="records">
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Honey To Do List — Imported</div>
-      <div class="record-date">March 30, 2026 · Family / Events / Planning</div>
-    </div>
-    <div class="record-badges"><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <p class="rb-para"><strong>Source:</strong> Wife's Obsidian Vault · Honey To Do List.md</p>
+<p class="rb-para">Shampoo is a prescribed/eligible medical expense. Reimbursed through HSA. Keep letter from Rocket on file for audit purposes.</p></div></div></div></div>
+<div class="section" id="sec-journal"><div class="section-header"><div class="section-title">Journal</div><div class="section-meta">3 records · updated March 31, 2026 at 11:17 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Honey To Do List — Imported</div><div class="record-date">March 30, 2026 · Family / Events / Planning</div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Source:</strong> Wife's Obsidian Vault · Honey To Do List.md</p>
 <div class="rb-heading">Active Tasks (from her list)</div>
 <div class="rb-check">☐ Find biodegradable balloons</div>
 <div class="rb-check">☐ Figure out Easter Sunday plans (Easter: April 5)</div>
@@ -966,19 +646,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-check">☐ Cat sitter for Lilian</div>
 <div class="rb-heading">Notes</div>
 <div class="rb-bullet">· Her list lives at: <code>/Users/coto/Library/Mobile Documents/com~apple~CloudDocs/Honey To Do List.md</code></div>
-<div class="rb-bullet">· Re-read periodically: say "read the Honey To Do List" to check for updates</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Maui Nui Venison Order — Shipped</div>
-      <div class="record-date">March 27, 2026 · Food / Personal</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-pending">⏳ Pending</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Order Details</div>
+<div class="rb-bullet">· Re-read periodically: say "read the Honey To Do List" to check for updates</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Maui Nui Venison Order — Shipped</div><div class="record-date">March 27, 2026 · Food / Personal</div></div><div class="record-badges"><span class="badge badge-pending">⏳ Pending</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Order Details</div>
 <table class="row-table">
 <tr><th>Field</th><th>Info</th></tr>
 <tr><td>Order #</td><td>MV244936</td></tr>
@@ -989,19 +657,7 @@ strong{font-weight:600;color:var(--ink);}
 </table>
 <div class="rb-heading">Notes</div>
 <div class="rb-bullet">· If fresh venison: bring inside within 6 hours of delivery</div>
-<div class="rb-bullet">· Contact: info@mauinuivenison.com</div>
-  </div>
-</div>
-<div class="record">
-  <div class="record-header" onclick="toggleRecord(this)">
-    <div>
-      <div class="record-title">Miscellaneous Completed Tasks — Early 2026</div>
-      <div class="record-date">March 2026 · General Log</div>
-    </div>
-    <div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div>
-  </div>
-  <div class="record-body">
-    <div class="rb-heading">Financial / Income</div>
+<div class="rb-bullet">· Contact: info@mauinuivenison.com</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Miscellaneous Completed Tasks — Early 2026</div><div class="record-date">March 2026 · General Log</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Financial / Income</div>
 <div class="rb-bullet">· <strong>BMO Harris:</strong> Deposited cash ✅</div>
 <div class="rb-bullet">· <strong>Chase points redeemed:</strong> $30.03 → applied to Barclay card ✅</div>
 <div class="rb-bullet">· <strong>Costco return (03/11):</strong> Chicken wings — $17.99 refund ✅</div>
@@ -1034,49 +690,34 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· <strong>Bike ride with babe:</strong> Done, tires filled ✅</div>
 <div class="rb-bullet">· <strong>Pregnancy test expensed</strong> ✅</div>
 <div class="rb-heading">Content</div>
-<div class="rb-bullet">· <strong>Box cutter video recorded:</strong> 02/28/26 (import to computer still pending)</div>
-  </div>
-</div></div>
-</div>
+<div class="rb-bullet">· <strong>Box cutter video recorded:</strong> 02/28/26 (import to computer still pending)</div></div></div></div></div>
 </main>
 </div>
-
 <script>
-// Build nav buttons dynamically from sidebar
 const sidebarItems = document.querySelectorAll('.sidebar-item');
 const nav = document.getElementById('nav');
 sidebarItems.forEach(item => {
   const name = item.querySelector('.sidebar-item-name').textContent.trim();
-  const onclick = item.getAttribute('onclick');
-  const btn = document.createElement('button');
+  const oc   = item.getAttribute('onclick');
+  const btn  = document.createElement('button');
   btn.className = 'nav-btn' + (item.classList.contains('active') ? ' active' : '');
   btn.textContent = name;
-  btn.setAttribute('onclick', onclick.replace('null,this)', 'this,null)'));
+  btn.setAttribute('onclick', oc.replace('null,this)', 'this,null)'));
   nav.appendChild(btn);
 });
-
-function toggleRecord(header) {
-  header.closest('.record').classList.toggle('open');
-}
-
+function toggleRecord(h) { h.closest('.record').classList.toggle('open'); }
 function showSection(id, navBtn, sidebarItem) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   const sec = document.getElementById('sec-' + id);
   if (sec) sec.classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.nav-btn,.sidebar-item').forEach(el => el.classList.remove('active'));
   if (navBtn) navBtn.classList.add('active');
-  document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
   if (sidebarItem) sidebarItem.classList.add('active');
-  // Sync nav and sidebar
   document.querySelectorAll('.sidebar-item').forEach(s => {
-    if (s.getAttribute('onclick') && s.getAttribute('onclick').includes("'" + id + "'")) {
-      s.classList.add('active');
-    }
+    if ((s.getAttribute('onclick')||'').includes("'"+id+"'")) s.classList.add('active');
   });
   document.querySelectorAll('.nav-btn').forEach(b => {
-    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + id + "'")) {
-      b.classList.add('active');
-    }
+    if ((b.getAttribute('onclick')||'').includes("'"+id+"'")) b.classList.add('active');
   });
 }
 </script>
