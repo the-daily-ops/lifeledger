@@ -1,0 +1,9 @@
+# ── PUBLISH TO GITHUB PAGES ───────────────────────────────────────────────────
+print("\n→ Publishing to GitHub Pages...")
+git_cmd(["git","add","dashboard.html","lifeledger-viewer.html","index.html"])
+ok, out = git_cmd(["git","commit","-m",f"Auto-refresh {now}"])
+if "nothing to commit" in out:
+    print("   No changes — already up to date.")
+else:
+    ok, out = git_cmd(["git","push","origin","main"])
+    print(f"   ✅ Live at: https://the-daily-ops.github.io/lifeledger/dashboard.html" if ok else f"   ⚠️  Push failed: {out}")

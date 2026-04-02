@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.coto.lifeledger.dashboard</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/coto/Library/Mobile Documents/com~apple~CloudDocs/LifeLedger/run-dashboard.sh</string>
+    </array>
+
+    <!-- 5 minutes (300 seconds) -->
+    <key>StartInterval</key>
+    <integer>300</integer>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/coto/Library/Mobile Documents/com~apple~CloudDocs/LifeLedger/dashboard-scheduler.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/coto/Library/Mobile Documents/com~apple~CloudDocs/LifeLedger/dashboard-scheduler-error.log</string>
+
+    <key>KeepAlive</key>
+    <false/>
+</dict>
+</plist>

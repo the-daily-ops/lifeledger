@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+watcher.log
+watcher-error.log
+dashboard-scheduler.log
+dashboard-scheduler-error.log
+__pycache__/
+*.pyc

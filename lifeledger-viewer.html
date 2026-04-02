@@ -19,16 +19,13 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.65;}
-/* MASTHEAD */
 .masthead{background:rgba(26,24,20,0.97);color:var(--bg);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;}
 .masthead-title{font-family:var(--serif);font-size:20px;font-weight:500;color:rgba(247,245,240,0.7);}
 .masthead-right{font-family:var(--mono);font-size:10px;color:rgba(247,245,240,0.25);letter-spacing:0.08em;}
-/* NAV */
 .nav{background:var(--ink);padding:0 40px;display:flex;overflow-x:auto;}
 .nav-btn{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(247,245,240,0.4);padding:12px 18px;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;white-space:nowrap;}
 .nav-btn:hover{color:rgba(247,245,240,0.8);}
 .nav-btn.active{color:var(--gold);border-bottom-color:var(--gold);}
-/* SUMMARY BAND */
 .summary-band{background:var(--bg2);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:repeat(4,1fr);}
 .sum-cell{padding:16px 20px;border-right:1px solid var(--rule);}
 .sum-cell:last-child{border-right:none;}
@@ -36,9 +33,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .sum-val{font-family:var(--serif);font-size:22px;font-weight:500;color:var(--ink);line-height:1;}
 .sum-val.gold{color:var(--gold);}
 .sum-sub{font-size:11px;color:var(--ink3);margin-top:2px;}
-/* LAYOUT */
 .layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 180px);}
-/* SIDEBAR */
 .sidebar{background:var(--bg2);border-right:1px solid var(--rule);padding:24px 0;}
 .sidebar-heading{font-family:var(--mono);font-size:9px;color:var(--ink3);letter-spacing:0.12em;text-transform:uppercase;padding:6px 20px 4px;}
 .sidebar-item{display:flex;align-items:center;justify-content:space-between;padding:8px 20px;cursor:pointer;transition:background 0.12s;border-left:2px solid transparent;}
@@ -47,7 +42,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .sidebar-item-name{font-size:13px;color:var(--ink2);}
 .sidebar-item.active .sidebar-item-name{color:var(--ink);font-weight:500;}
 .sidebar-count{font-family:var(--mono);font-size:10px;color:var(--ink3);background:var(--bg3);padding:1px 6px;border-radius:2px;}
-/* CONTENT */
 .content{padding:32px 40px;min-width:0;}
 .section{display:none;}.section.active{display:block;}
 .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--rule);}
@@ -94,7 +88,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .record.open .chevron{transform:rotate(180deg);}
 .record-body{display:none;padding:16px 18px;border-top:1px solid var(--rule2);}
 .record.open .record-body{display:block;}
-/* RECORD BODY */
 .rb-heading{font-family:var(--serif);font-size:15px;font-weight:500;color:var(--ink);margin:14px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--rule2);}
 .rb-subheading{font-family:var(--mono);font-size:11px;color:var(--ink2);letter-spacing:0.06em;text-transform:uppercase;margin:12px 0 6px;}
 .rb-para{font-size:13px;color:var(--ink2);line-height:1.6;margin:6px 0;}
@@ -111,7 +104,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .warn-box{background:rgba(192,57,43,0.06);border-left:3px solid var(--red);padding:10px 14px;margin:10px 0;font-size:12px;color:var(--red);line-height:1.6;border-radius:0 2px 2px 0;}
 code{font-family:var(--mono);font-size:11px;background:var(--bg3);padding:1px 5px;border-radius:2px;color:var(--ink2);}
 strong{font-weight:600;color:var(--ink);}
-/* OVERVIEW */
 .overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;}
 .ov-card{background:white;border:1px solid var(--rule);border-radius:3px;padding:16px 18px;cursor:pointer;transition:all 0.15s;border-top:3px solid transparent;}
 .ov-card:hover{border-color:rgba(26,24,20,0.15);transform:translateY(-1px);}
@@ -119,7 +111,8 @@ strong{font-weight:600;color:var(--ink);}
 .ov-card.finances{border-top-color:var(--gold);}
 .ov-card.homeimprovement{border-top-color:#7d6b3a;}
 .ov-card.medical{border-top-color:var(--teal);}
-.ov-card.workbenefits{border-top-color:var(--blue);}
+.ov-card.vehicles{border-top-color:var(--blue);}
+.ov-card.workbenefits{border-top-color:#4a6fa5;}
 .ov-card.journal{border-top-color:var(--ink3);}
 .ov-icon{font-size:20px;margin-bottom:8px;}
 .ov-title{font-family:var(--serif);font-size:16px;font-weight:500;color:var(--ink);margin-bottom:4px;}
@@ -136,29 +129,30 @@ strong{font-weight:600;color:var(--ink);}
 <body>
 <div class="masthead">
   <div class="masthead-title">LifeLedger — Records</div>
-  <div class="masthead-right">Phoenix, AZ · Updated April 01, 2026 at 01:53 PM · 25 records</div>
+  <div class="masthead-right">Phoenix, AZ · Updated April 01, 2026 at 09:02 PM · 30 records</div>
 </div>
 <nav class="nav" id="nav"></nav>
 <div class="summary-band">
   <div class="sum-cell"><div class="sum-label">Monthly saved</div><div class="sum-val gold">$49</div><div class="sum-sub">recurring negotiations</div></div>
   <div class="sum-cell"><div class="sum-label">One-time wins</div><div class="sum-val">$668</div><div class="sum-sub">returns · credits · DIY</div></div>
-  <div class="sum-cell"><div class="sum-label">Annual projection</div><div class="sum-val">$1,256</div><div class="sum-sub">recurring × 12 + one-time</div></div>
-  <div class="sum-cell"><div class="sum-label">Records on file</div><div class="sum-val">25</div><div class="sum-sub">across 6 folders</div></div>
+  <div class="sum-cell"><div class="sum-label">Total debt</div><div class="sum-val">$732k</div><div class="sum-sub">2 mortgages + student loan</div></div>
+  <div class="sum-cell"><div class="sum-label">Records on file</div><div class="sum-val">30</div><div class="sum-sub">across 7 folders</div></div>
 </div>
 <div class="layout">
 <aside class="sidebar">
   <div class="sidebar-heading">Folders</div>
   <div class="sidebar-item active" onclick="showSection('overview',null,this)"><span class="sidebar-item-name">🗂 Overview</span></div>
 <div class="sidebar-item" onclick="showSection('costsavings',null,this)"><span class="sidebar-item-name">💰 Cost Savings</span><span class="sidebar-count">6</span></div>
-<div class="sidebar-item" onclick="showSection('finances',null,this)"><span class="sidebar-item-name">📊 Finances</span><span class="sidebar-count">6</span></div>
+<div class="sidebar-item" onclick="showSection('finances',null,this)"><span class="sidebar-item-name">📊 Finances</span><span class="sidebar-count">8</span></div>
 <div class="sidebar-item" onclick="showSection('homeimprovement',null,this)"><span class="sidebar-item-name">🏠 Home Improvement</span><span class="sidebar-count">4</span></div>
 <div class="sidebar-item" onclick="showSection('medical',null,this)"><span class="sidebar-item-name">🏥 Medical</span><span class="sidebar-count">4</span></div>
+<div class="sidebar-item" onclick="showSection('vehicles',null,this)"><span class="sidebar-item-name">🚗 Vehicles</span><span class="sidebar-count">3</span></div>
 <div class="sidebar-item" onclick="showSection('workbenefits',null,this)"><span class="sidebar-item-name">💼 Work Benefits</span><span class="sidebar-count">1</span></div>
 <div class="sidebar-item" onclick="showSection('journal',null,this)"><span class="sidebar-item-name">📓 Journal</span><span class="sidebar-count">4</span></div>
 </aside>
 <main class="content">
-<div class="section active" id="sec-overview"><div class="section-header"><div class="section-title">Your Records</div><div class="section-meta">25 files · updated April 01, 2026 at 01:53 PM</div></div><div class="overview-grid"><div class="ov-card costsavings" onclick="showSection('costsavings')"><div class="ov-icon">💰</div><div class="ov-title">Cost Savings</div><div class="ov-count">6 records</div><div class="ov-preview">Returns — O'Reilly's PCV Val · Cost Savings — Sentra Junkya · Amazon Customer Service Win </div></div><div class="ov-card finances" onclick="showSection('finances')"><div class="ov-icon">📊</div><div class="ov-title">Finances</div><div class="ov-count">6 records</div><div class="ov-preview">Tax Tracker — 2026 (Filing i · Loans — Master Record · Groupon — Arizona Real Estat</div></div><div class="ov-card homeimprovement" onclick="showSection('homeimprovement')"><div class="ov-icon">🏠</div><div class="ov-title">Home Improvement</div><div class="ov-count">4 records</div><div class="ov-preview">Sentra Parts — Pull-A-Part J · Plumbing Visit — Advanced Wa · 🏠 Garage Organization Projec</div></div><div class="ov-card medical" onclick="showSection('medical')"><div class="ov-icon">🏥</div><div class="ov-title">Medical</div><div class="ov-count">4 records</div><div class="ov-preview">Conception Cycle Tracker — M · Wife — Two-Week Health Proto · Cigna Health Claim — Check S</div></div><div class="ov-card workbenefits" onclick="showSection('workbenefits')"><div class="ov-icon">💼</div><div class="ov-title">Work Benefits</div><div class="ov-count">1 record</div><div class="ov-preview">HSA Setup — Shampoo Expense </div></div><div class="ov-card journal" onclick="showSection('journal')"><div class="ov-icon">📓</div><div class="ov-title">Journal</div><div class="ov-count">4 records</div><div class="ov-preview">Completed Tasks Archive — Ma · Honey To Do List — Imported · Maui Nui Venison Order — Shi</div></div></div><div class="add-tip"><div class="add-tip-label">To add a new record</div><div class="add-tip-cmd">Create a .md file in the right folder, then run: <strong>viewer</strong></div></div></div>
-<div class="section" id="sec-costsavings"><div class="section-header"><div class="section-title">Cost Savings</div><div class="section-meta">6 records · updated April 01, 2026 at 01:53 PM</div></div><div class="savings-banner"><div class="sb-tiles"><div class="sb-tile sb-recurring"><div class="sb-label">💚 Recurring savings</div><div class="sb-val">$49<span class="sb-unit">/mo</span></div><div class="sb-sub">$588/yr projected</div></div><div class="sb-tile sb-onetime"><div class="sb-label">✨ One-time wins</div><div class="sb-val">$668.53</div><div class="sb-sub">cash back · returns · credits</div></div><div class="sb-tile sb-total"><div class="sb-label">🏆 Total value captured</div><div class="sb-val">$1257</div><div class="sb-sub">one-time + 12 months recurring</div></div></div><div class="sb-breakdown"><div class="sb-col"><div class="sb-col-head">Recurring wins</div><div class="sw-row"><span class="sw-name">Subscription Cancellations & Downgrades — March 2026</span><span class="sw-amt sw-green">$30/mo</span></div><div class="sw-row"><span class="sw-name">Cox Communications Bill Negotiation</span><span class="sw-amt sw-green">$19/mo</span></div></div><div class="sb-col"><div class="sb-col-head">One-time wins</div><div class="sw-row"><span class="sw-name">Returns — O'Reilly's PCV Valve & Home Depot Spray Paint</span><span class="sw-amt sw-gold">$29.99</span></div><div class="sw-row"><span class="sw-name">Cost Savings — Sentra Junkyard Parts vs. New</span><span class="sw-amt sw-gold">$450.00</span></div><div class="sw-row"><span class="sw-name">Amazon Customer Service Win — Zoom ZH1 Recorder</span><span class="sw-amt sw-gold">$25.00</span></div><div class="sw-row"><span class="sw-name">Amazon Returns — Zoom H1n & PowerDeWise Lav Mic</span><span class="sw-amt sw-gold">$163.54</span></div></div></div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Returns — O'Reilly's PCV Valve & Home Depot Spray Paint</div><div class="record-date">March 30, 2026 · Returns / Refunds</div></div><div class="record-badges"><span class="badge badge-money">$29.99</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
+<div class="section active" id="sec-overview"><div class="section-header"><div class="section-title">Your Records</div><div class="section-meta">30 files · updated April 01, 2026 at 09:02 PM</div></div><div class="overview-grid"><div class="ov-card costsavings" onclick="showSection('costsavings')"><div class="ov-icon">💰</div><div class="ov-title">Cost Savings</div><div class="ov-count">6 records</div><div class="ov-preview">Returns — O'Reilly's PCV Val · Cost Savings — Sentra Junkya · Amazon Customer Service Win </div></div><div class="ov-card finances" onclick="showSection('finances')"><div class="ov-icon">📊</div><div class="ov-title">Finances</div><div class="ov-count">8 records</div><div class="ov-preview">Tax Tracker — 2026 (Filing i · Mortgage — Primary Residence · Mortgage — Investment Proper</div></div><div class="ov-card homeimprovement" onclick="showSection('homeimprovement')"><div class="ov-icon">🏠</div><div class="ov-title">Home Improvement</div><div class="ov-count">4 records</div><div class="ov-preview">Sentra Parts — Pull-A-Part J · Plumbing Visit — Advanced Wa · 🏠 Garage Organization Projec</div></div><div class="ov-card medical" onclick="showSection('medical')"><div class="ov-icon">🏥</div><div class="ov-title">Medical</div><div class="ov-count">4 records</div><div class="ov-preview">Conception Cycle Tracker — M · Wife — Two-Week Health Proto · Cigna Health Claim — Check S</div></div><div class="ov-card vehicles" onclick="showSection('vehicles')"><div class="ov-icon">🚗</div><div class="ov-title">Vehicles</div><div class="ov-count">3 records</div><div class="ov-preview">Nissan Sentra — Vehicle Mast · Honda Civic — Vehicle Master · Oil Change — Nissan Sentra</div></div><div class="ov-card workbenefits" onclick="showSection('workbenefits')"><div class="ov-icon">💼</div><div class="ov-title">Work Benefits</div><div class="ov-count">1 record</div><div class="ov-preview">HSA Setup — Shampoo Expense </div></div><div class="ov-card journal" onclick="showSection('journal')"><div class="ov-icon">📓</div><div class="ov-title">Journal</div><div class="ov-count">4 records</div><div class="ov-preview">Completed Tasks Archive — Ma · Honey To Do List — Imported · Maui Nui Venison Order — Shi</div></div></div><div class="add-tip"><div class="add-tip-label">To add a new record</div><div class="add-tip-cmd">Create a .md file in the right folder, then run: <strong>viewer</strong></div></div></div>
+<div class="section" id="sec-costsavings"><div class="section-header"><div class="section-title">Cost Savings</div><div class="section-meta">6 records · updated April 01, 2026 at 09:02 PM</div></div><div class="savings-banner"><div class="sb-tiles"><div class="sb-tile sb-recurring"><div class="sb-label">💚 Recurring savings</div><div class="sb-val">$49<span class="sb-unit">/mo</span></div><div class="sb-sub">$588/yr projected</div></div><div class="sb-tile sb-onetime"><div class="sb-label">✨ One-time wins</div><div class="sb-val">$668.53</div><div class="sb-sub">cash back · returns · credits</div></div><div class="sb-tile sb-total"><div class="sb-label">🏆 Total value captured</div><div class="sb-val">$1257</div><div class="sb-sub">one-time + 12 months recurring</div></div></div><div class="sb-breakdown"><div class="sb-col"><div class="sb-col-head">Recurring wins</div><div class="sw-row"><span class="sw-name">Subscription Cancellations & Downgrades — March 2026</span><span class="sw-amt sw-green">$30/mo</span></div><div class="sw-row"><span class="sw-name">Cox Communications Bill Negotiation</span><span class="sw-amt sw-green">$19/mo</span></div></div><div class="sb-col"><div class="sb-col-head">One-time wins</div><div class="sw-row"><span class="sw-name">Returns — O'Reilly's PCV Valve & Home Depot Spray Paint</span><span class="sw-amt sw-gold">$29.99</span></div><div class="sw-row"><span class="sw-name">Cost Savings — Sentra Junkyard Parts vs. New</span><span class="sw-amt sw-gold">$450.00</span></div><div class="sw-row"><span class="sw-name">Amazon Customer Service Win — Zoom ZH1 Recorder</span><span class="sw-amt sw-gold">$25.00</span></div><div class="sw-row"><span class="sw-name">Amazon Returns — Zoom H1n & PowerDeWise Lav Mic</span><span class="sw-amt sw-gold">$163.54</span></div></div></div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Returns — O'Reilly's PCV Valve & Home Depot Spray Paint</div><div class="record-date">March 30, 2026 · Returns / Refunds</div></div><div class="record-badges"><span class="badge badge-money">$29.99</span><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
 <p class="rb-para">Two returns completed same day — O'Reilly's Auto Parts and Home Depot.</p>
 <div class="rb-heading">Returns</div>
 <table class="row-table">
@@ -246,7 +240,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· <strong>Work Order:</strong> #207658615</div>
 <div class="rb-heading">Notes</div>
 <p class="rb-para">Navigated through virtual assistant Oliver, escalated to live agent Joel (deflected), then Taufiq K. who applied the discount. Key tactic was anchoring at $50 competitor pricing and labeling Cox's lack of loyalty offers.</p></div></div></div></div>
-<div class="section" id="sec-finances"><div class="section-header"><div class="section-title">Finances</div><div class="section-meta">6 records · updated April 01, 2026 at 01:53 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Tax Tracker — 2026 (Filing in 2027)</div><div class="record-date"> · Taxes</div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Last updated:</strong> 2026-03-27</p>
+<div class="section" id="sec-finances"><div class="section-header"><div class="section-title">Finances</div><div class="section-meta">8 records · updated April 01, 2026 at 09:02 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Tax Tracker — 2026 (Filing in 2027)</div><div class="record-date"> · Taxes</div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Last updated:</strong> 2026-03-27</p>
 <p class="rb-para"><strong>Tax preparer:</strong> Evie</p>
 <p class="rb-para"><strong>Filing status:</strong> Married Filing Jointly (confirm with Evie)</p>
 <div class="note-box">💡 <strong>How to use this file:</strong> Add items throughout the year as they happen — interest paid, deductible expenses, major purchases, life changes. Don't wait until April. Review with Evie in January 2027 before filing.</div>
@@ -349,8 +343,150 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Evie prepared 2025 return — use same preparer for continuity</div>
 <div class="rb-bullet">· Only Group AD is active — all other loan groups (AA, AB, AC, AE) are paid in full</div>
 <div class="rb-bullet">· At current balance and rate, total 2026 interest will be modest (~$20–30 for the year) but still deductible</div>
-<div class="rb-bullet">· Consider asking Evie about: HSA optimization, student loan interest phase-out thresholds, and any OfferUp reporting requirements</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Loans — Master Record</div><div class="record-date"></div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Last updated:</strong> March 29, 2026</p>
-<div class="note-box">💡 Add each loan as its own section below. Update balances monthly or when payments are made. Flag anything with an interest rate above 6% for payoff prioritization.</div>
+<div class="rb-bullet">· Consider asking Evie about: HSA optimization, student loan interest phase-out thresholds, and any OfferUp reporting requirements</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Mortgage — Primary Residence (4321 E Rosemonte Dr)</div><div class="record-date">April 1, 2026 · Finances / Mortgage</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">🏠 Property</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Property address</td><td>4321 E Rosemonte Drive, Phoenix, AZ 85050</td></tr>
+<tr><td>Property type</td><td>Primary residence</td></tr>
+<tr><td>Borrowers</td><td>Michael Coto & Cindy Coto</td></tr>
+<tr><td>Servicer</td><td>Rocket Mortgage</td></tr>
+<tr><td>Servicer phone</td><td>(800) 4-ROCKET</td></tr>
+<tr><td>Servicer website</td><td>RocketMortgage.com</td></tr>
+<tr><td>Servicer email</td><td>ServicingHelp@RocketMortgage.com</td></tr>
+</table>
+<div class="rb-heading">💰 Loan Summary (as of March 3, 2026)</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Interest bearing principal balance</td><td>$513,417.93</td></tr>
+<tr><td>Interest rate</td><td>5.990%</td></tr>
+<tr><td>Regular monthly payment</td><td>$3,329.69</td></tr>
+<tr><td>Recurring subsidy applied</td><td>-$323.20/mo</td></tr>
+<tr><td>Escrow balance</td><td>$2,573.60</td></tr>
+<tr><td>Subsidy balance</td><td>$2,585.60</td></tr>
+<tr><td>Payment due date</td><td>1st of each month</td></tr>
+<tr><td>Late fee (if paid after 17th)</td><td>$110.56</td></tr>
+<tr><td>Autopay</td><td>✅ Enrolled</td></tr>
+</table>
+<div class="note-box"><strong>Note on subsidy:</strong> A recurring subsidy of $323.20/mo is applied to reduce the monthly payment. This is applied to the principal portion. If the subsidy exceeds the principal amount, the principal line may show as negative on the statement — this is expected behavior per Rocket Mortgage.</div>
+<div class="rb-heading">📊 Payment Breakdown (April 2026)</div>
+<table class="row-table">
+<tr><th>Component</th><th>Amount</th></tr>
+<tr><td>Principal</td><td>$524.50</td></tr>
+<tr><td>Interest</td><td>$2,562.81</td></tr>
+<tr><td>Escrow (taxes & insurance)</td><td>$565.58</td></tr>
+<tr><td>Subsidy</td><td>-$323.20</td></tr>
+<tr><td><strong>Total due</strong></td><td><strong>$3,329.69</strong></td></tr>
+</table>
+<div class="rb-heading">📅 Payment History</div>
+<table class="row-table">
+<tr><th>Statement Date</th><th>Period</th><th>Total Paid</th><th>Principal</th><th>Interest</th><th>Escrow</th></tr>
+<tr><td>03/03/2026</td><td>02/04–03/03/2026</td><td>$3,329.69</td><td>$521.89</td><td>$2,565.42</td><td>$565.58</td></tr>
+</table>
+<p class="rb-para"><strong>Year to date (as of 03/03/2026):</strong></p>
+<div class="rb-bullet">· Principal: $1,557.91</div>
+<div class="rb-bullet">· Interest: $7,704.02</div>
+<div class="rb-bullet">· Escrow: $1,696.74</div>
+<div class="rb-bullet">· <strong>Total YTD: $10,958.67</strong></div>
+<div class="rb-heading">📋 Notes</div>
+<div class="rb-bullet">· High interest rate (5.990%) — worth monitoring refinance opportunities as rates drop</div>
+<div class="rb-bullet">· Subsidy helps reduce effective payment — confirm subsidy terms and expiration date with Rocket Mortgage</div>
+<div class="rb-bullet">· Escrow covers property taxes and homeowner's insurance</div>
+<div class="rb-bullet">· Both Michael and Cindy on the loan</div>
+<div class="rb-heading">📞 Contact</div>
+<div class="rb-bullet">· Phone: (800) 4-ROCKET · M–F 8:30am–9pm ET · Sat 9am–4pm ET</div>
+<div class="rb-bullet">· Online: RocketMortgage.com</div>
+<div class="rb-bullet">· Email: ServicingHelp@RocketMortgage.com</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Mortgage — Investment Property (11457 N 30th Ave)</div><div class="record-date">April 1, 2026 · Finances / Mortgage</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">🏠 Property</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Property address</td><td>11457 N 30th Ave, Phoenix, AZ 85029</td></tr>
+<tr><td>Property type</td><td>Investment / rental property</td></tr>
+<tr><td>Borrower</td><td>Michael Coto</td></tr>
+<tr><td>Servicer</td><td>Rocket Mortgage</td></tr>
+<tr><td>Servicer phone</td><td>(800) 4-ROCKET</td></tr>
+<tr><td>Servicer website</td><td>RocketMortgage.com</td></tr>
+<tr><td>Servicer email</td><td>ServicingHelp@RocketMortgage.com</td></tr>
+</table>
+<div class="rb-heading">💰 Loan Summary (as of March 3, 2026)</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Interest bearing principal balance</td><td>$217,899.78</td></tr>
+<tr><td>Interest rate</td><td>2.875%</td></tr>
+<tr><td>Regular monthly payment</td><td>$1,411.45</td></tr>
+<tr><td>Escrow balance</td><td>$1,296.80</td></tr>
+<tr><td>Payment due date</td><td>1st of each month</td></tr>
+<tr><td>Late fee (if paid after 17th)</td><td>$51.31</td></tr>
+<tr><td>Autopay</td><td>✅ Enrolled</td></tr>
+</table>
+<div class="note-box"><strong>Note:</strong> Excellent rate at 2.875% — do not refinance unless absolutely necessary. This is well below current market rates.</div>
+<div class="rb-heading">📊 Payment Breakdown (April 2026)</div>
+<table class="row-table">
+<tr><th>Component</th><th>Amount</th></tr>
+<tr><td>Principal</td><td>$504.19</td></tr>
+<tr><td>Interest</td><td>$522.05</td></tr>
+<tr><td>Escrow (taxes & insurance)</td><td>$385.21</td></tr>
+<tr><td><strong>Total due</strong></td><td><strong>$1,411.45</strong></td></tr>
+</table>
+<div class="rb-heading">📅 Payment History</div>
+<table class="row-table">
+<tr><th>Statement Date</th><th>Period</th><th>Total Paid</th><th>Principal</th><th>Interest</th><th>Escrow</th></tr>
+<tr><td>03/03/2026</td><td>02/04–03/03/2026</td><td>$1,411.45</td><td>$502.98</td><td>$523.26</td><td>$385.21</td></tr>
+</table>
+<p class="rb-para"><strong>Year to date (as of 03/03/2026):</strong></p>
+<div class="rb-bullet">· Principal: $1,505.34</div>
+<div class="rb-bullet">· Interest: $1,573.38</div>
+<div class="rb-bullet">· Escrow: $1,103.83</div>
+<div class="rb-bullet">· <strong>Total YTD: $4,182.55</strong></div>
+<div class="rb-heading">📋 Notes</div>
+<div class="rb-bullet">· Exceptional rate at 2.875% — locked in well below current market rates, never refinance unless critical</div>
+<div class="rb-bullet">· Michael only on this loan (Cindy not on title)</div>
+<div class="rb-bullet">· Escrow covers property taxes and insurance for the rental property</div>
+<div class="rb-bullet">· Rental income should offset this payment — track rent collected vs. mortgage cost</div>
+<div class="rb-bullet">· Interest paid is likely tax deductible as a rental property expense — log to 2026-Tax-Tracker.md annually</div>
+<div class="rb-heading">📞 Contact</div>
+<div class="rb-bullet">· Phone: (800) 4-ROCKET · M–F 8:30am–9pm ET · Sat 9am–4pm ET</div>
+<div class="rb-bullet">· Online: RocketMortgage.com</div>
+<div class="rb-bullet">· Email: ServicingHelp@RocketMortgage.com</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Loans — Master Record</div><div class="record-date"></div></div><div class="record-badges"><span class="badge badge-warn">⚠ Review</span><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Last updated:</strong> April 1, 2026</p>
+<div class="rb-heading">📊 Loan Summary (as of April 1, 2026)</div>
+<table class="row-table">
+<tr><th>Loan</th><th>Balance</th><th>Rate</th><th>Monthly Pmt</th><th>Property</th></tr>
+<tr><td>Mortgage — Primary</td><td>$513,417.93</td><td>5.990%</td><td>$3,329.69</td><td>4321 E Rosemonte Dr</td></tr>
+<tr><td>Mortgage — Investment</td><td>$217,899.78</td><td>2.875%</td><td>$1,411.45</td><td>11457 N 30th Ave</td></tr>
+<tr><td>Student Loan (Nelnet)</td><td>$908.48</td><td>3.150%</td><td>$86.46</td><td>—</td></tr>
+<tr><td><strong>Total debt</strong></td><td><strong>$732,226.19</strong></td><td>—</td><td><strong>$4,827.60/mo</strong></td><td>—</td></tr>
+</table>
+<div class="rb-heading">🏠 Mortgage — Primary Residence</div>
+<p class="rb-para"><strong>Property:</strong> 4321 E Rosemonte Drive, Phoenix AZ 85050</p>
+<p class="rb-para"><strong>Full record:</strong> <code>2026-Mortgage-Primary-Rosemonte.md</code></p>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Borrowers</td><td>Michael & Cindy Coto</td></tr>
+<tr><td>Principal balance</td><td>$513,417.93</td></tr>
+<tr><td>Interest rate</td><td>5.990%</td></tr>
+<tr><td>Monthly payment</td><td>$3,329.69 (after $323.20 subsidy)</td></tr>
+<tr><td>Escrow balance</td><td>$2,573.60</td></tr>
+<tr><td>Subsidy balance</td><td>$2,585.60</td></tr>
+<tr><td>Servicer</td><td>Rocket Mortgage · (800) 4-ROCKET</td></tr>
+<tr><td>Autopay</td><td>✅ Enrolled</td></tr>
+<tr><td>Late fee threshold</td><td>After 17th of month · $110.56</td></tr>
+</table>
+<div class="note-box">⚠️ Rate is 5.990% — worth monitoring for refinance opportunities if rates drop significantly below this.</div>
+<div class="rb-heading">🏘️ Mortgage — Investment Property</div>
+<p class="rb-para"><strong>Property:</strong> 11457 N 30th Ave, Phoenix AZ 85029</p>
+<p class="rb-para"><strong>Full record:</strong> <code>2026-Mortgage-Investment-30thAve.md</code></p>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Borrower</td><td>Michael Coto</td></tr>
+<tr><td>Principal balance</td><td>$217,899.78</td></tr>
+<tr><td>Interest rate</td><td>2.875%</td></tr>
+<tr><td>Monthly payment</td><td>$1,411.45</td></tr>
+<tr><td>Escrow balance</td><td>$1,296.80</td></tr>
+<tr><td>Servicer</td><td>Rocket Mortgage · (800) 4-ROCKET</td></tr>
+<tr><td>Autopay</td><td>✅ Enrolled</td></tr>
+<tr><td>Late fee threshold</td><td>After 17th of month · $51.31</td></tr>
+</table>
+<div class="note-box">✅ Rate is 2.875% — excellent, well below market. <strong>Do not refinance.</strong></div>
+<div class="note-box">💡 Rental income should offset this payment. Track rent collected vs. $1,411.45/mo cost.</div>
+<div class="note-box">💡 Mortgage interest on rental property is tax deductible — log annually to 2026-Tax-Tracker.md.</div>
 <div class="rb-heading">📚 Student Loan — Nelnet</div>
 <table class="row-table">
 <tr><th>Field</th><th>Value</th></tr>
@@ -359,56 +495,20 @@ strong{font-weight:600;color:var(--ink);}
 <tr><td>Loan type</td><td>Direct Subsidized (Group AD — only active loan)</td></tr>
 <tr><td>Repayment plan</td><td>Graduated Repayment</td></tr>
 <tr><td>Principal balance</td><td>$900.19</td></tr>
-<tr><td>Unpaid accrued interest</td><td>$8.29 (as of 03/26/26)</td></tr>
 <tr><td>Outstanding balance</td><td>$908.48</td></tr>
-<tr><td>Effective interest rate</td><td>3.150%</td></tr>
-<tr><td>Daily accrual</td><td>$0.08/day</td></tr>
+<tr><td>Interest rate</td><td>3.150%</td></tr>
 <tr><td>Monthly payment</td><td>$86.46</td></tr>
 <tr><td>Next due date</td><td>09/06/2026</td></tr>
-<tr><td>Last payment</td><td>$100.00 on 12/17/2025</td></tr>
 <tr><td>Status</td><td>In repayment ✅</td></tr>
 </table>
-<p class="rb-para"><strong>Paid-off groups:</strong> AA · AB · AC (Direct Sub) · AE (Direct Unsub) — all $0 ✅</p>
-<p class="rb-para"><strong>Tax note:</strong> Interest paid is deductible (Form 1098-E from Nelnet in January). See 2026-Tax-Tracker.md.</p>
-<div class="rb-heading">🏠 Mortgage</div>
-<table class="row-table">
-<tr><th>Field</th><th>Value</th></tr>
-<tr><td>Lender</td><td>(add lender name)</td></tr>
-<tr><td>Loan type</td><td>(e.g. 30-yr fixed, FHA, conventional)</td></tr>
-<tr><td>Original amount</td><td>(add)</td></tr>
-<tr><td>Current balance</td><td>(add)</td></tr>
-<tr><td>Interest rate</td><td>(add)</td></tr>
-<tr><td>Monthly payment</td><td>(add)</td></tr>
-<tr><td>Next due date</td><td>(add)</td></tr>
-<tr><td>Origination date</td><td>(add)</td></tr>
-<tr><td>Payoff date (est.)</td><td>(add)</td></tr>
-<tr><td>Status</td><td>(add)</td></tr>
-</table>
-<div class="rb-heading">💳 HELOC (Home Equity Line of Credit)</div>
-<table class="row-table">
-<tr><th>Field</th><th>Value</th></tr>
-<tr><td>Lender</td><td>(add lender name)</td></tr>
-<tr><td>Credit limit</td><td>(add)</td></tr>
-<tr><td>Current balance</td><td>(add)</td></tr>
-<tr><td>Available credit</td><td>(add)</td></tr>
-<tr><td>Interest rate</td><td>(add — usually variable)</td></tr>
-<tr><td>Minimum monthly payment</td><td>(add)</td></tr>
-<tr><td>Draw period ends</td><td>(add)</td></tr>
-<tr><td>Repayment period</td><td>(add)</td></tr>
-<tr><td>Status</td><td>(add)</td></tr>
-</table>
-<div class="rb-heading">📊 Loan Summary (as of March 29, 2026)</div>
-<table class="row-table">
-<tr><th>Loan</th><th>Balance</th><th>Rate</th><th>Monthly Pmt</th></tr>
-<tr><td>Student Loan (Nelnet)</td><td>$908.48</td><td>3.15%</td><td>$86.46</td></tr>
-<tr><td>Mortgage</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
-<tr><td>HELOC</td><td>TBD</td><td>TBD</td><td>TBD</td></tr>
-<tr><td><strong>Total</strong></td><td><strong>$908.48+</strong></td><td>—</td><td><strong>$86.46+</strong></td></tr>
-</table>
+<p class="rb-para"><strong>Paid-off groups:</strong> AA · AB · AC · AE — all $0 ✅</p>
+<p class="rb-para"><strong>Tax note:</strong> Interest paid is deductible — Form 1098-E from Nelnet in January.</p>
 <div class="rb-heading">📋 Notes</div>
-<div class="rb-bullet">· Student loan is nearly paid off — only one group (AD) remaining</div>
-<div class="rb-bullet">· Mortgage and HELOC details need to be added — pull from statements or lender portal</div>
-<div class="rb-bullet">· Consider accelerating student loan payoff given low balance and 3.15% rate</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Groupon — Arizona Real Estate License Course</div><div class="record-date">March 29, 2026 · Education / Income Investment</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Order Details</div>
+<div class="rb-bullet">· Total monthly debt obligation: <strong>$4,827.60/mo</strong></div>
+<div class="rb-bullet">· Primary mortgage is the biggest lever — refinance if rates drop to ~4.5% or below</div>
+<div class="rb-bullet">· Investment property rate (2.875%) is irreplaceable — protect it</div>
+<div class="rb-bullet">· Student loan nearly paid off — only $908.48 remaining at 3.15%</div>
+<div class="rb-bullet">· Confirm primary mortgage subsidy terms with Rocket Mortgage — when does it expire?</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Groupon — Arizona Real Estate License Course</div><div class="record-date">March 29, 2026 · Education / Income Investment</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Order Details</div>
 <table class="row-table">
 <tr><th>Field</th><th>Info</th></tr>
 <tr><td>Item</td><td>Online Arizona 90-Hour Real Estate License Course + State Exam Prep</td></tr>
@@ -463,7 +563,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Flagged "avoid default" language with benefits team</div>
 <div class="rb-heading">Next Check</div>
 <p class="rb-para">Verify that 03/20 payment was deducted successfully. If not, escalate to Rocket HR benefits.</p></div></div></div></div>
-<div class="section" id="sec-homeimprovement"><div class="section-header"><div class="section-title">Home Improvement</div><div class="section-meta">4 records · updated April 01, 2026 at 01:53 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Sentra Parts — Pull-A-Part Junkyard Run</div><div class="record-date">March 28, 2026 · Vehicle Maintenance</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Location:</strong> Pull-A-Part — 21st Ave, Phoenix AZ</p>
+<div class="section" id="sec-homeimprovement"><div class="section-header"><div class="section-title">Home Improvement</div><div class="section-meta">4 records · updated April 01, 2026 at 09:02 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Sentra Parts — Pull-A-Part Junkyard Run</div><div class="record-date">March 28, 2026 · Vehicle Maintenance</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Location:</strong> Pull-A-Part — 21st Ave, Phoenix AZ</p>
 <div class="rb-heading">Parts Acquired</div>
 <table class="row-table">
 <tr><th>Part</th><th>Notes</th><th>Est. New Price</th></tr>
@@ -563,7 +663,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Scheduled and completed replacement</div>
 <div class="rb-heading">Notes</div>
 <p class="rb-para">DIY replacement. Parts purchased 03/12. Guide created for future reference.</p></div></div></div></div>
-<div class="section" id="sec-medical"><div class="section-header"><div class="section-title">Medical</div><div class="section-meta">4 records · updated April 01, 2026 at 01:53 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Conception Cycle Tracker — March/April 2026</div><div class="record-date">March 30, 2026 · Medical / Fertility</div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><em>Archived from Honey To Do List on April 1, 2026</em></p>
+<div class="section" id="sec-medical"><div class="section-header"><div class="section-title">Medical</div><div class="section-meta">4 records · updated April 01, 2026 at 09:02 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Conception Cycle Tracker — March/April 2026</div><div class="record-date">March 30, 2026 · Medical / Fertility</div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><em>Archived from Honey To Do List on April 1, 2026</em></p>
 <p class="rb-para"><em>Full permanent record — not loaded on boot</em></p>
 <p class="rb-para"><em>Reference: LifeLedger/Medical/2026-03-30-Wife-Two-Week-Protocol.md for active protocol</em></p>
 <div class="rb-heading">🌸 Cycle Summary</div>
@@ -665,7 +765,143 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· <strong>Provider-only line:</strong> (on file)</div>
 <div class="rb-heading">Notes</div>
 <p class="rb-para">Called Lori B. McFann MD's office on 03/11 first, then confirmed with HonorHealth. Claims submitted through local BCBS chapter.</p></div></div></div></div>
-<div class="section" id="sec-workbenefits"><div class="section-header"><div class="section-title">Work Benefits</div><div class="section-meta">1 record · updated April 01, 2026 at 01:53 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">HSA Setup — Shampoo Expense Reimbursement</div><div class="record-date">March 2026 · Work Benefits / HSA</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
+<div class="section" id="sec-vehicles"><div class="section-header"><div class="section-title">Vehicles</div><div class="section-meta">3 records · updated April 01, 2026 at 09:02 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Nissan Sentra — Vehicle Master Record</div><div class="record-date"></div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Last updated:</strong> April 1, 2026</p>
+<div class="rb-heading">🚗 Vehicle Info</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Year</td><td>(add year)</td></tr>
+<tr><td>Make / Model</td><td>Nissan Sentra</td></tr>
+<tr><td>Color</td><td>(add color)</td></tr>
+<tr><td>VIN</td><td>(add VIN)</td></tr>
+<tr><td>License plate</td><td>Worn — replacement pending</td></tr>
+<tr><td>Purchase date</td><td>(add date)</td></tr>
+<tr><td>Purchase price</td><td>(add price)</td></tr>
+<tr><td>Insurance</td><td>(add provider + policy #)</td></tr>
+</table>
+<div class="rb-heading">🛢️ Oil Change Log</div>
+<table class="row-table">
+<tr><th>Date</th><th>Mileage</th><th>Oil Type</th><th>Next Due (miles)</th><th>Next Due (date)</th><th>Notes</th></tr>
+<tr><td>04/01/2026</td><td>168,690</td><td>(add e.g. 5W-30)</td><td>173,690</td><td>10/01/2026</td><td>Full record: 2026-04-01-Sentra-Oil-Change.md</td></tr>
+</table>
+<p class="rb-para"><strong>Reminder rule:</strong> Every 5,000 miles OR every 6 months — whichever comes first.</p>
+<p class="rb-para"><em>At low mileage driving, the 6-month date trigger is primary.</em></p>
+<div class="rb-heading">🔧 Maintenance Schedule</div>
+<table class="row-table">
+<tr><th>Service</th><th>Interval</th><th>Last Done</th><th>Mileage</th><th>Next Due</th></tr>
+<tr><td>Oil change</td><td>5,000 mi / 6 mo</td><td>04/01/2026</td><td>168,690</td><td>10/01/2026</td></tr>
+<tr><td>Tire rotation</td><td>5,000–7,500 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Air filter</td><td>15,000–30,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Cabin air filter</td><td>15,000–25,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Spark plugs</td><td>~30,000 mi</td><td>03/25/2026</td><td>~168,000</td><td>~198,000</td></tr>
+<tr><td>Brake inspection</td><td>Annual</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Coolant flush</td><td>30,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Transmission fluid</td><td>30,000–60,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+</table>
+<div class="rb-heading">🔩 Parts & Repairs Log</div>
+<table class="row-table">
+<tr><th>Date</th><th>Mileage</th><th>Service</th><th>Cost</th><th>Record</th></tr>
+<tr><td>03/25/2026</td><td>~168,000</td><td>Spark plugs replaced</td><td>(add)</td><td>2026-03-25-Sentra-Spark-Plugs.md</td></tr>
+<tr><td>03/28/2026</td><td>~168,500</td><td>Pull-A-Part — trunk moulding, emblem, visor hardware</td><td>$88</td><td>2026-03-28-Sentra-PullAPart-Run.md</td></tr>
+<tr><td>04/01/2026</td><td>168,690</td><td>Oil change</td><td>(add cost)</td><td>2026-04-01-Sentra-Oil-Change.md</td></tr>
+</table>
+<div class="rb-heading">🛞 Tires</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Brand / Model</td><td>(add)</td></tr>
+<tr><td>Size</td><td>(add e.g. 205/55R16)</td></tr>
+<tr><td>Purchase date</td><td>(add)</td></tr>
+<tr><td>Purchase mileage</td><td>(add)</td></tr>
+<tr><td>Warranty</td><td>(add)</td></tr>
+<tr><td>Last rotation</td><td>(add)</td></tr>
+<tr><td>Next rotation due</td><td>(add)</td></tr>
+</table>
+<div class="rb-heading">📋 Open Items</div>
+<div class="rb-check">☐ Replace license plate — worn out, take photo first</div>
+<div class="rb-check">☐ Install trunk lid moulding (Pull-A-Part piece)</div>
+<div class="rb-check">☐ Glue front grill emblem</div>
+<div class="rb-check">☐ Install visor hardware from Pull-A-Part</div>
+<div class="rb-check">☐ Install new sun visors — eBay order 03/30/26: item 01-14452-12657, $31.63</div>
+<div class="rb-check">☐ Fill in oil type and shop from today's oil change</div>
+<div class="rb-check">☐ Fill in tire brand, size, and warranty info</div>
+<div class="rb-check">☐ Add oil change reminder to 📅 Dates & Events for 10/01/2026</div>
+<div class="rb-heading">📎 Related Records</div>
+<div class="rb-bullet">· <code>2026-03-25-Sentra-Spark-Plugs.md</code> (HomeImprovement)</div>
+<div class="rb-bullet">· <code>2026-03-28-Sentra-PullAPart-Run.md</code> (HomeImprovement)</div>
+<div class="rb-bullet">· <code>2026-03-28-Sentra-Junkyard-Savings.md</code> (CostSavings)</div>
+<div class="rb-bullet">· <code>2026-04-01-Sentra-Oil-Change.md</code> (Vehicles)</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Honda Civic — Vehicle Master Record</div><div class="record-date"></div></div><div class="record-badges"><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><strong>Last updated:</strong> April 1, 2026</p>
+<div class="rb-heading">🚗 Vehicle Info</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Year</td><td>(add year)</td></tr>
+<tr><td>Make / Model</td><td>Honda Civic</td></tr>
+<tr><td>Color</td><td>(add color)</td></tr>
+<tr><td>VIN</td><td>(add VIN)</td></tr>
+<tr><td>License plate</td><td>(add)</td></tr>
+<tr><td>Purchase date</td><td>(add date)</td></tr>
+<tr><td>Purchase price</td><td>(add price)</td></tr>
+<tr><td>Insurance</td><td>(add provider + policy #)</td></tr>
+</table>
+<div class="rb-heading">🛢️ Oil Change Log</div>
+<table class="row-table">
+<tr><th>Date</th><th>Mileage</th><th>Oil Type</th><th>Next Due (miles)</th><th>Next Due (date)</th><th>Notes</th></tr>
+<tr><td>(add)</td><td>(add)</td><td>(add)</td><td>(add)</td><td>(add)</td><td></td></tr>
+</table>
+<p class="rb-para"><strong>Reminder rule:</strong> Every 5,000 miles OR every 6 months — whichever comes first.</p>
+<p class="rb-para"><em>At low mileage driving, the 6-month date trigger is primary.</em></p>
+<div class="rb-heading">🔧 Maintenance Schedule</div>
+<table class="row-table">
+<tr><th>Service</th><th>Interval</th><th>Last Done</th><th>Mileage</th><th>Next Due</th></tr>
+<tr><td>Oil change</td><td>5,000 mi / 6 mo</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Tire rotation</td><td>5,000–7,500 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Air filter</td><td>15,000–30,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Cabin air filter</td><td>15,000–25,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Spark plugs</td><td>~30,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Brake inspection</td><td>Annual</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Coolant flush</td><td>30,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+<tr><td>Transmission fluid</td><td>30,000–60,000 mi</td><td>(add)</td><td>(add)</td><td>(add)</td></tr>
+</table>
+<div class="rb-heading">🔩 Parts & Repairs Log</div>
+<table class="row-table">
+<tr><th>Date</th><th>Mileage</th><th>Service</th><th>Cost</th><th>Notes</th></tr>
+<tr><td>(add)</td><td>(add)</td><td>(add)</td><td>(add)</td><td></td></tr>
+</table>
+<div class="rb-heading">🛞 Tires</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Brand / Model</td><td>(add)</td></tr>
+<tr><td>Size</td><td>(add)</td></tr>
+<tr><td>Purchase date</td><td>(add)</td></tr>
+<tr><td>Purchase mileage</td><td>(add)</td></tr>
+<tr><td>Warranty</td><td>(add)</td></tr>
+<tr><td>Last rotation</td><td>(add)</td></tr>
+<tr><td>Next rotation due</td><td>(add)</td></tr>
+</table>
+<div class="rb-heading">📋 Open Items</div>
+<div class="rb-check">☐ Fill in all vehicle info (year, VIN, plate, purchase details)</div>
+<div class="rb-check">☐ Log last oil change date and mileage</div>
+<div class="rb-check">☐ Log tire brand, size, warranty</div>
+<div class="rb-check">☐ Add oil change reminder to 📅 Dates & Events</div></div></div><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Oil Change — Nissan Sentra</div><div class="record-date">April 1, 2026 · Vehicle Maintenance</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Service Details</div>
+<table class="row-table">
+<tr><th>Field</th><th>Details</th></tr>
+<tr><td>Vehicle</td><td>Nissan Sentra</td></tr>
+<tr><td>Mileage at service</td><td>168,690</td></tr>
+<tr><td>Oil type used</td><td>(add e.g. 5W-30 conventional / synthetic)</td></tr>
+<tr><td>Filter replaced</td><td>(yes/no)</td></tr>
+<tr><td>Shop / location</td><td>(add shop name or DIY)</td></tr>
+<tr><td>Cost</td><td>(add)</td></tr>
+<tr><td>Receipt</td><td>(add reference or scan)</td></tr>
+</table>
+<div class="rb-heading">Next Service</div>
+<table class="row-table">
+<tr><th>Trigger</th><th>Date / Mileage</th></tr>
+<tr><td>Mileage-based</td><td>173,690 miles</td></tr>
+<tr><td><strong>Date-based (primary)</strong></td><td><strong>October 1, 2026</strong></td></tr>
+</table>
+<div class="note-box">⚠️ At current low mileage driving, the <strong>6-month date</strong> is the primary trigger. Don't wait for 173,690 — schedule it for October regardless of mileage.</div>
+<div class="rb-heading">Notes</div>
+<div class="rb-bullet">· Friend's advice: time-based oil changes are critical for low-mileage drivers — oil degrades by age even without heavy use</div>
+<div class="rb-bullet">· Added October 1, 2026 reminder to vault 📅 Dates & Events</div></div></div></div></div>
+<div class="section" id="sec-workbenefits"><div class="section-header"><div class="section-title">Work Benefits</div><div class="section-meta">1 record · updated April 01, 2026 at 09:02 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">HSA Setup — Shampoo Expense Reimbursement</div><div class="record-date">March 2026 · Work Benefits / HSA</div></div><div class="record-badges"><span class="badge badge-done">✓ Complete</span><span class="chevron">▼</span></div></div><div class="record-body"><div class="rb-heading">Summary</div>
 <p class="rb-para">Set up HSA account and successfully expensed medically-prescribed shampoo.</p>
 <div class="rb-heading">Steps Completed</div>
 <div class="rb-bullet">· Found letter from Rocket (employer) confirming eligibility</div>
@@ -674,7 +910,7 @@ strong{font-weight:600;color:var(--ink);}
 <div class="rb-bullet">· Expensed $14.29 on 03/18/26 ✅</div>
 <div class="rb-heading">Notes</div>
 <p class="rb-para">Shampoo is a prescribed/eligible medical expense. Reimbursed through HSA. Keep letter from Rocket on file for audit purposes.</p></div></div></div></div>
-<div class="section" id="sec-journal"><div class="section-header"><div class="section-title">Journal</div><div class="section-meta">4 records · updated April 01, 2026 at 01:53 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Completed Tasks Archive — March/April 2026</div><div class="record-date"></div></div><div class="record-badges"><span class="badge badge-warn">⚠ Review</span><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><em>Archived from main vault on April 1, 2026</em></p>
+<div class="section" id="sec-journal"><div class="section-header"><div class="section-title">Journal</div><div class="section-meta">4 records · updated April 01, 2026 at 09:02 PM</div></div><div class="records"><div class="record"><div class="record-header" onclick="toggleRecord(this)"><div><div class="record-title">Completed Tasks Archive — March/April 2026</div><div class="record-date"></div></div><div class="record-badges"><span class="badge badge-warn">⚠ Review</span><span class="chevron">▼</span></div></div><div class="record-body"><p class="rb-para"><em>Archived from main vault on April 1, 2026</em></p>
 <p class="rb-para"><em>Reference only — not loaded on boot</em></p>
 <div class="rb-heading">✅ Completed</div>
 <div class="rb-check done">☑ 💌 <strong>Find biodegradable balloons</strong> #wife #family</div>

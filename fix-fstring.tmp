@@ -1,0 +1,14 @@
+        elif re.match(r"^[\s]*- \[ \]", line):
+            content = re.sub(r"^[\s]*- \[ \]\s*", "", line)
+            parts.append(f'<div class="rb-check">☐ {inline_md(content)}</div>')
+        elif re.match(r"^[\s]*- \[x\]", line, re.I):
+            content = re.sub(r"^[\s]*- \[x\]\s*", "", line, flags=re.I)
+            parts.append(f'<div class="rb-check done">☑ {inline_md(content)}</div>')
+        elif re.match(r"^[\s]*[-*]\s+", line):
+            indent = len(line) - len(line.lstrip())
+            cls = "rb-bullet-sub" if indent > 0 else "rb-bullet"
+            content = re.sub(r"^[\s]*[-*]\s+", "", line)
+            parts.append(f'<div class="{cls}">· {inline_md(content)}</div>')
+        elif re.match(r"^\d+\.\s+", line):
+            content = re.sub(r"^\d+\.\s+", "", line)
+            parts.append(f'<div class="rb-bullet">· {inline_md(content)}</div>')
