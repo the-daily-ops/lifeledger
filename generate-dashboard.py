@@ -178,20 +178,21 @@ def build_calendar_html(events):
                 if d == TODAY:        cls += " ctoday"
                 elif d < TODAY:       cls += " cpast"
 
-                # Up to 3 colored dots
+                # Dots — one per event, all shown
                 dots = "".join(
                     f'<span class="cdot cdot-{"wife" if e["is_wife"] else e["urgency"]}"></span>'
-                    for e in evs[:3]
+                    for e in evs
                 )
-                # Up to 1 short label
-                label = ""
-                if evs:
-                    e = evs[0]
+                # Labels — show all events, truncated
+                labels = ""
+                for e in evs:
                     lc = "wife" if e["is_wife"] else e["urgency"]
-                    short = e["display"][:14] + ("…" if len(e["display"]) > 14 else "")
-                    label = f'<div class="clbl clbl-{lc}">{short}</div>'
+                    short = e["display"][:16] + ("…" if len(e["display"]) > 16 else "")
+                    labels += f'<div class="clbl clbl-{lc}">{short}</div>'
+                label = labels
 
-                tip = "; ".join(e["display"] for e in evs)
+                # Tooltip — full title of every event on its own line
+                tip = "\n".join(f'• {e["display"]}' for e in evs)
                 tip_attr = f' title="{tip}"' if tip else ""
                 cells.append(
                     f'<div class="{cls}"{tip_attr}>'
@@ -375,6 +376,42 @@ body{{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:1
 .clbl-future{{background:rgba(255,255,255,0.05);color:var(--text3);}}
 .clbl-wife{{background:rgba(232,127,160,0.18);color:var(--pink);}}
 .cal-legend{{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;}}
+/* Hover tooltip for calendar cells */
+.ccell{{position:relative;}}
+.ccell[title]:hover::after{{
+  content:attr(title);
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(14,14,15,0.95);
+  color:#e8e6e0;
+  font-family:var(--mono);
+  font-size:11px;
+  line-height:1.5;
+  padding:7px 10px;
+  border-radius:3px;
+  white-space:pre;
+  z-index:200;
+  pointer-events:none;
+  border:1px solid rgba(255,255,255,0.1);
+  min-width:140px;
+  max-width:260px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.4);
+  word-break:break-word;
+  white-space:normal;
+}}
+.ccell[title]:hover::before{{
+  content:'';
+  position:absolute;
+  bottom:calc(100% + 1px);
+  left:50%;
+  transform:translateX(-50%);
+  border:5px solid transparent;
+  border-top-color:rgba(14,14,15,0.95);
+  z-index:201;
+  pointer-events:none;
+}}
 .leg{{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);}}
 .ldot2{{width:6px;height:6px;border-radius:50%;}}
 
