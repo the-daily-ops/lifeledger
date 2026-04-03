@@ -74,6 +74,42 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 .clbl-future{background:rgba(255,255,255,0.05);color:var(--text3);}
 .clbl-wife{background:rgba(232,127,160,0.18);color:var(--pink);}
 .cal-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;}
+/* Hover tooltip for calendar cells */
+.ccell{position:relative;}
+.ccell[title]:hover::after{
+  content:attr(title);
+  position:absolute;
+  bottom:calc(100% + 6px);
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(14,14,15,0.95);
+  color:#e8e6e0;
+  font-family:var(--mono);
+  font-size:11px;
+  line-height:1.5;
+  padding:7px 10px;
+  border-radius:3px;
+  white-space:pre;
+  z-index:200;
+  pointer-events:none;
+  border:1px solid rgba(255,255,255,0.1);
+  min-width:140px;
+  max-width:260px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.4);
+  word-break:break-word;
+  white-space:normal;
+}
+.ccell[title]:hover::before{
+  content:'';
+  position:absolute;
+  bottom:calc(100% + 1px);
+  left:50%;
+  transform:translateX(-50%);
+  border:5px solid transparent;
+  border-top-color:rgba(14,14,15,0.95);
+  z-index:201;
+  pointer-events:none;
+}
 .leg{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);}
 .ldot2{width:6px;height:6px;border-radius:50%;}
 
@@ -182,7 +218,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 <header class="hdr">
   <div class="logo"><div class="ldot"></div>LifeLedger</div>
   <div style="display:flex;align-items:center;gap:14px;">
-    <span class="hmeta">Updated April 01, 2026 at 09:02 PM</span>
+    <span class="hmeta">Updated April 02, 2026 at 05:21 PM</span>
     <span class="spill">$132/mo saved</span>
   </div>
 </header>
@@ -196,8 +232,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
   <div class="cal-main">
     <div class="sec-label">📅 Calendar</div>
     <div class="cal-months">
-      <div class="cal-month"><div class="cal-mname">April 2026</div><div class="cgrid"><div class="cdow">Su</div><div class="cdow">Mo</div><div class="cdow">Tu</div><div class="cdow">We</div><div class="cdow">Th</div><div class="cdow">Fr</div><div class="cdow">Sa</div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell ctoday"><span class="cdaynum">1</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">2</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">3</span><div class="cdots"></div></div><div class="ccell" title="Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD); 💌 Figure out hiking location for Saturday 4/4; Dad's heavenly Birthday"><span class="cdaynum">4</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sat 4/4** — Da…</div></div><div class="ccell" title="Sun 4/5** — Easter Sunday (plans TBD)"><span class="cdaynum">5</span><div class="cdots"><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sun 4/5** — Ea…</div></div><div class="ccell"><span class="cdaynum">6</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">7</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">8</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">9</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">10</span><div class="cdots"></div></div><div class="ccell" title="Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown; Steve's bachelor party (mini golf, dinner, downtown), Saturday"><span class="cdaynum">11</span><div class="cdots"><span class="cdot cdot-upcoming"></span><span class="cdot cdot-upcoming"></span></div><div class="clbl clbl-upcoming">Sat 4/11** — S…</div></div><div class="ccell"><span class="cdaynum">12</span><div class="cdots"></div></div><div class="ccell" title="Mon 4/13** — 💌 Pregnancy test day 🤞; 💌 Take pregnancy test : April 13!"><span class="cdaynum">13</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Mon 4/13** — 💌…</div></div><div class="ccell" title="Tue 4/14** — Dentist — M.C. · 4–5 PM; Dentist Appt M.C. 4–5 PM"><span class="cdaynum">14</span><div class="cdots"><span class="cdot cdot-upcoming"></span><span class="cdot cdot-upcoming"></span></div><div class="clbl clbl-upcoming">Tue 4/14** — D…</div></div><div class="ccell"><span class="cdaynum">15</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">16</span><div class="cdots"></div></div><div class="ccell" title="Fri 4/17** — Interpol Concert 🎵; Interpol Concert"><span class="cdaynum">17</span><div class="cdots"><span class="cdot cdot-future"></span><span class="cdot cdot-future"></span></div><div class="clbl clbl-future">Fri 4/17** — I…</div></div><div class="ccell"><span class="cdaynum">18</span><div class="cdots"></div></div><div class="ccell" title="Sun 4/19** — Wife dental cleaning; C's Dental Cleaning"><span class="cdaynum">19</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sun 4/19** — W…</div></div><div class="ccell"><span class="cdaynum">20</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">21</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">22</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">23</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">24</span><div class="cdots"></div></div><div class="ccell" title="Fri 4/25** — Date night! 💌"><span class="cdaynum">25</span><div class="cdots"><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Fri 4/25** — D…</div></div><div class="ccell"><span class="cdaynum">26</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">27</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">28</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">29</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">30</span><div class="cdots"></div></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div></div></div>
-<div class="cal-month"><div class="cal-mname">May 2026</div><div class="cgrid"><div class="cdow">Su</div><div class="cdow">Mo</div><div class="cdow">Tu</div><div class="cdow">We</div><div class="cdow">Th</div><div class="cdow">Fr</div><div class="cdow">Sa</div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell"><span class="cdaynum">1</span><div class="cdots"></div></div><div class="ccell" title="Sat 5/2** — Steve & Amy's Wedding 💍; May 2nd Saturday Steve and Amy's Wedding"><span class="cdaynum">2</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sat 5/2** — St…</div></div><div class="ccell"><span class="cdaynum">3</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">4</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">5</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">6</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">7</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">8</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">9</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">10</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">11</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">12</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">13</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">14</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">15</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">16</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">17</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">18</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">19</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">20</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">21</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">22</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">23</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">24</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">25</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">26</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">27</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">28</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">29</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">30</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">31</span><div class="cdots"></div></div></div></div>
+      <div class="cal-month"><div class="cal-mname">April 2026</div><div class="cgrid"><div class="cdow">Su</div><div class="cdow">Mo</div><div class="cdow">Tu</div><div class="cdow">We</div><div class="cdow">Th</div><div class="cdow">Fr</div><div class="cdow">Sa</div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cpast"><span class="cdaynum">1</span><div class="cdots"></div></div><div class="ccell ctoday"><span class="cdaynum">2</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">3</span><div class="cdots"></div></div><div class="ccell" title="Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD)
+💌 Figure out hiking location for Saturday 4/4
+Dad's heavenly Birthday"><span class="cdaynum">4</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sat 4/4** — Da…</div></div><div class="ccell" title="Sun 4/5** — Easter Sunday (plans TBD)"><span class="cdaynum">5</span><div class="cdots"><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sun 4/5** — Ea…</div></div><div class="ccell"><span class="cdaynum">6</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">7</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">8</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">9</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">10</span><div class="cdots"></div></div><div class="ccell" title="Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown
+Steve's bachelor party (mini golf, dinner, downtown), Saturday"><span class="cdaynum">11</span><div class="cdots"><span class="cdot cdot-upcoming"></span><span class="cdot cdot-upcoming"></span></div><div class="clbl clbl-upcoming">Sat 4/11** — S…</div></div><div class="ccell"><span class="cdaynum">12</span><div class="cdots"></div></div><div class="ccell" title="Mon 4/13** — 💌 Pregnancy test day 🤞
+💌 Take pregnancy test : April 13!"><span class="cdaynum">13</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Mon 4/13** — 💌…</div></div><div class="ccell" title="Tue 4/14** — Dentist — M.C. · 4–5 PM
+Dentist Appt M.C. 4–5 PM"><span class="cdaynum">14</span><div class="cdots"><span class="cdot cdot-upcoming"></span><span class="cdot cdot-upcoming"></span></div><div class="clbl clbl-upcoming">Tue 4/14** — D…</div></div><div class="ccell"><span class="cdaynum">15</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">16</span><div class="cdots"></div></div><div class="ccell" title="Fri 4/17** — Interpol Concert 🎵
+Interpol Concert"><span class="cdaynum">17</span><div class="cdots"><span class="cdot cdot-future"></span><span class="cdot cdot-future"></span></div><div class="clbl clbl-future">Fri 4/17** — I…</div></div><div class="ccell"><span class="cdaynum">18</span><div class="cdots"></div></div><div class="ccell" title="Sun 4/19** — Wife dental cleaning
+C's Dental Cleaning"><span class="cdaynum">19</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sun 4/19** — W…</div></div><div class="ccell"><span class="cdaynum">20</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">21</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">22</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">23</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">24</span><div class="cdots"></div></div><div class="ccell" title="Fri 4/25** — Date night! 💌"><span class="cdaynum">25</span><div class="cdots"><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Fri 4/25** — D…</div></div><div class="ccell"><span class="cdaynum">26</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">27</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">28</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">29</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">30</span><div class="cdots"></div></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div></div></div>
+<div class="cal-month"><div class="cal-mname">May 2026</div><div class="cgrid"><div class="cdow">Su</div><div class="cdow">Mo</div><div class="cdow">Tu</div><div class="cdow">We</div><div class="cdow">Th</div><div class="cdow">Fr</div><div class="cdow">Sa</div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell cempty"></div><div class="ccell"><span class="cdaynum">1</span><div class="cdots"></div></div><div class="ccell" title="Sat 5/2** — Steve & Amy's Wedding 💍
+May 2nd Saturday Steve and Amy's Wedding"><span class="cdaynum">2</span><div class="cdots"><span class="cdot cdot-wife"></span><span class="cdot cdot-wife"></span></div><div class="clbl clbl-wife">Sat 5/2** — St…</div></div><div class="ccell"><span class="cdaynum">3</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">4</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">5</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">6</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">7</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">8</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">9</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">10</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">11</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">12</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">13</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">14</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">15</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">16</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">17</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">18</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">19</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">20</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">21</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">22</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">23</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">24</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">25</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">26</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">27</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">28</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">29</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">30</span><div class="cdots"></div></div><div class="ccell"><span class="cdaynum">31</span><div class="cdots"></div></div></div></div>
     </div>
     <div class="cal-legend">
       <div class="leg"><div class="ldot2" style="background:var(--red)"></div>≤3 days</div>
@@ -210,21 +254,21 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
   <div class="ev-side">
     <div class="sec-label" style="margin-bottom:10px;">Upcoming</div>
     <div class="evlist">
-      <div class="evc ev-urg ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">3d away</span></div><div class="evc-title">Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD)</div></div>
-<div class="evc ev-urg ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">3d away</span></div><div class="evc-title">💌 Figure out hiking location for Saturday 4/4</div></div>
-<div class="evc ev-urg ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">3d away</span></div><div class="evc-title">Dad's heavenly Birthday</div></div>
-<div class="evc ev-soon ev-wife"><div class="evc-top"><span class="evc-date">Apr 5</span><span class="evc-cd">4d away</span></div><div class="evc-title">Sun 4/5** — Easter Sunday (plans TBD)</div></div>
-<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 11</span><span class="evc-cd">10d away</span></div><div class="evc-title">Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown</div></div>
-<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 11</span><span class="evc-cd">10d away</span></div><div class="evc-title">Steve's bachelor party (mini golf, dinner, downtown), Saturday</div></div>
-<div class="evc ev-upcoming ev-wife"><div class="evc-top"><span class="evc-date">Apr 13</span><span class="evc-cd">12d away</span></div><div class="evc-title">Mon 4/13** — 💌 Pregnancy test day 🤞</div></div>
-<div class="evc ev-upcoming ev-wife"><div class="evc-top"><span class="evc-date">Apr 13</span><span class="evc-cd">12d away</span></div><div class="evc-title">💌 Take pregnancy test : April 13!</div></div>
-<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 14</span><span class="evc-cd">13d away</span></div><div class="evc-title">Tue 4/14** — Dentist — M.C. · 4–5 PM</div></div>
-<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 14</span><span class="evc-cd">13d away</span></div><div class="evc-title">Dentist Appt M.C. 4–5 PM</div></div>
-<div class="evc ev-future"><div class="evc-top"><span class="evc-date">Apr 17</span><span class="evc-cd">16d away</span></div><div class="evc-title">Fri 4/17** — Interpol Concert 🎵</div></div>
-<div class="evc ev-future"><div class="evc-top"><span class="evc-date">Apr 17</span><span class="evc-cd">16d away</span></div><div class="evc-title">Interpol Concert</div></div>
-<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 19</span><span class="evc-cd">18d away</span></div><div class="evc-title">Sun 4/19** — Wife dental cleaning</div></div>
-<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 19</span><span class="evc-cd">18d away</span></div><div class="evc-title">C's Dental Cleaning</div></div>
-<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 25</span><span class="evc-cd">24d away</span></div><div class="evc-title">Fri 4/25** — Date night! 💌</div></div>
+      <div class="evc ev-urg ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">2d away</span></div><div class="evc-title">Sat 4/4** — Dad's heavenly birthday 🕊️ · Hiking (location TBD)</div></div>
+<div class="evc ev-urg ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">2d away</span></div><div class="evc-title">💌 Figure out hiking location for Saturday 4/4</div></div>
+<div class="evc ev-urg ev-wife"><div class="evc-top"><span class="evc-date">Apr 4</span><span class="evc-cd">2d away</span></div><div class="evc-title">Dad's heavenly Birthday</div></div>
+<div class="evc ev-urg ev-wife"><div class="evc-top"><span class="evc-date">Apr 5</span><span class="evc-cd">3d away</span></div><div class="evc-title">Sun 4/5** — Easter Sunday (plans TBD)</div></div>
+<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 11</span><span class="evc-cd">9d away</span></div><div class="evc-title">Sat 4/11** — Steve's bachelor party · Mini golf, dinner, downtown</div></div>
+<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 11</span><span class="evc-cd">9d away</span></div><div class="evc-title">Steve's bachelor party (mini golf, dinner, downtown), Saturday</div></div>
+<div class="evc ev-upcoming ev-wife"><div class="evc-top"><span class="evc-date">Apr 13</span><span class="evc-cd">11d away</span></div><div class="evc-title">Mon 4/13** — 💌 Pregnancy test day 🤞</div></div>
+<div class="evc ev-upcoming ev-wife"><div class="evc-top"><span class="evc-date">Apr 13</span><span class="evc-cd">11d away</span></div><div class="evc-title">💌 Take pregnancy test : April 13!</div></div>
+<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 14</span><span class="evc-cd">12d away</span></div><div class="evc-title">Tue 4/14** — Dentist — M.C. · 4–5 PM</div></div>
+<div class="evc ev-upcoming"><div class="evc-top"><span class="evc-date">Apr 14</span><span class="evc-cd">12d away</span></div><div class="evc-title">Dentist Appt M.C. 4–5 PM</div></div>
+<div class="evc ev-future"><div class="evc-top"><span class="evc-date">Apr 17</span><span class="evc-cd">15d away</span></div><div class="evc-title">Fri 4/17** — Interpol Concert 🎵</div></div>
+<div class="evc ev-future"><div class="evc-top"><span class="evc-date">Apr 17</span><span class="evc-cd">15d away</span></div><div class="evc-title">Interpol Concert</div></div>
+<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 19</span><span class="evc-cd">17d away</span></div><div class="evc-title">Sun 4/19** — Wife dental cleaning</div></div>
+<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 19</span><span class="evc-cd">17d away</span></div><div class="evc-title">C's Dental Cleaning</div></div>
+<div class="evc ev-future ev-wife"><div class="evc-top"><span class="evc-date">Apr 25</span><span class="evc-cd">23d away</span></div><div class="evc-title">Fri 4/25** — Date night! 💌</div></div>
     </div>
   </div>
 </div>
@@ -270,7 +314,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:13
 
 <script>
 const CHK='<svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M1 3L3 5L7 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const WIFE=["Find biodegradable balloons", "Figure out Easter Sunday plans", "Figure out hiking location for Saturday 4/4", "Fix window screen for bedroom", "Break down boxes in backyard", "Call roof guy!!", "Call the roofer guy tomorrow", "Check out wife’s new super cool super cute stationery bag!!!!", "", "Take pregnancy test : April 13!", "Get day off at Marriott!", "Find suit", "Find a dress", "Figure out hotel details", "Cat sitter", "💊 CoQ10 · Prenatal · Fish oil · Flaxseed · Magnesium", "🌿 Teas: Morning rosehip · Afternoon nettle · Evening peppermint", "🫐 Pomegranate juice (throughout TWW)", "🍍 Pineapple juice (DPO 1–5 only: ended Apr 4)"].filter(Boolean).map((t,i)=>({id:'h'+i,title:t}));
+const WIFE=["Figure out hiking location for Saturday 4/4", "Fix window screen for bedroom", "Break down boxes in backyard", "Call roof guy!!", "Take pregnancy test : April 13!", "Get day off at Marriott!", "Find suit", "Find a dress", "Figure out hotel details", "Cat sitter", "💊 CoQ10 · Prenatal · Fish oil · Flaxseed · Magnesium", "🌿 Teas: Morning rosehip · Afternoon nettle · Evening peppermint", "🫐 Pomegranate juice (throughout TWW)", "🍍 Pineapple juice (DPO 1–5 only: ended Apr 4)"].filter(Boolean).map((t,i)=>({id:'h'+i,title:t}));
 const TASKS=[
   {id:100,col:'urgent',title:'💌 Figure out hiking location — THIS Saturday 4/4',note:'',tags:["wife", "family"],money:false,urgent:true,wife:true},
   {id:101,col:'urgent',title:'Schedule lab appointment — HonorHealth Cave Creek',note:'',tags:["medical"],money:false,urgent:false,wife:false},
@@ -308,17 +352,16 @@ const TASKS=[
   {id:307,col:'projects',title:'Add picture frames to wall for wife',note:'',tags:["home", "wife"],money:false,urgent:true,wife:true},
   {id:308,col:'projects',title:'Garage organization',note:'',tags:["home"],money:false,urgent:false,wife:false},
   {id:309,col:'projects',title:'Phone bill negotiation',note:'',tags:["income"],money:true,urgent:true,wife:false},
-  {id:310,col:'projects',title:'Apple subscriptions audit',note:'',tags:["income"],money:true,urgent:true,wife:false},
-  {id:311,col:'projects',title:'Switch APS billing (time-of-use plan)',note:'',tags:["home", "income"],money:true,urgent:false,wife:false},
-  {id:312,col:'projects',title:'Set up YouTube promotion account',note:'',tags:["income"],money:false,urgent:false,wife:false},
-  {id:313,col:'projects',title:'Roof — follow up with Taylor',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:314,col:'projects',title:'Patio upgrades — mosquito netting + sprinklers',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:315,col:'projects',title:'MeetKevin Sweat Equity — flooring · cabinets · closets',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:316,col:'projects',title:'Transfer Termio',note:'',tags:["income", "home"],money:true,urgent:false,wife:false},
-  {id:317,col:'projects',title:'Luna spa question',note:'',tags:["income"],money:true,urgent:false,wife:false},
-  {id:318,col:'projects',title:'Remove Zillow from home site',note:'',tags:["home"],money:false,urgent:false,wife:false},
-  {id:319,col:'projects',title:'Retrieve Bitcoin',note:'',tags:["income"],money:true,urgent:false,wife:false},
-  {id:320,col:'projects',title:'Paper money trades',note:'',tags:["self"],money:true,urgent:false,wife:false},
+  {id:310,col:'projects',title:'Switch APS billing (time-of-use plan)',note:'',tags:["home", "income"],money:true,urgent:false,wife:false},
+  {id:311,col:'projects',title:'Set up YouTube promotion account',note:'',tags:["income"],money:false,urgent:false,wife:false},
+  {id:312,col:'projects',title:'Roof — follow up with Taylor',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:313,col:'projects',title:'Patio upgrades — mosquito netting + sprinklers',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:314,col:'projects',title:'MeetKevin Sweat Equity — flooring · cabinets · closets',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:315,col:'projects',title:'Transfer Termio',note:'',tags:["income", "home"],money:true,urgent:false,wife:false},
+  {id:316,col:'projects',title:'Luna spa question',note:'',tags:["income"],money:true,urgent:false,wife:false},
+  {id:317,col:'projects',title:'Remove Zillow from home site',note:'',tags:["home"],money:false,urgent:false,wife:false},
+  {id:318,col:'projects',title:'Retrieve Bitcoin',note:'',tags:["income"],money:true,urgent:false,wife:false},
+  {id:319,col:'projects',title:'Paper money trades',note:'',tags:["self"],money:true,urgent:false,wife:false},
   {id:400,col:'waiting',title:'Roof contractor — waiting on Taylor\'s recommendation (asked 03/16)',note:'',tags:[],money:false,urgent:false,wife:false},
   {id:401,col:'waiting',title:'EOS credit for double payment — asked again 03/18',note:'',tags:[],money:true,urgent:false,wife:false},
   {id:402,col:'waiting',title:'Nelnet student loan payment — 86.46 due 09/06/26',note:'',tags:[],money:true,urgent:false,wife:false},
